@@ -35,7 +35,18 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Teste de Mass assignment
+        $evento = Evento::create([
+            'titulo' => 'Evento Teste',
+            'subTitulo' => 'Criação de evento',
+            'descricao' => 'Evento criado para teste',
+            'local' => 'Ifba Campus Eunápolis',
+            'data' => '2020-02-26',
+            'organizador' => 'Adriano Sena',
+            'telefone' => '7399955564'
+        ]);
+
+
     }
 
     /**
