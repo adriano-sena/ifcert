@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Evento;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class EventoController extends Controller
@@ -14,11 +15,12 @@ class EventoController extends Controller
      */
     public function index()
     {
-        //
+        $eventos = \App\Evento::paginate(10);
+        return $eventos; 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário para criação do Evento
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,10 +37,10 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //Teste de Mass assignment
         $evento = Evento::create([
             'titulo' => 'Evento Teste',
             'subTitulo' => 'Criação de evento',
+            'slug' => 'Titulo-Subtitulo',
             'descricao' => 'Evento criado para teste',
             'local' => 'Ifba Campus Eunápolis',
             'data' => '2020-02-26',
@@ -46,7 +48,7 @@ class EventoController extends Controller
             'telefone' => '7399955564'
         ]);
 
-
+        dd($evento);
     }
 
     /**

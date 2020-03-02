@@ -17,6 +17,7 @@ class CreateEventosTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('subTitulo');
+            $table->string('slug');
             $table->longText('descricao');
             $table->string('local');
             $table->date('data');

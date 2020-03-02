@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     
-    //Atributos que podem ser preeshcnidos de forma massiva
+    //Atributos que podem ser preencnidos de forma massiva
     protected $fillable = [
         'titulo', 
         'subTitulo',
+        'slug',
         'descricao',
         'local',
         'data',

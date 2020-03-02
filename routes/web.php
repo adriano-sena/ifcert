@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/criar-evento','EventoController@store');
+Route::get('/admin/criar-evento','Admin\\EventoController@store');
+Route::get('/eventos','Admin\\EventoController@index');

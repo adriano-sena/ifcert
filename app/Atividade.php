@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Atividade extends Model
 {
     //Adicionar o mass assignment
+    protected $fillable = [
+        'titulo',
+        'subtitulo',
+        'slug',
+        'descricao',
+        'mediador',
+        'cargaHoraria',
+        'local',
+        'data'
+    ];
     //Adicionar cast e hidden se necessário
 
 
