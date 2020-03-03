@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Admin/index');
 });
 
-Route::get('/admin/criar-evento','Admin\\EventoController@store');
+//Rotas de evento
+Route::post('/admin/criar-evento','Admin\\EventoController@store');
 Route::get('/eventos','Admin\\EventoController@index');
