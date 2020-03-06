@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 //Rotas de evento
 Route::post('/admin/criar-evento','Admin\\EventoController@store');
-Route::get('/eventos','Admin\\EventoController@index');
+Route::get('/admin/criar-evento', 'Admin\\EventoController@create');
+Route::get('/admin/eventos','Admin\\EventoController@index')->name('listar-eventos');

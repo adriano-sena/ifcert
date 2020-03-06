@@ -26,7 +26,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.form-evento');
     }
 
     /**
@@ -37,18 +37,21 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $data = $request->all();
+
         $evento = Evento::create([
-            'titulo' => 'Evento Teste',
-            'subTitulo' => 'Criação de evento',
+            'titulo' => $request->titulo,
+            'subTitulo' => $request->subTitulo ,
             'slug' => 'Titulo-Subtitulo',
-            'descricao' => 'Evento criado para teste',
-            'local' => 'Ifba Campus Eunápolis',
-            'data' => '2020-02-26',
-            'organizador' => 'Adriano Sena',
+            'descricao' => $request->descricao,
+            'local' => $request->local,
+            'data' => $request->data,
+            'organizador' => $request->organizador,
             'telefone' => '7399955564'
         ]);
 
-        dd($evento);
+        return redirect()->route('listar-eventos');
     }
 
     /**
