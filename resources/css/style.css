@@ -1,0 +1,40 @@
+
+/* define Um tamanho padrão para a imagem do carousel
+O object fit define como os filhos vão se comportar em relação aos seus elementos pais  o cover define 
+define que o filho preencha o elemento pai sem distorção da imagem
+O object-position define a posição da imagem dentro do elemento pai */
+.imagem-carrossel {
+  object-fit: cover; 
+  object-position: 0 80%;
+  height: 400px; 
+}
+
+.fonte-titulo {
+  font-family: 'Pacifico', cursive; 
+}
+
+/* O atributo important define que este seletor css tem preferencia sobre os seletores definidos nas classes bootstrap */
+.texto-cor-especial {
+  color: #8D0606!important;
+}
+
+.card-largura {
+  width: 18rem;
+}
+
+.card-imagem-posicao {
+  height:200px;
+  object-fit:cover;
+  object-position: 0 60%;
+}
+
+
+.borda-cor-especial {
+  border-color: #8D0606;
+}
+
+.btn-cor-especial {
+  background-color: #8D0606;
+  color: white;
+}
+

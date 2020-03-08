@@ -16,7 +16,7 @@ class EventoController extends Controller
     public function index()
     {
         $eventos = \App\Evento::paginate(10);
-        return $eventos; 
+        return view('Admin.index-eventos', compact('eventos'));
     }
 
     /**
@@ -51,7 +51,7 @@ class EventoController extends Controller
             'telefone' => '7399955564'
         ]);
 
-        return redirect()->route('listar-eventos');
+        return redirect()->route('admin.evento.index');
     }
 
     /**
@@ -66,14 +66,16 @@ class EventoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário para a edição do evento.
      *
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evento $evento)
+    public function edit($evento)
     {
-        //
+        $evento = Evento::find($evento);
+
+        return view('Admin.edit-evento', compact('evento') );
     }
 
     /**
@@ -83,9 +85,14 @@ class EventoController extends Controller
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evento $evento)
+    public function update(Request $request,$evento)
     {
-        //
+        $data = $request->all();
+
+        $evento = Evento::find($evento);
+        $evento->update($data); //retorna boleano 
+
+        return $evento;
     }
 
     /**
@@ -94,8 +101,12 @@ class EventoController extends Controller
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evento $evento)
+    public function destroy($evento)
     {
-        //
+        $evento =  Evento::find($evento);
+
+        $evento->delete();
+
+        return redirect('/admin/eventos');
     }
 }
