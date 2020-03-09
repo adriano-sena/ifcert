@@ -19,6 +19,13 @@ class EventoController extends Controller
         return view('Admin.index-eventos', compact('eventos'));
     }
 
+    
+    public function listaEventos()
+    {    
+        $eventos = Evento::paginate(10);
+        return view('Admin.lista-eventos', compact('eventos'));
+    }
+
     /**
      * Exibe o formulário para criação do Evento
      *
@@ -60,9 +67,12 @@ class EventoController extends Controller
      * @param  \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function show(Evento $evento)
+    public function show($evento)
     {
-        //
+        $evento = Evento::find($evento);
+
+
+        return view('evento', compact('evento'));
     }
 
     /**
@@ -107,6 +117,6 @@ class EventoController extends Controller
 
         $evento->delete();
 
-        return redirect('/admin/eventos');
+        return redirect()->route('admin.evento.lista');
     }
 }
