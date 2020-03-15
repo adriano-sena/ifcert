@@ -102,7 +102,8 @@ class EventoController extends Controller
         $evento = Evento::find($evento);
         $evento->update($data); //retorna boleano 
 
-        return $evento;
+        flash('Evento Atualizado com sucesso');
+        return redirect()->route('admin.evento.lista');
     }
 
     /**
@@ -116,7 +117,7 @@ class EventoController extends Controller
         $evento =  Evento::find($evento);
 
         $evento->delete();
-
+        flash('Evento excluído com sucesso')->success();
         return redirect()->route('admin.evento.lista');
     }
 }

@@ -41,6 +41,7 @@
       <h1>@yield('titulo')</h1>
   </div>
 
+  @include('flash::message')
   @yield('conteudo')
 </div>
 

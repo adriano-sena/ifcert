@@ -6,7 +6,8 @@
 
 @section('conteudo')
 
-<a href="{{route('admin.evento.create')}}" class="btn btn-success">Criar Loja</a>
+<a href="{{route('admin.evento.create')}}" class="btn btn-success mb-2">Criar Evento</a>
+
     <section id="lista">
         
     <ul class="list-group">
@@ -24,10 +25,7 @@
         @endforeach
     </ul>            
     
-    
-    {{-- <a href="{{route('admin.evento.editar', ['evento' => $evento->id])}}" class="btn btn-primary">Editar</a>
-    <a href="{{route('admin.evento.editar', ['evento' => $evento->id])}}" class="btn btn-primary">Atividades</a>
-    <a href="{{route('admin.evento.deleta', ['evento' => $evento->id])}}" class="btn btn-danger">Deletar</a> --}}
-            
     </section>
+
+    {{ $eventos->links() }}
 @endsection
