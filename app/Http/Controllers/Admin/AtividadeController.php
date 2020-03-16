@@ -1,12 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Atividade;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AtividadeController extends Controller
 {
+
+    private $atividade;
+
+    //Injeta um objeto de atividade 
+    public function __construct(Atividade $atividade)
+    {
+        $this->atividade = $atividade;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +24,30 @@ class AtividadeController extends Controller
      */
     public function index()
     {
-        //
+        $atividades = $this->atividade->paginate(10);
+
+        return view('Admin.Atividade.index' , compact('atividades'));
     }
+
+    public function listaAtividades(Request $request)
+    {    
+        $evento = $request->evento;
+
+        
+        $atividades = Atividade::paginate(10);
+        return view('Admin.Atividade.lista', compact('atividades'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        return view ('admin.atividade.create');
     }
 
     /**
@@ -35,7 +58,14 @@ class AtividadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $evento = \App\Evento::find($data['evento']);
+        $evento->atividades()->create($data);
+
+        flash('Atividade criada com sucesso')->success();
+
+        return redirect()->route('atividades.lista');
     }
 
     /**
@@ -57,7 +87,7 @@ class AtividadeController extends Controller
      */
     public function edit(Atividade $atividade)
     {
-        //
+        return view('admin.atividade.edit', compact('atividade'));
     }
 
     /**

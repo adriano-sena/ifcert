@@ -20,6 +20,7 @@
                         Editar
                     </a>
                     <a href="{{route('admin.evento.deleta', ['evento' => $evento->id])}}" class="btn btn-danger">Deletar</a>
+                    <a href="{{route('atividades.lista', ['evento' => $evento->id])}}" class="btn btn-primary">Atividades</a>
                 </div>
             </li>
         @endforeach

@@ -26,6 +26,17 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/deletar/{evento}', 'EventoController@destroy')->name('admin.evento.deleta');
     Route::get('/exibir/{evento}', 'EventoController@show')->name('exibe-evento');//exibe um evento específico
     
+
+    //Rotas de Atividades 
+
+
+    Route::get('/atividades/{evento}/create', 'AtividadeController@create')->name('atividades.create');
+    Route::post('/atividades/{evento}/create', 'AtividadeController@store');
+   
+    Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
+    Route::resource('atividades', 'AtividadeController');
+
+   
 });
 
 
