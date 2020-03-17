@@ -7,8 +7,9 @@
 
 @section('conteudo')
 <section class="container">
-<form action="/admin/atualizar/{{$evento->id}}" method="POST">
+<form action="{{route('eventos.update' , $evento->id)}}" method="POST">
   @csrf
+  @method('PUT')
     <div class="form-row">
       <div class="form-group col">
         <label for="titulo">Título</label>

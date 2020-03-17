@@ -14,6 +14,7 @@ class Atividade extends Model
         'descricao',
         'mediador',
         'cargaHoraria',
+        'qtd_vagas',
         'local',
         'data'
     ];

@@ -58,7 +58,7 @@ class EventoController extends Controller
             'telefone' => '7399955564'
         ]);
 
-        return redirect()->route('admin.evento.index');
+        return redirect()->route('admin.evento.lista');
     }
 
     /**

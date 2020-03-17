@@ -6,7 +6,7 @@
 
 @section('conteudo')
 
-<a href="{{route('admin.evento.create')}}" class="btn btn-success mb-2">Criar Evento</a>
+<a href="{{route('eventos.create')}}" class="btn btn-success mb-2">Criar Evento</a>
 
     <section id="lista">
         
@@ -16,11 +16,17 @@
                 <span id="titulo-evento">{{ $evento->titulo }}</span>
                 
                 <div id="botoes">
-                    <a href="{{route('admin.evento.editar', ['evento' => $evento->id])}}" class=" btn btn-success">
+                    <a href="{{route('eventos.edit', ['evento' => $evento->id])}}" class=" btn btn-success">
                         Editar
                     </a>
-                    <a href="{{route('admin.evento.deleta', ['evento' => $evento->id])}}" class="btn btn-danger">Deletar</a>
-                    <a href="{{route('atividades.lista', ['evento' => $evento->id])}}" class="btn btn-primary">Atividades</a>
+
+                    <form action="{{route('eventos.destroy', ['evento' => $evento->id])}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+
+                    <a href="{{route('atividades.lista', ['evento' => $evento->id]) }}" class="btn btn-primary">Atividades</a>
                 </div>
             </li>
         @endforeach

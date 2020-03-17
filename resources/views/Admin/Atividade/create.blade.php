@@ -5,9 +5,16 @@
 @endsection
 
 
+{{route('eventos.atividades.store', session()->get('evento'))}}
+
+
 @section('conteudo')
 <section class="container">
-<form action="/admin/atividades/{{$evento->id}}/create" method="POST">
+  
+{{session()->get('evento')}}
+
+
+<form action="{{route('eventos.atividades.store', session()->get('evento'))}}" method="post">
   @csrf
     <div class="form-row">
       <div class="form-group col">
@@ -17,11 +24,12 @@
     </div>
     <div class="form row">
       <div class="form-group col">
-        <label for="subTitulo">Subtitulo</label>
-        <input type="text" class="form-control" id="subTitulo" name="subTitulo" placeholder="Subtitulo da Atividade">
+        <label for="subtitulo">Subtitulo</label>
+        <input type="text" class="form-control" id="subtitulo" name="subtitulo" placeholder="Subtitulo da Atividade">
       </div>
     </div>
 
+    
     <div class="form row">
       <div class="form-group col">
         <label for="descricao">Descricao</label>
@@ -40,6 +48,13 @@
       <div class="form-group col">
         <label for="cargaHoraria">Carga Horaria</label>
         <input type="number" class="form-control" id="cargaHoraria" name="cargaHoraria" placeholder="Carga Horária da atividade">
+      </div>
+    </div>
+
+    <div class="form row">
+      <div class="form-group col">
+        <label for="qtd_vagas">Quantidade de vagas</label>
+        <input type="number" class="form-control" id="qtd_vagas" name="qtd_vagas" placeholder="Quantidade de vagas">
       </div>
     </div>
 

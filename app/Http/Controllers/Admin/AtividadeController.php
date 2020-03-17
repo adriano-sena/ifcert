@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Atividade;
+use App\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -22,20 +23,21 @@ class AtividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Evento $evento)
     {
         $atividades = $this->atividade->paginate(10);
 
         return view('Admin.Atividade.index' , compact('atividades'));
     }
 
-    public function listaAtividades(Request $request)
+    public function listaAtividades(Request $request, Evento $evento)
     {    
-        $evento = $request->evento;
-
-        
+    
         $atividades = Atividade::paginate(10);
-        return view('Admin.Atividade.lista', compact('atividades'));
+        
+        $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
+
+        return view('Admin.Atividade.lista', compact('atividades', 'evento'));
     }
 
 
@@ -44,7 +46,7 @@ class AtividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $reques, Evento $evento)
     {
 
         return view ('admin.atividade.create');
@@ -56,16 +58,17 @@ class AtividadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Evento $evento)
     {
+        //dados da requisição
         $data = $request->all();
-
-        $evento = \App\Evento::find($data['evento']);
+        $data += [ "slug" => 'teste' ];
+        $evento = \App\Evento::find($evento->id); //Evento pai que vem aninhado na requisição
         $evento->atividades()->create($data);
 
         flash('Atividade criada com sucesso')->success();
 
-        return redirect()->route('atividades.lista');
+        return redirect()->route('atividades.lista', $evento);
     }
 
     /**
@@ -74,7 +77,7 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function show(Atividade $atividade)
+    public function show(Atividade $atividade, Evento $evento)
     {
         //
     }
@@ -85,7 +88,7 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Atividade $atividade)
+    public function edit(Atividade $atividade, Evento $evento)
     {
         return view('admin.atividade.edit', compact('atividade'));
     }
@@ -108,7 +111,7 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Atividade $atividade)
+    public function destroy(Atividade $atividade,Evento $evento)
     {
         //
     }

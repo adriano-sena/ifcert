@@ -6,10 +6,11 @@
 
 @section('conteudo')
 
-<a href="" class="btn btn-success mb-2">Criar Atividade</a>
+<a href="{{route('eventos.atividades.create', $evento)}}" class="btn btn-success mb-2">Criar Atividade</a>
 
     <section id="lista">
         
+        {{$evento}}
     <ul class="list-group">
         @foreach ($atividades as $atividade)
             <li class="list-group-item d-flex justify-content-between align-items-center">

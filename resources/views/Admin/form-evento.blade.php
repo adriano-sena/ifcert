@@ -7,7 +7,7 @@
 
 @section('conteudo')
 <section class="container">
-<form action="/admin/criar-evento" method="POST">
+<form action="{{route('eventos.store')}}" method="POST">
   @csrf
     <div class="form-row">
       <div class="form-group col">
