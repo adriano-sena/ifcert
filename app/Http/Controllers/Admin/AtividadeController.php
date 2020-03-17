@@ -113,6 +113,10 @@ class AtividadeController extends Controller
      */
     public function destroy(Atividade $atividade,Evento $evento)
     {
-        //
+        $atividade =  Atividade::find($atividade);
+
+        $atividade->delete();
+        flash('Atividade excluída com sucesso')->success();
+        return redirect()->route('atividades.lista', $evento);
     }
 }

@@ -19,15 +19,16 @@ A stack principal conta com:
 - Criação páginas de exibição de listagem de eventos (Admin e Usuário padrão) (ok);
 - Criação das migrações (ok);
 - Teste de integração do banco de dados (ok);
+- Criação do crud de Atividades (essencial)(ok);
+- Criação páginas de exibição de listagem de eventos (Admin e Usuário padrão) (Falta a estilização);
 
 
 ## Andamento - A ser feito
 
-- Criação do crud de Atividades (essencial); 
-- Upload de imagens para eventos e atividades (essencial);
-- Criação do sistema de autenticação (Admin e User Padrão); (Essencial)
-- Criação da página de certificado; (Essencial)
-- Criação páginas de exibição de listagem de eventos (Admin e Usuário padrão) (Essencial);
-- Criar página principal (index) (Essencial);
 - Criar Painel administrativo (gerenciamento do evento) (essencial);
+- Criação do sistema de autenticação (Admin e User Padrão); (Essencial)
+- Upload de imagens para eventos e atividades (essencial);
+- Criação da página de certificado; (Essencial)
+- Criar página principal (index) (Essencial);
+
 

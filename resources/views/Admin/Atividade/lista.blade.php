@@ -1,7 +1,7 @@
 @extends('layouts/layout')
 
 @section('titulo')
-    Lista de Atividades
+ {{$evento->titulo}} - Lista de Atividades 
 @endsection
 
 @section('conteudo')
@@ -17,10 +17,10 @@
                 <span id="titulo-atividade">{{ $atividade->titulo }}</span>
                 
                 <div id="botoes">
-                    <a href="{{route('atividades.edit', ['atividade' => $atividade->id])}}" class=" btn btn-success">
+                    <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class=" btn btn-success">
                         Editar
                     </a>
-                    <a href="{{route('atividades.delete', ['atividade' => $atividade->id])}}" class="btn btn-danger">Deletar</a>
+                    <a href="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class="btn btn-danger">Deletar</a>
                 </div>
             </li>
         @endforeach
