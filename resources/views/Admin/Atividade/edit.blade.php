@@ -7,7 +7,8 @@
 
 @section('conteudo')
 <section class="container">
-<form action="/admin/atividades/edit{{$atividade->id}}" method="POST">
+<form action="{{route('eventos.atividades.update', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" method="POST">
+  @method('PUT')
   @csrf
     <div class="form-row">
       <div class="form-group col">

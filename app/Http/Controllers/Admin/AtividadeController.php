@@ -77,7 +77,7 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function show(Atividade $atividade, Evento $evento)
+    public function show(Evento $evento, Atividade $atividade)
     {
         //
     }
@@ -88,9 +88,9 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Atividade $atividade, Evento $evento)
+    public function edit(Evento $evento ,Atividade $atividade)
     {
-        return view('admin.atividade.edit', compact('atividade'));
+        return view('admin.atividade.edit', compact('atividade', 'evento'));
     }
 
     /**
@@ -100,9 +100,15 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Atividade $atividade)
+    public function update(Evento $evento, Atividade $atividade, Request $request)
     {
-        //
+        $data = $request->all();
+
+        $atividade = Atividade::find($atividade->id);
+        $atividade->update($data); //retorna boleano 
+
+        flash('Atividade Atualizada com sucesso');
+        return redirect()->route('atividades.lista', $evento);
     }
 
     /**
@@ -111,9 +117,9 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Atividade $atividade,Evento $evento)
+    public function destroy(Evento $evento ,Atividade $atividade)
     {
-        $atividade =  Atividade::find($atividade);
+        $atividade =  Atividade::find($atividade->id);
 
         $atividade->delete();
         flash('Atividade excluída com sucesso')->success();

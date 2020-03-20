@@ -20,7 +20,12 @@
                     <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class=" btn btn-success">
                         Editar
                     </a>
-                    <a href="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class="btn btn-danger">Deletar</a>
+                    <form action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+
                 </div>
             </li>
         @endforeach
