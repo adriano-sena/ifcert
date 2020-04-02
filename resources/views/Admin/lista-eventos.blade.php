@@ -23,7 +23,7 @@
                     <form action="{{route('eventos.destroy', ['evento' => $evento->id])}}" method="POST" class="mr-2">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger">Deletar</button>
+                        <button type="submit" class="btn btn-danger">Deletar</button>
                     </form>
 
                     <a href="{{route('atividades.lista', ['evento' => $evento->id]) }}" class="btn btn-primary">Atividades</a>

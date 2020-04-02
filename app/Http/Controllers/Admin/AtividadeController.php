@@ -6,6 +6,7 @@ use App\Atividade;
 use App\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AtividadeController extends Controller
 {
@@ -31,9 +32,11 @@ class AtividadeController extends Controller
     }
 
     public function listaAtividades(Request $request, Evento $evento)
-    {    
+    {   
+        
+        //$atividades = Atividade::paginate(10);
     
-        $atividades = Atividade::paginate(10);
+        $atividades = DB::table('atividades')->where('evento_id', $evento->id)->simplePaginate(1); //Retorna a collection como iterator
         
         $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
 

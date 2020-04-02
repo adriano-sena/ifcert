@@ -1,7 +1,7 @@
 @extends('layouts/layout')
 
 @section('titulo')
- {{$evento->titulo}} - Lista de Atividades 
+{{$evento->titulo}} - Lista de Atividades 
 @endsection
 
 @section('conteudo')
@@ -17,10 +17,10 @@
                 <span id="titulo-atividade">{{ $atividade->titulo }}</span>
                 
                 <div id="botoes" class="btn-group">
-                    <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class=" btn btn-success">
+                    <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" class=" btn btn-success mr-2">
                         Editar
                     </a>
-                    <form action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" method="POST">
+                    <form action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" method="POST" class="mr-2">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">Deletar</button>
