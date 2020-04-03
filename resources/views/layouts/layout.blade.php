@@ -6,32 +6,61 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
-<link rel="stylesheet" href="{{asset('site/style_evento.css')}}">
+  <link rel="stylesheet" href="{{asset('site/style_evento.css')}}">
+  
   <title>IF-CERT</title>
 </head>
 <body>
   
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
-  <a class="navbar-brand" href="{{route('eventos.index')}}">IfCert</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      {{-- Parte Direita da NavBar --}}
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">IF-CERT <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">CONTATO</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">SOBRE</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">ÁREA ADMINISTRATIVA</a>
+      </ul>
+
+      {{-- Parte Esquerda da navbar com diretivas blade para Auth --}}
+      <ul class="navbar-nav  ml-auto">
+		@guest
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+				</li>
+				@if (Route::has('register'))
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+					</li>
+				@endif
+			@else
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ Auth::user()->name }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                Sair
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </li>
       </ul>
+      @endguest
+
     </div>
   </nav>
 </header>
@@ -48,5 +77,6 @@
 @yield('rodape')
 
 <script src="{{asset('site/jquery.js')}}"></script>
+<script src="{{asset('site/bootstrap.js')}}"></script>
 </body>
 </html>
