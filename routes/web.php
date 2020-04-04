@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Admin/index');
+    return redirect('admin/eventos');
 });
 
 //Rotas de Admin Evento
