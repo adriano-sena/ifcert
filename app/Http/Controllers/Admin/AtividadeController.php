@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Atividade;
 use App\Evento;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AtividadesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,7 +62,7 @@ class AtividadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Evento $evento)
+    public function store(AtividadesRequest $request, Evento $evento)
     {
         //dados da requisição
         $data = $request->all();

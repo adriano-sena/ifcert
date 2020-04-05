@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventosRequest;
 
 class EventoController extends Controller
 {
@@ -42,7 +43,7 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventosRequest $request)
     {
         
         $data = $request->all();
