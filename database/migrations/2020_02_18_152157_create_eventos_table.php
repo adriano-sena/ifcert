@@ -20,7 +20,8 @@ class CreateEventosTable extends Migration
             $table->string('slug');
             $table->longText('descricao');
             $table->string('local');
-            $table->date('data');
+            $table->date('data_inicio');
+            $table->date('data_fim');
             $table->string('organizador');
             $table->string('telefone');
             $table->timestamps();

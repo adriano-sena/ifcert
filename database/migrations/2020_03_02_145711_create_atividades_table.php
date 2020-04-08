@@ -17,7 +17,6 @@ class CreateAtividadesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('evento_id'); //fk do evento
             $table->string('titulo');
-            $table->string('subtitulo');
             $table->string('slug');
             $table->text('descricao');
             $table->string('mediador');
@@ -25,7 +24,6 @@ class CreateAtividadesTable extends Migration
             $table->string('local');
             $table->date('data');
             $table->timestamps();
-
             //Constraint da fk 
             $table->foreign('evento_id')->references('id')->on('eventos');
         });

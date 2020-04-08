@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relacionamentos
+
+    public function atividades(){
+
+        //parametros ('classe relacionada', 'chave do modelo ', chave relacionada)
+        return $this->belongsToMany(Atividade::class,'inscricao','user', 'atividade')
+         ->withPivot(['participou'])
+         ->withTimestamps();
+    }
 }

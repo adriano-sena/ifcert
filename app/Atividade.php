@@ -21,9 +21,18 @@ class Atividade extends Model
     //Adicionar cast e hidden se necessário
 
 
-    //Método de relação
+     //Relacionamentos
+
+
     public function evento(){
         return $this->belongsTo(Evento::class, 'evento_id');
     }
+    
+     public function users(){
 
+        //parametros ('classe relacionada', 'chave do modelo ', chave relacionada)
+        return $this->belongsToMany(User::class,'inscricao','atividade', 'user')
+         ->withPivot(['participou'])
+         ->withTimestamps();
+    }
 }
