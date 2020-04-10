@@ -22,12 +22,12 @@ A stack principal conta com:
 - Criação do crud de Atividades (essencial)(ok);
 - Criação páginas de exibição de listagem de eventos (Admin e Usuário padrão) (Falta a estilização);
 - Criação do sistema de autenticação (Admin e User Padrão); (Essencial) (ok)
+- Upload de imagens para eventos e atividades (essencial) ok;
 
 
 ## Andamento - A ser feito
 
 - Criar Painel administrativo (gerenciamento do evento) (essencial);
-- Upload de imagens para eventos e atividades (essencial);
 - Criação da página de certificado; (Essencial)
 - Criar página principal (index) (Essencial);
 
