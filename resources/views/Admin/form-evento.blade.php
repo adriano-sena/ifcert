@@ -7,7 +7,7 @@
 
 @section('conteudo')
 <section class="container">
-<form action="{{route('eventos.store')}}" method="POST">
+<form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
   @csrf
     <div class="form-row">
       <div class="form-group col">
@@ -56,9 +56,21 @@
 
     <div class="form row">
       <div class="form-group col">
-        <label for="data">Data</label>
-        <input type="date" class="form-control @error('data') is-invalid @enderror" id="data" name="data" placeholder="Data do evento" value="{{old('data')}}">
-        @error('data')
+        <label for="data_inicio">Data</label>
+        <input type="date" class="form-control @error('data_inicio') is-invalid @enderror" id="data_inicio" name="data_inicio" value="{{old('data_fim')}}">
+        @error('data_inicio')
+        <span class="invalid-feedback">
+            {{$message}}
+        </span>
+        @enderror
+      </div>
+    </div>
+
+    <div class="form row">
+      <div class="form-group col">
+        <label for="data_fim">Data</label>
+        <input type="date" class="form-control @error('data_fim') is-invalid @enderror" id="data_fim" name="data_fim"  value="{{old('data_fim')}}">
+        @error('data_fim')
         <span class="invalid-feedback">
             {{$message}}
         </span>
@@ -75,6 +87,16 @@
             {{$message}}
         </span>
         @enderror
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" name="imagem" id="imagem" aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="imagem">Escolha a imagem</label>
       </div>
     </div>
     

@@ -13,8 +13,10 @@ class Evento extends Model
         'subTitulo',
         'slug',
         'descricao',
+        'imagem',
         'local',
-        'data',
+        'data_inicio',
+        'data_fim',
         'organizador',
         'telefone'
     ];

@@ -43,22 +43,19 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventosRequest $request)
+    public function store(Request $request)
     {
         
         $data = $request->all();
 
-        $evento = Evento::create([
-            'titulo' => $request->titulo,
-            'subTitulo' => $request->subTitulo ,
-            'slug' => 'Titulo-Subtitulo',
-            'descricao' => $request->descricao,
-            'local' => $request->local,
-            'data' => $request->data,
-            'organizador' => $request->organizador,
-            'telefone' => '7399955564'
-        ]);
+        //Adição da imagem
 
+        if($request->hasFile('imagem')){
+            $data['imagem'] = $this->imageUpload($request);  
+        }
+
+        $evento = Evento::create($data);
+        
         return redirect()->route('admin.evento.lista');
     }
 
@@ -120,5 +117,18 @@ class EventoController extends Controller
         $evento->delete();
         flash('Evento excluído com sucesso')->success();
         return redirect()->route('admin.evento.lista');
+    }
+
+    /**
+     * Retorna o Path da imagem salva no sistema
+     */
+    private function imageUpload(Request $request){
+         
+      $imagem = $request->file('imagem');
+
+      $uploadedImage = $imagem->store('imagem' , 'public');
+      
+      return $uploadedImage;
+      
     }
 }

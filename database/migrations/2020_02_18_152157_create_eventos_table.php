@@ -17,13 +17,13 @@ class CreateEventosTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('subTitulo');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->longText('descricao');
             $table->string('local');
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->string('organizador');
-            $table->string('telefone');
+            $table->string('telefone')->nullable();
             $table->timestamps();
         });
     }
