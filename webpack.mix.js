@@ -18,6 +18,7 @@ mix
 
     .sass('node_modules/bootstrap/scss/bootstrap.scss', 'public/site/bootstrap.css')
     .scripts('resources/css/style.css', 'public/site/style_evento.css')
+    .scripts('resources/css/home.css' , 'public/home/home.css')
 
     .scripts('node_modules/jquery/dist/jquery.js','public/site/jquery.js')
     .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/site/bootstrap.js');

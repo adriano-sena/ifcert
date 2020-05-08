@@ -1,6 +1,7 @@
 {
     "/site/bootstrap.css": "/site/bootstrap.css",
     "/site/style_evento.css": "/site/style_evento.css",
+    "/home/home.css": "/home/home.css",
     "/site/jquery.js": "/site/jquery.js",
     "/site/bootstrap.js": "/site/bootstrap.js"
 }

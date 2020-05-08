@@ -1,0 +1,124 @@
+/* Global settings */
+
+body {
+    font-family: 'Montserrat';
+}
+
+
+/* Heading section  */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+    font-family: 'Montserrat';
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+.titulo-principal {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;
+}
+
+
+/* Seção do titulo  */
+
+#title {
+    background-color: #368CE7;
+}
+
+/* Navbar */
+
+.navbar {
+    padding: 0 0 4.5rem;
+}
+
+
+.brand-title {
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-size: 2em;
+}
+
+.nav-item {
+    padding: 0 18px;
+}
+
+.nav-link {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+
+
+/* padding superior/inferior de 3% e lateral de 15% */
+.container-fluid {
+    padding: 3% 15% 7%;
+}
+
+/* Download buttons */
+
+
+/* title image */
+
+.title-image {
+    width: 90%;
+    border-radius: 5%;
+    box-shadow: whitesmoke;
+}
+
+/* Seção do Sobre */
+
+.blue-color {
+    color: #1666BA
+}
+
+.blue-color:hover {
+    color: #368CE7;
+}
+
+#sobre {
+    text-align: center;
+    padding: 7% 15%;
+    background-color: #fff;
+}
+
+#sobre h3 {
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#sobre p {
+    text-align: justify;
+}
+
+/* Seção eventos Eventos */
+
+#eventos {
+    padding: 7% 15%;
+    background-color: #1666ba;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 20 20'%3E%3Cg fill-opacity='0.3'%3E%3Cpolygon fill='%23368ce7' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23368ce7' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
+
+}
+
+#eventos h2{
+    color: white;
+    text-align: center;
+}

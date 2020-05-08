@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('admin/eventos');
-});
+// Route::get('/', function () {
+//     return redirect('admin/eventos');
+// });
+
+Route::get('/', 'HomeController@index');
 
 //Rotas de Admin Evento
 Route::prefix('admin')->namespace('Admin')->middleware('checkAdmin')->group(function () {
