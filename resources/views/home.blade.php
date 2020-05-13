@@ -40,7 +40,7 @@
     
           <div class="row">
             <div class="col-lg-6">
-              <h1 class="titulo-principal">O novo sistema oficial para gerenciamento de eventos</h1>
+              <h1 class="titulo-principal">A sua Ferramenta de apoio para gerenciamento de Eventos</h1>
             </div>
     
             <div class="col-lg-6">
@@ -74,12 +74,86 @@
 
       </section>
      {{-- Seção cards com eventos --}}
-      <section id="eventos">
-          <h2>Eventos</h2>
+      <section id="eventos" class="container-fluid">
+		  
+		  <div class=" header card w-50 p-3 text-center card--bgOrange shadow-lg rounded">
+			  <h2 class="header__title--bgWhite">Eventos</h2>
+		  </div>
 
-          <div class="row">
+          {{-- <div class="container-interno container-interno--bgWhite"> --}}
 
-          </div>
+			<div class="row">
+
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow bg-white rounded">
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana de Tecnologia</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <hr>
+					  <a href="#" class="btn btn-primary">Acessar</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow bg-white rounded">
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana do meio ambiente</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <hr>
+					  <a href="#" class="btn btn-primary">Acessar</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow bg-white rounded" >
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana da efermagem</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <a href="#" class="btn btn-primary">Acessar</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow bg-white rounded">
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana de Tecnologia</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <a href="#" class="btn btn-primary">Acessar</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow bg-white rounded">
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana do meio ambiente</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <hr>
+					  <a href="#" class="btn btn-primary">Acessar</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow-lg bg-white rounded" >
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					  <h5 class="card-title">Semana da efermagem</h5>
+					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					  <hr>
+					  <a href="#" class="btn btn-terciary">Acessar</a>
+					</div>
+				</div>
+			</div>
+		</div>
       </section>
      {{-- Rodapé contato e quem somos --}}
   @endsection

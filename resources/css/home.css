@@ -94,7 +94,7 @@ h3 {
 
 #sobre {
     text-align: center;
-    padding: 7% 15%;
+    padding: 12% 15%;
     background-color: #fff;
 }
 
@@ -112,13 +112,57 @@ h3 {
 /* Seção eventos Eventos */
 
 #eventos {
+    position: relative;
     padding: 7% 15%;
-    background-color: #1666ba;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 20 20'%3E%3Cg fill-opacity='0.3'%3E%3Cpolygon fill='%23368ce7' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23368ce7' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #3588E1;
+    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104' viewBox='0 0 20 20'%3E%3Cg fill-opacity='0.3'%3E%3Cpolygon fill='%23368ce7' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23368ce7' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E"); */
 
 }
 
-#eventos h2{
-    color: white;
-    text-align: center;
+
+.header{
+    margin: 0;
+    position:absolute;
+    top: -60px;
+    left: 25%;
+    margin: 0 auto;
+    padding: 3%;
 }
+
+.header__title{
+    display: inline-block;
+    padding: 5%;
+    border-radius: 10px;
+}
+
+
+.header__title--bgWhite{
+    background-color: #E76F51;
+    color: azure;
+}
+
+
+
+.container-interno{
+    width: 100%;
+    padding: 3% 10%;
+}
+
+.container-interno--bgWhite {
+    background-color: azure;
+}
+
+.card--white{
+    background-color: beige;
+}
+
+
+.card--bgOrange{
+    background-color: #E76F51 ;
+}
+/*  
+$color1: #264653ff;
+$color2: #2a9d8fff;
+$color3: #e9c46aff;
+$color4: #f4a261ff;
+$color5: #e76f51ff; */
