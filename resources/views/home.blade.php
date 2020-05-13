@@ -35,7 +35,6 @@
             </div>
           </nav>
     
-    
           <!-- Title -->
     
           <div class="row">
@@ -155,5 +154,15 @@
 			</div>
 		</div>
       </section>
-     {{-- Rodapé contato e quem somos --}}
+	 
+	  <footer class="footer">
+		  <h3>Dúvidas?! Entre em Contato via nossas redes sociais.</h3>
+		  <ul class="icones">
+			  <li class="icones__item">Facebook</li>
+			  <li class="icones__item">Whats</li>
+			  <li class="icones__item">Linkedin</li>
+		  </ul>
+		  <p class="footer__text">&copy Nostromus Enterprise 2020</p>
+	  </footer>
+
   @endsection

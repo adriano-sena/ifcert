@@ -160,6 +160,30 @@ h3 {
 .card--bgOrange{
     background-color: #E76F51 ;
 }
+
+/* Footer Section */
+
+.footer{
+    background-color: #fff;
+    text-align: center;
+    padding: 5% 15%;
+}
+
+.footer__text{
+    color: #8f8f8f;
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+}
+
+.icones{
+    list-style: none;
+    margin: 20px 0 20px;
+}
+
+.icones__item{
+    display: inline-block;
+}
+
 /*  
 $color1: #264653ff;
 $color2: #2a9d8fff;
