@@ -18,20 +18,36 @@
 
   <section id="ativivades" class="bg-light pb-5">
 
-    <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
+    
       
-    @foreach ($atividades as $atividade)
-    <article class="card borda-cor-especial card-largura mt-5">
-        <img src="#" class="card-img-top card-imagem-posicao" alt="Imagem do Evento">
-        <div class="card-body">
-        <h5 class="card-title">{{$atividade->titulo}}</h5>
-        <p class="card-text">{{$atividade->descricao}}</p>
-          <a href="#" class="btn btn-cor-especial">Inscrever-se</a>
-        </div>
-      </article>
-    @endforeach
+      <div class="row">
+        @foreach ($atividades as $atividade)
+          <div class="col-lg-4">
+            <div class="card card--white m-4 shadow-lg bg-white rounded" >
+              {{-- <img src="..." class="card-img-top" alt="..."> --}}
+              <div class="card-body">
+              <h5 class="card-title">{{$atividade->titulo}}</h5>
+              <p class="card-text">{{$atividade->descricao}}</p>
+              <p class="card-text"><i class="fas fa-map-marker-alt "></i>  {{$atividade->local}}</p>
+              <p class="card-text"><i class="fas fa-calendar-week "></i>  {{$atividade->data}}</p>
+				<hr>
 
-    </div>   
+				<form action="{{route('eventos.atividades.inscricao', ['atividade' => $atividade->id])}}" method="POST">
+					@csrf
+					<button type="submit" class="btn btn-terciary" @guest disabled @endguest>
+						@guest
+							Faça o login
+						@else
+							Inscrever
+						@endguest
+					</button>
+				</form>
+
+              </div>
+            </div>
+          </div>
+        @endforeach
+    
 </main>
 
 @endsection

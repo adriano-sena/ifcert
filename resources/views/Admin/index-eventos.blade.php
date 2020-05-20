@@ -1,35 +1,33 @@
 @extends('layouts/layout')
 
 @section('titulo')
-    <h1>Página de Eventos</h1>
-@endsection
 
+	<div class="text-center py-5 px-2">
+		<h1>Veja os eventos do momento no Campus IFBA Eunápolis</h1>
+	</div>
+
+@endsection
 
 @section('conteudo')
 
 {{-- Adicionar Section com imagem referente à eventos  --}}
 
-<section id="titulo">
-    <div class="text-center py-5 px-2">
-      <h1 class="">Eventos </h1>
-      <p class="text-secondary">Veja o que está acontecendo no Campus Ifba eunápolis</p>
-    </div>
-  </section>
+  <section id="eventos" class="card-container" class="bg-light pb-5">
 
-  <section id="eventos" class="bg-light pb-5">
-
-    <div class="container d-flex flex-wrap justify-content-md-around justify-content-center">
-      
-    @foreach ($eventos as $evento)
-    <article class="card borda-cor-especial card-largura mt-5">
-        <img src="src/img/receita-abacate.jpg" class="card-img-top card-imagem-posicao" alt="Imagem do Evento">
-        <div class="card-body">
-        <h5 class="card-title">{{$evento->titulo}}</h5>
-        <p class="card-text">{{$evento->descricao}}</p>
-          <a href="#" class="btn btn-cor-especial">Acessar Evento</a>
-        </div>
-      </article>
-    @endforeach
+    <div class="row">
+      @foreach ($eventos as $evento)
+			<div class="col-lg-4">
+				<div class="card card--white m-4 shadow-lg bg-white rounded" >
+					{{-- <img src="..." class="card-img-top" alt="..."> --}}
+					<div class="card-body">
+					<h5 class="card-title">{{$evento->titulo}}</h5>
+					<p class="card-text">{{$evento->descricao}}</p>
+					  <hr>
+					<a href="{{route('eventos.atividades.index', $evento)}}" class="btn btn-terciary">Acessar</a>
+					</div>
+				</div>
+			</div>
+			@endforeach
 
     </div>   
 </main>

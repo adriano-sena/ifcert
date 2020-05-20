@@ -11,7 +11,7 @@
           <!-- Nav Bar -->
           <nav class="navbar navbar-expand-lg navbar-dark ">
     
-            <a class="navbar-brand brand-title" href="#">
+		  <a class="navbar-brand brand-title" href="{{route('home')}}">
                 <i class="fas fa-bug"></i> IF Cert
             </a>
     

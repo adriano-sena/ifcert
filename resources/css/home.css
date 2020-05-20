@@ -45,8 +45,14 @@ h3 {
 
 .navbar {
     padding: 0 0 4.5rem;
+    background-color: #368CE7;
 }
 
+/* Navbar padrão*/
+.navbar-container{
+    padding: 1rem 2rem 1.5rem !important;
+    background-color: #368CE7 !important; 
+}
 
 .brand-title {
     font-family: 'Ubuntu';

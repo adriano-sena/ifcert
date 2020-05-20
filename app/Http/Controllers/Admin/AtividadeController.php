@@ -6,8 +6,10 @@ use App\Atividade;
 use App\Evento;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AtividadesRequest;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AtividadeController extends Controller
 {
@@ -27,8 +29,7 @@ class AtividadeController extends Controller
      */
     public function index(Evento $evento)
     {
-        $atividades = $this->atividade->paginate(10);
-
+        $atividades = DB::table('atividades')->where('evento_id', $evento->id)->simplePaginate(1); //Retorna a collection como iterator
         return view('Admin.Atividade.index' , compact('atividades'));
     }
 
@@ -62,7 +63,7 @@ class AtividadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AtividadesRequest $request, Evento $evento)
+    public function store(Request $request, Evento $evento)
     {
         //dados da requisição
         $data = $request->all();
@@ -128,5 +129,26 @@ class AtividadeController extends Controller
         $atividade->delete();
         flash('Atividade excluída com sucesso')->success();
         return redirect()->route('atividades.lista', $evento);
+    }
+
+    public function inscricao(Atividade $atividade)
+    {
+        //Verificar se o user está logado  -> Realizado no Front com Blade statements
+        //Verificar se a atividade tem vagas
+        if ($atividade->qtd_vagas > 0){
+
+            //Verificar se o usuário já está cadastrado na atividade
+
+            $user_id = Auth::id();
+            //Realizando a inscrição do usuário na atividade
+            User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
+            
+            Atividade::where('id' , $atividade->id)->decrement('qtd_vagas');
+            flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
+            return redirect()->back();
+        }
+
+
+
     }
 }

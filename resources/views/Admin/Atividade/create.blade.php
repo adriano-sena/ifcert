@@ -27,18 +27,6 @@
         @enderror
       </div>
     </div>
-    <div class="form row">
-      <div class="form-group col">
-        <label for="subtitulo">Subtitulo</label>
-        <input type="text" class="form-control @error('subTitulo') is-invalid @enderror" id="subtitulo" name="subtitulo" placeholder="Subtitulo da Atividade" value="{{old('subTitulo')}}">
-        @error('subTitulo')
-          <span class="invalid-feedback">
-            {{$message}}
-          </span>
-        @enderror
-      </div>
-    </div>
-
     
     <div class="form row">
       <div class="form-group col">

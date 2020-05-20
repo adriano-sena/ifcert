@@ -9,8 +9,14 @@ use App\Http\Requests\EventosRequest;
 
 class EventoController extends Controller
 {
+
+    public function __construct()
+    {   
+        $this->middleware('checkAdmin', ['except' => ['index']]);    
+    }
+
     /**
-     * Display a listing of the resource.
+     * Exibe a lista dos eventos para o usuário padrão
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,6 +27,10 @@ class EventoController extends Controller
     }
 
     
+    /**
+     * 
+     * Exibe a listagem de eventos para o administrador
+     */
     public function listaEventos()
     {    
         $eventos = Evento::paginate(10);

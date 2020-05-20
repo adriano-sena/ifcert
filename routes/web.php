@@ -11,29 +11,35 @@
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('admin/eventos');
-// });
+// ->middleware('checkAdmin')
 
-Route::get('/', 'HomeController@index');
+
+//Rotas públicas
+
+Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
-Route::prefix('admin')->namespace('Admin')->middleware('checkAdmin')->group(function () {
+Route::prefix('admin')->namespace('Admin')->group(function () {
     
     //Rotas de Eventos
 
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('admin.evento.lista');
-
+    
     Route::resource('eventos', 'EventoController');
 
     //Recursos aninhados (Relação Evento/Atividade);
     Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
+    
+    Route::post('/atividade/{atividade}/inscricao', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
+
     Route::resource('eventos.atividades', 'AtividadeController');
 
     // Route::resource('atividades', 'AtividadeController');
-
-   
 });
+
+//Rotas públicas 
+
+
 
 
 
@@ -42,6 +48,6 @@ Auth::routes();
 
 //Rotas de teste
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('welcome', 'HomeController@welcome')->name('welcome');
