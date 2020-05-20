@@ -22,15 +22,41 @@
     
             <div class="collapse navbar-collapse" id="navbar-toggler">
               <ul class="navbar-nav ml-auto lista-itens">
-                <li class="nav-item">
-                  <a class="nav-link" href="#sobre">Sobre</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#eventos">Eventos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#login">Login</a>
-                </li>
+				  @guest
+					<li class="nav-item">
+						<a class="nav-link" href="#sobre">Sobre</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#eventos">Eventos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('login')}}">Login</a>
+					</li>
+					@if(Route::has('register'))
+						<li class="nav-item">
+						<a class="nav-link" href="{{route('login')}}">Registrar</a>
+						</li>
+					@endif
+				  @else
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ Auth::user()->name}}
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">
+							Sair
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+						<a class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</li>
+				   @endguest
               </ul>
             </div>
           </nav>

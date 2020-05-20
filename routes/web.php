@@ -40,4 +40,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('checkAdmin')->group(func
 
 Auth::routes();
 
+//Rotas de teste
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('welcome', 'HomeController@welcome')->name('welcome');
