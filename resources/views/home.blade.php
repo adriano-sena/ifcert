@@ -112,76 +112,21 @@
           {{-- <div class="container-interno container-interno--bgWhite"> --}}
 
 			<div class="row">
-
-			<div class="col-lg-4">
-				<div class="card card--white m-4 shadow bg-white rounded">
-					{{-- <img src="..." class="card-img-top" alt="..."> --}}
-					<div class="card-body">
-					  <h5 class="card-title">Semana de Tecnologia</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <hr>
-					  <a href="#" class="btn btn-primary">Acessar</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="card card--white m-4 shadow bg-white rounded">
-					{{-- <img src="..." class="card-img-top" alt="..."> --}}
-					<div class="card-body">
-					  <h5 class="card-title">Semana do meio ambiente</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <hr>
-					  <a href="#" class="btn btn-primary">Acessar</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="card card--white m-4 shadow bg-white rounded" >
-					{{-- <img src="..." class="card-img-top" alt="..."> --}}
-					<div class="card-body">
-					  <h5 class="card-title">Semana da efermagem</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <a href="#" class="btn btn-primary">Acessar</a>
-					</div>
-				</div>
-			</div>
 			
-			<div class="col-lg-4">
-				<div class="card card--white m-4 shadow bg-white rounded">
-					{{-- <img src="..." class="card-img-top" alt="..."> --}}
-					<div class="card-body">
-					  <h5 class="card-title">Semana de Tecnologia</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <a href="#" class="btn btn-primary">Acessar</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="card card--white m-4 shadow bg-white rounded">
-					{{-- <img src="..." class="card-img-top" alt="..."> --}}
-					<div class="card-body">
-					  <h5 class="card-title">Semana do meio ambiente</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <hr>
-					  <a href="#" class="btn btn-primary">Acessar</a>
-					</div>
-				</div>
-			</div>
-
+			@foreach ($eventos as $evento)
 			<div class="col-lg-4">
 				<div class="card card--white m-4 shadow-lg bg-white rounded" >
 					{{-- <img src="..." class="card-img-top" alt="..."> --}}
 					<div class="card-body">
-					  <h5 class="card-title">Semana da efermagem</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<h5 class="card-title">{{$evento->titulo}}</h5>
+					<p class="card-text">{{$evento->descricao}}</p>
 					  <hr>
 					  <a href="#" class="btn btn-terciary">Acessar</a>
 					</div>
 				</div>
 			</div>
+			@endforeach
+			
 		</div>
       </section>
 	 

@@ -11,8 +11,10 @@ $factory->define(\App\Evento::class, function (Faker $faker) {
         'subTitulo' => $faker->name,
         'slug' =>  $faker->slug,
         'descricao' => $faker->sentence,
+        'imagem' => $faker->url,
         'local' => $faker->name,
-        'data' => $faker->date(),
+        'data_inicio' => $faker->date(),
+        'data_fim' => $faker->date(),
         'organizador' => $faker->name, 
         'telefone' => $faker->phoneNumber
     ];
