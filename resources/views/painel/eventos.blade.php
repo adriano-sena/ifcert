@@ -39,7 +39,7 @@
                                                   <i class="fa fa-magic"></i>
                                                  </button>
                                              </a>  
-                                             <a href="#" title="Atividades">
+                                             <a href="{{route('atividades.lista', ['evento' => $evento->id]) }}" title="Atividades">
                                                  <button class="btn btn-primary">
                                                   <i class="fas fa-book"></i>
                                                  </button>
@@ -54,7 +54,7 @@
                                         @endforeach
                                 </tbody>
                                </table>
-                               {{ $eventos->links() }}
+                               {{ $eventos->links()}}
                            </div>
                        </div>
                     </div>

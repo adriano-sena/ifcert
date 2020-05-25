@@ -42,7 +42,7 @@ class AtividadeController extends Controller
         
         $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
 
-        return view('Admin.Atividade.lista', compact('atividades', 'evento'));
+        return view('painel.atividades', compact('atividades', 'evento'));
     }
 
 
@@ -147,8 +147,5 @@ class AtividadeController extends Controller
             flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
             return redirect()->back();
         }
-
-
-
     }
 }

@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layouts.dashboard-layout')
 
 @section('conteudo')
     <div class="container-fluid">
@@ -10,7 +10,7 @@
                     <div class="card-body">
                        <div class="row">
                            <div class="col-md-12 text-left mb-2">
-                               <a href="{{route('atividades-form')}}">
+                               <a href="{{route('eventos.atividades.create', $evento)}}">
                                    <button class="btn btn-success">
                                     <i class="fas fa-plus"></i>
                                     Criar Atividade
@@ -31,167 +31,33 @@
                                    </thead>
 
                                    <tbody>
+                                    @foreach($atividades as $atividade)
                                     <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
+                                        <td>{{$atividade->titulo}}</td>
+                                        <td>{{$atividade->data}}</td>
+                                        <td>{{$atividade->qtd_vagas}}</td>
+                                        <td>{{$atividade->local}}</td>
                                         <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
+                                        <a href="#Edit" title="Editar">
+                                            <button class="btn btn-success">
+                                            <i class="fa fa-magic"></i>
+                                            </button>
+                                        </a>  
+                                        <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" title="Atividades">
+                                            <button class="btn btn-primary">
+                                            <i class="fas fa-book"></i>
+                                            </button>
+                                        </a> 
+                                        <form method="POST" action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hands on Git-Github</td>
-                                        <td>27/10/18</td>
-                                        <td>40</td>
-                                        <td>Laboratório informática 1</td>
-                                        <td class="text-right">
-                                         <a href="#Edit" title="Editar">
-                                             <button class="btn btn-success">
-                                              <i class="fa fa-magic"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Atividades" title="Atividades">
-                                             <button class="btn btn-primary">
-                                              <i class="fas fa-book"></i>
-                                             </button>
-                                         </a>  
-                                         <a href="#Edit" title="Deletar">
-                                             <button class="btn btn-danger">
-                                              <i class="fa fa-trash"></i>
-                                             </button>
-                                         </a>  
-                                        </td>
-                                    </tr>
+                                    </tr>  
+                                    @endforeach
                                    </tbody>
                                </table>
                            </div>
