@@ -34,7 +34,8 @@
                                             <td>{{$evento->data}}</td>
                                             <td>{{$evento->local}}</td>
                                             <td class="text-right">
-                                             <a href="#Edit" title="Editar">
+
+                                             <a  href="{{route('eventos.edit', ['evento' => $evento->id])}}" title="Editar">
                                                  <button class="btn btn-success">
                                                   <i class="fa fa-magic"></i>
                                                  </button>

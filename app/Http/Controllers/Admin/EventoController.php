@@ -34,7 +34,7 @@ class EventoController extends Controller
     public function listaEventos()
     {    
         $eventos = Evento::paginate(10);
-        return view('painel.eventos', compact('eventos'));
+        return view('painel.eventos.lista', compact('eventos'));
     }
 
     /**
@@ -44,7 +44,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('painel.eventos-form');
+        return view('painel.eventos.create');
     }
 
     /**
@@ -93,7 +93,7 @@ class EventoController extends Controller
     {
         $evento = Evento::find($evento);
 
-        return view('Admin.edit-evento', compact('evento') );
+        return view('painel.eventos.edit', compact('evento'));
     }
 
     /**

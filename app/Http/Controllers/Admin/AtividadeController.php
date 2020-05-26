@@ -42,7 +42,7 @@ class AtividadeController extends Controller
         
         $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
 
-        return view('painel.atividades', compact('atividades', 'evento'));
+        return view('painel.atividades.lista', compact('atividades', 'evento'));
     }
 
 
@@ -54,7 +54,7 @@ class AtividadeController extends Controller
     public function create(Request $reques, Evento $evento)
     {
 
-        return view ('admin.atividade.create');
+        return view ('painel.atividades.create');
     }
 
     /**
@@ -95,7 +95,7 @@ class AtividadeController extends Controller
      */
     public function edit(Evento $evento ,Atividade $atividade)
     {
-        return view('admin.atividade.edit', compact('atividade', 'evento'));
+        return view('painel.atividades.edit', compact('atividade', 'evento'));
     }
 
     /**
@@ -142,7 +142,6 @@ class AtividadeController extends Controller
             $user_id = Auth::id();
             //Realizando a inscrição do usuário na atividade
             User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
-            
             Atividade::where('id' , $atividade->id)->decrement('qtd_vagas');
             flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
             return redirect()->back();

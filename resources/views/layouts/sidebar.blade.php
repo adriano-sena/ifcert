@@ -26,12 +26,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fas fa-chart-bar"></i>Eventos</a>
+                    <a href="{{route('admin.evento.lista')}}">
+                        <i class="fas fa-chart-bar"></i>Eventos
+                    </a>
                 </li>
                 <li>
                     <a href="form.html">
-                        <i class="far fa-check-square"></i>Usuários</a>
+                        <i class="far fa-check-square"></i>Usuários
+                    </a>
                 </li>
             </ul>
         </nav>

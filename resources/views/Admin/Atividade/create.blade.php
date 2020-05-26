@@ -19,7 +19,7 @@
     <div class="form-row">
       <div class="form-group col">
         <label for="titulo">Título</label>
-      <input type="text" class="form-control @error('titulo') is-invalid @enderror" id="titulo" name="titulo" placeholder="Titulo do atividade" value="{{old('titulo')}}">
+      <input type="text" class="form-control " id="titulo" name="titulo" placeholder="Titulo do atividade" value="{{old('titulo')}}">@error('titulo') is-invalid @enderror
         @error('titulo')
           <span class="invalid-feedback">
             {{$message}}
