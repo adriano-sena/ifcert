@@ -24,7 +24,7 @@
                                            <th scope="col">Nome</th>
                                            <th scope="col">Data</th>
                                            <th scope="col">Local</th>
-                                           <th scope="col" class="text-right">Ações</th>
+                                           <th scope="col" class="text-right">Gerencial</th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -35,21 +35,16 @@
                                             <td>{{$evento->local}}</td>
                                             <td class="text-right">
 
-                                             <a  href="{{route('eventos.edit', ['evento' => $evento->id])}}" title="Editar">
-                                                 <button class="btn btn-success">
-                                                  <i class="fa fa-magic"></i>
-                                                 </button>
-                                             </a>  
-                                             <a href="{{route('atividades.lista', ['evento' => $evento->id]) }}" title="Atividades">
-                                                 <button class="btn btn-primary">
-                                                  <i class="fas fa-book"></i>
-                                                 </button>
-                                             </a>  
-                                             <a href="#Edit" title="Deletar">
-                                                 <button class="btn btn-danger">
-                                                  <i class="fa fa-trash"></i>
-                                                 </button>
-                                             </a>  
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Ações
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{{route('eventos.edit', ['evento' => $evento->id])}}">Editar</a>
+                                                    <a class="dropdown-item" href="{{route('atividades.lista', ['evento' => $evento->id]) }}">Atividades</a>
+                                                    <a class="dropdown-item" href="#delete">Deletar</a>
+                                                </div>
+                                            </div>
                                             </td>
                                         </tr>
                                         @endforeach

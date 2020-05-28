@@ -19,7 +19,6 @@ class CheckAdmin
         {
             return $next($request);
         }
-   
         return redirect()->back()->with('error',"Você não tem acesso de administrador");
     }
 }

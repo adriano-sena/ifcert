@@ -38,23 +38,23 @@
                                         <td>{{$atividade->qtd_vagas}}</td>
                                         <td>{{$atividade->local}}</td>
                                         <td class="text-right">
-                                        <a href="#Edit" title="Editar">
-                                            <button class="btn btn-success">
-                                            <i class="fa fa-magic"></i>
+
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Ações
                                             </button>
-                                        </a>  
-                                        <a href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}" title="Atividades">
-                                            <button class="btn btn-primary">
-                                            <i class="fas fa-book"></i>
-                                            </button>
-                                        </a> 
-                                        <form method="POST" action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}"">Editar</a>
+                                                <a class="dropdown-item" href="#atividades">Inscritos</a>
+                                                <a class="dropdown-item" href="#atividades">Certificados</a>
+                                                <div class="dropdown-divider"></div>
+                                                <form  class="dropdown-menu" method="POST" action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
+                                                    @csrf   
+                                                    @method('DELETE')
+                                                   <button class="dropdown-item" type="submit">Deletar</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                         </td>
                                     </tr>  
                                     @endforeach
