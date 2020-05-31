@@ -27,4 +27,9 @@ class Evento extends Model
         
         return $this->hasMany(Atividade::class);
     }
+
+
+    public function certificado(){
+        return $this->morphOne('App\Certificado',  'certificavel');
+    }
 }
