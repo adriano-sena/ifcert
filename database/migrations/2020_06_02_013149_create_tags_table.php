@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCertificadosTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCertificadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('certificados', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('texto');
-            $table->string('layout');
-            $table->string('background');
-            $table->morphs('certificavel');
+            $table->string('tag');
+            $table->morphs('tagged');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCertificadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certificados');
+        Schema::dropIfExists('tags');
     }
 }
