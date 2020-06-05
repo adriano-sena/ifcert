@@ -64,10 +64,12 @@
             </div>
         </div>
     </div>
-
-
     <!-- Jquery JS-->
-    <script src="{{ asset('theme/vendor/jquery-3.2.1.min.js')}}"></script>
+    {{-- <script src="{{ asset('theme/vendor/jquery-3.2.1.min.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    <script src="{{asset('site/js/tags.js')}}"></script>
+
     <!-- Bootstrap JS-->
     <script src="{{asset('theme/vendor/bootstrap-4.1/popper.min.js')}}"></script>
     <script src="{{asset('theme/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
@@ -88,6 +90,7 @@
     <script src="{{asset('theme/vendor/animsition/animsition.min.js')}}"></script>      
     <!-- Main JS-->
     <script src="{{asset('theme/js/main.js')}}"></script>
+    
 
 </body>
 </html>

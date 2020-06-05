@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Certificado;
+use App\Evento;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CertificadoController extends Controller
@@ -22,9 +24,9 @@ class CertificadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Evento $evento)
     {
-        //
+        return view('painel.eventos.modelo-certificado', compact('evento'));
     }
 
     /**

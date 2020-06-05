@@ -27,6 +27,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     
     Route::resource('eventos', 'EventoController');
 
+
+    Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
+    //Route::resource('certificados', 'CertificadoController');
+
+
+    Route::post('/tags/store', 'TagController@store')->name('tags.store');
+
     //Recursos aninhados (Relação Evento/Atividade);
     Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
     

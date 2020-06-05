@@ -53,7 +53,6 @@ class AtividadeController extends Controller
      */
     public function create(Request $reques, Evento $evento)
     {
-
         return view ('painel.atividades.create');
     }
 
