@@ -1,6 +1,6 @@
 
 /**
- * Ajax para criação das tags 
+ * Ajax para criação das tags
  */
 
 
@@ -16,8 +16,13 @@ $(function(){
             data: $(this).serialize(),
             dataType: 'json',
             success: function(response){
+                //adicionar a tag criada em uma lista (ul)
+                let tag = response['tag'];
+				let listItem = $('<li></li>').text(tag);
+                $('#lista').append(listItem);
+
                 console.log(response);
-            } 
+            }
         });
 
     });
