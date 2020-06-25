@@ -30,8 +30,17 @@
                                 <ul id="lista">
                                 </ul>
                             </div>
-
                         </div>
+
+						<div class="row">
+							<div class="col">
+								<form action="#" method="post">
+									@csrf
+									<textarea name="content">Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga</textarea>
+									<button type="submit">Visualizar modelo</button>
+								</form>
+							</div>
+						</div>
                     </div>
                 </div>
            </div>

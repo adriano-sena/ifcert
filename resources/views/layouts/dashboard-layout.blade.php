@@ -33,25 +33,29 @@
     <!-- Main CSS-->
     <link href="{{asset('theme/css/theme.css')}}" rel="stylesheet" media="all">
 
-</head>
+	{{-- Script do tiny MCE	--}}
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>tinymce.init({selector:'textarea'});</script>
+
+</head>'
 
 <body class="animsition">
     <div class="page-wrapper">
-        
+
         @include('layouts.header-mobile')
 
         @include('layouts.sidebar');
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
-           
+
             @include('layouts.header-desktop')
-            
+
            {{-- Conteúdo principal --}}
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     @yield('conteudo')
-                </div>         
+                </div>
             </div>
 
             {{-- Footer --}}
@@ -87,10 +91,10 @@
     <script src="{{asset('theme/vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/select2/select2.min.js') }}">
     </script>
-    <script src="{{asset('theme/vendor/animsition/animsition.min.js')}}"></script>      
+    <script src="{{asset('theme/vendor/animsition/animsition.min.js')}}"></script>
     <!-- Main JS-->
     <script src="{{asset('theme/js/main.js')}}"></script>
-    
+
 
 </body>
 </html>

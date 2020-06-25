@@ -11,8 +11,8 @@ class EventoController extends Controller
 {
 
     public function __construct()
-    {   
-        $this->middleware('checkAdmin', ['except' => ['index']]);    
+    {
+        $this->middleware('checkAdmin', ['except' => ['index']]);
     }
 
     /**
@@ -26,13 +26,13 @@ class EventoController extends Controller
         return view('Admin.index-eventos', compact('eventos'));
     }
 
-    
+
     /**
-     * 
+     *
      * Exibe a listagem de eventos para o administrador
      */
     public function listaEventos()
-    {    
+    {
         $eventos = Evento::paginate(10);
         return view('painel.eventos.lista', compact('eventos'));
     }
@@ -55,17 +55,18 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $data = $request->all();
 
         //Adição da imagem
 
         if($request->hasFile('imagem')){
-            $data['imagem'] = $this->imageUpload($request);  
+            $data['imagem'] = $this->imageUpload($request);
         }
 
+
         $evento = Evento::create($data);
-        
+
         return redirect()->route('admin.evento.lista');
     }
 
@@ -108,7 +109,7 @@ class EventoController extends Controller
         $data = $request->all();
 
         $evento = Evento::find($evento);
-        $evento->update($data); //retorna boleano 
+        $evento->update($data); //retorna boleano
 
         flash('Evento Atualizado com sucesso');
         return redirect()->route('admin.evento.lista');
@@ -133,12 +134,12 @@ class EventoController extends Controller
      * Retorna o Path da imagem salva no sistema
      */
     private function imageUpload(Request $request){
-         
+
       $imagem = $request->file('imagem');
 
       $uploadedImage = $imagem->store('imagem' , 'public');
-      
+
       return $uploadedImage;
-      
+
     }
 }

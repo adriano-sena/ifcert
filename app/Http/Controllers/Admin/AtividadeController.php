@@ -16,7 +16,7 @@ class AtividadeController extends Controller
 
     private $atividade;
 
-    //Injeta um objeto de atividade 
+    //Injeta um objeto de atividade
     public function __construct(Atividade $atividade)
     {
         $this->atividade = $atividade;
@@ -34,12 +34,12 @@ class AtividadeController extends Controller
     }
 
     public function listaAtividades(Request $request, Evento $evento)
-    {   
-        
+    {
+
         //$atividades = Atividade::paginate(10);
-    
+
         $atividades = DB::table('atividades')->where('evento_id', $evento->id)->simplePaginate(1); //Retorna a collection como iterator
-        
+
         $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
 
         return view('painel.atividades.lista', compact('atividades', 'evento'));
@@ -109,7 +109,7 @@ class AtividadeController extends Controller
         $data = $request->all();
 
         $atividade = Atividade::find($atividade->id);
-        $atividade->update($data); //retorna boleano 
+        $atividade->update($data); //retorna boleano
 
         flash('Atividade Atualizada com sucesso');
         return redirect()->route('atividades.lista', $evento);

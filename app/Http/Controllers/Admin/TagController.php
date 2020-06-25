@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Evento;
 use Illuminate\Support\Str;
@@ -15,13 +16,11 @@ class TagController extends Controller{
 
     /**
      * Recebe e processa a requisição ajax
-	 * Valida o a tag -> na validação foi utilizada a criação
-	 * de um validador manual, pois seria apenas um item a ser verificado
-	 * e para deixar o código mais compreensível
+	 * Valida o a tag
      * retorna o objeto criado como json
      * para ser exibido na página do certificado
      */
-    public function store(Request $request, Evento $evento){
+    public function store(Request $request){
 
 
 		if (!$this->validaTag($request->tag)) {
@@ -32,6 +31,15 @@ class TagController extends Controller{
 			return;
 
 		}else{
+
+			//persistencia da tag no evento
+
+			$evento = Evento::find($request->evento);
+			$evento->tags()->create([
+				'tag' => $request->tag
+			]);
+
+
 			$tag['success'] = true;
 			$tag['tag'] = $request->tag;
 			$tag['evento'] = $request->evento;
@@ -42,13 +50,10 @@ class TagController extends Controller{
 		return;
     }
 
+    public function destroy($tag){
 
-//	private function sanitizeTag(String $tag): String {
-//
-//		$tagLimpa = preg_replace( array( '/[ ]/' , '/[^A-Za-z0-9\-]/' ) , array( '' , '' ) , $tag );
-//
-//		return $tagLimpa;
-//	}
+    	$tag->delete();
+	}
 
 	private function validaTag(String $tag) {
 
