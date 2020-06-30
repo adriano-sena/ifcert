@@ -32,12 +32,15 @@
                             </div>
                         </div>
 
-						<div class="row">
+						<div class="row mt-5">
 							<div class="col">
-								<form action="#" method="post">
+								<form action="{{route('modelo.certificado.store', ['evento' => $evento->id])}}" method="post">
 									@csrf
-									<textarea name="content">Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga</textarea>
-									<button type="submit">Visualizar modelo</button>
+									<label for=""></label>
+									<textarea name="content" id="conteudo">Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga</textarea>
+									{{--Acicionar área de upload--}}
+									<button type="submit" class="btn btn-primary mt-3 mr-2">Visualizar modelo</button>
+									<button type="submit" class="btn btn-secondary mt-3">Salvar modelo</button>
 								</form>
 							</div>
 						</div>

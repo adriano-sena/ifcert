@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Certificado;
 use App\Evento;
+use App\Helpers\CertificadoHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CertificadoController extends Controller
 {
-    /**
+
+	private $certificadoHelper;
+
+	public function __construct()
+	{
+		$this->certificadoHelper = new CertificadoHelper();
+	}
+
+
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -30,18 +40,28 @@ class CertificadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Persiste um novo modelo de certificado relacionado
+     * a um evento existente
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+    	//remover campo de layout do modelo
+		$evento = Evento::find($request->evento);
+		$certificado = $evento->certificado()->create([
+			'texto' => $request->content,
+			'background' => '/img/modelos/modelo2.jpeg',
+		]);
+
+		flash('Modelo de certificado criado com sucesso')->success();
+
+		//retorna para a página do modelo com o certificado já criado
+		return redirect()->back()->withInput(['certificado' => $certificado]);
     }
 
     /**
-     * Display the specified resource.
+     * Apresenta o certificado em questão
      *
      * @param  \App\Certificado  $certificado
      * @return \Illuminate\Http\Response

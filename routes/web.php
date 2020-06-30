@@ -20,23 +20,23 @@ Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
 Route::prefix('admin')->namespace('Admin')->group(function () {
-    
+
     //Rotas de Eventos
 
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('admin.evento.lista');
-    
+
     Route::resource('eventos', 'EventoController');
 
 
     Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
-    //Route::resource('certificados', 'CertificadoController');
 
+    Route::post('/modelo/store/{evento}', 'CertificadoController@store')->name('modelo.certificado.store');
 
     Route::post('/tags/store', 'TagController@store')->name('tags.store');
 
     //Recursos aninhados (Relação Evento/Atividade);
     Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
-    
+
     Route::post('/atividade/{atividade}/inscricao', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
 
     Route::resource('eventos.atividades', 'AtividadeController');
@@ -44,7 +44,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     // Route::resource('atividades', 'AtividadeController');
 });
 
-//Rotas públicas 
+//Rotas públicas
 
 
 

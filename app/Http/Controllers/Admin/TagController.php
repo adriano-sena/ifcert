@@ -31,14 +31,11 @@ class TagController extends Controller{
 			return;
 
 		}else{
-
 			//persistencia da tag no evento
-
 			$evento = Evento::find($request->evento);
 			$evento->tags()->create([
 				'tag' => $request->tag
 			]);
-
 
 			$tag['success'] = true;
 			$tag['tag'] = $request->tag;
