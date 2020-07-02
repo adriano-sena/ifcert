@@ -55,5 +55,18 @@ class CertificadoHelper{
    public function trataConteudo(String $texto, $dados) : String{
         //replaceArray da facade STR
    }
+
+	/**
+	 * Exibe o certificado relacionado ao evento
+	 */
+   public static function exibeCertificado(Certificado $certificado) {
+
+	   $pdf = view('certificados.certificado', compact('certificado'))->render();
+	   $certificadoPDF = CertificadoHelper::geraCertificado($pdf);
+	   //renderizando e exibendo na tela
+	   CertificadoHelper::renderizaCertificado($certificadoPDF);
+
+   }
+
 }
 

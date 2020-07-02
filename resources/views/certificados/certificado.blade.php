@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificado</title>
-    
+
     <style>
         html{
             margin: 0;
         }
-        
+
         body{
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -18,11 +18,11 @@
                 /* background-position: center;
                 background-repeat: no-repeat;
                 background-size: 100%; */
-        } 
-    </style>    
-</head>
 
+        }
+    </style>
+</head>
 <body>
-        {!! nl2br($certificado->conteudo) !!}
+        {!! nl2br($certificado->texto) !!}
 </body>
 </html>

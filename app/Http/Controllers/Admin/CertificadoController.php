@@ -47,28 +47,51 @@ class CertificadoController extends Controller
      */
     public function store(Request $request)
     {
-    	//remover campo de layout do modelo
 		$evento = Evento::find($request->evento);
-		$certificado = $evento->certificado()->create([
-			'texto' => $request->content,
-			'background' => '/img/modelos/modelo2.jpeg',
-		]);
 
-		flash('Modelo de certificado criado com sucesso')->success();
+		$modelo = $evento->certificado()->get();
 
-		//retorna para a página do modelo com o certificado já criado
-		return redirect()->back()->withInput(['certificado' => $certificado]);
+		if($modelo->isEmpty()){
+			flash("O certificado não existe");
+			return redirect()->back();
+		}else{
+			flash("O certificado já existe");
+			return redirect()->back();
+		}
+
+		/*if($modelo){
+			$certificado = $evento->certificado()->create([
+				'texto' => $request->content,
+				'background' => '/img/modelos/modelo3.jpg',
+			]);
+
+			flash('Modelo de certificado criado com sucesso')->success();
+			//retorna para a página do modelo com o certificado já criado
+			return redirect()->back()->withInput(['certificado' => $certificado]);
+		}else {
+			flash('Modelo modificado com sucesso')->success();
+			//retorna para a página do modelo com o certificado já criado
+			return redirect()->back()->withInput(['certificado' => $certificado]);
+		}*/
+
     }
 
     /**
-     * Apresenta o certificado em questão
+     * Apresenta o certificado relacionado ao evento
      *
      * @param  \App\Certificado  $certificado
      * @return \Illuminate\Http\Response
      */
-    public function show(Certificado $certificado)
+    public function show(Evento $evento)
     {
-        //
+
+        $modelo = Evento::find($evento->id)->certificado;
+        if(is_null($modelo)){
+        	flash('O modelo ainda não foi criado');
+        	return redirect()->back();
+		}else {
+			CertificadoHelper::exibeCertificado($modelo);
+		}
     }
 
     /**

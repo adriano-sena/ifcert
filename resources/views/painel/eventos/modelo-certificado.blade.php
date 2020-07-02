@@ -10,7 +10,10 @@
                     <h2 class="title-1">Certificados</h2>
                 </div>
                 <div class="card-body card-block">
-                    <div class="card-title">
+
+					@include('flash::message')
+
+					<div class="card-title">
                         <h3 class="text-center title-2">Crie aqui o modelo do certificado a ser utilizado no evento</h3>
                         <div class="row">
                             <div class="col-md-6">
@@ -39,9 +42,13 @@
 									<label for=""></label>
 									<textarea name="content" id="conteudo">Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga</textarea>
 									{{--Acicionar área de upload--}}
-									<button type="submit" class="btn btn-primary mt-3 mr-2">Visualizar modelo</button>
-									<button type="submit" class="btn btn-secondary mt-3">Salvar modelo</button>
+									<button type="submit" class="btn btn-primary mt-3">Salvar modelo</button>
 								</form>
+
+								<form action="{{ route('modelo.certificado.show' , ['evento' => $evento->id])}}" method="get">
+									<button type="submit" class="btn btn-success mt-3">Visualizar modelo</button>
+								</form>
+
 							</div>
 						</div>
                     </div>

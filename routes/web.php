@@ -27,10 +27,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
     Route::resource('eventos', 'EventoController');
 
-
+	//Modelo de certificado
     Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
 
     Route::post('/modelo/store/{evento}', 'CertificadoController@store')->name('modelo.certificado.store');
+    Route::get('/modelo/exibe/{evento}', 'CertificadoController@show')->name('modelo.certificado.show');
 
     Route::post('/tags/store', 'TagController@store')->name('tags.store');
 
