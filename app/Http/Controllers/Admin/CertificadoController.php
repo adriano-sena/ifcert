@@ -51,28 +51,31 @@ class CertificadoController extends Controller
 
 		$modelo = $evento->certificado()->get();
 
+		/*
+		 * Validação da Collection de modelo
+		 *
+		 *
+		 */
 		if($modelo->isEmpty()){
-			flash("O certificado não existe");
-			return redirect()->back();
-		}else{
-			flash("O certificado já existe");
-			return redirect()->back();
-		}
-
-		/*if($modelo){
 			$certificado = $evento->certificado()->create([
 				'texto' => $request->content,
 				'background' => '/img/modelos/modelo3.jpg',
 			]);
-
 			flash('Modelo de certificado criado com sucesso')->success();
-			//retorna para a página do modelo com o certificado já criado
-			return redirect()->back()->withInput(['certificado' => $certificado]);
+			return redirect()->back()->withInput(['texto' => $certificado->texto]);
+
 		}else {
+			$modelo = $modelo->last();
+
+			$certificado = Certificado::find($modelo->id);
+			$certificado->texto = $request->content;
+			$certificado->save();
+
 			flash('Modelo modificado com sucesso')->success();
-			//retorna para a página do modelo com o certificado já criado
-			return redirect()->back()->withInput(['certificado' => $certificado]);
-		}*/
+			return redirect()->back();
+		}
+
+
 
     }
 
@@ -86,6 +89,7 @@ class CertificadoController extends Controller
     {
 
         $modelo = Evento::find($evento->id)->certificado;
+        //dd($modelo);
         if(is_null($modelo)){
         	flash('O modelo ainda não foi criado');
         	return redirect()->back();
