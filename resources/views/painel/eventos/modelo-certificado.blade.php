@@ -40,7 +40,12 @@
 								<form action="{{route('modelo.certificado.store', ['evento' => $evento->id])}}" method="post">
 									@csrf
 									<label for=""></label>
-									<textarea name="content" id="conteudo" value="{{old('texto')}}">Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga</textarea>
+									<textarea name="content" id="conteudo" rows="25">
+										@if(isset($certificado)){{strip_tags($certificado->texto)}}
+										@else
+											Certificamos que #nome participou do evento #evento na data #data com carga horária de #carga
+										@endif
+									</textarea>
 									{{--Acicionar área de upload--}}
 									<button type="submit" class="btn btn-primary mt-3">Salvar modelo</button>
 								</form>

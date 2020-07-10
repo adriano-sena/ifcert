@@ -36,7 +36,9 @@ class CertificadoController extends Controller
      */
     public function create(Evento $evento)
     {
-        return view('painel.eventos.modelo-certificado', compact('evento'));
+    	$certificado = $evento->certificado()->get();
+    	$certificado = $certificado->last();
+        return view('painel.eventos.modelo-certificado', compact('evento', 'certificado'));
     }
 
     /**
@@ -51,22 +53,16 @@ class CertificadoController extends Controller
 
 		$modelo = $evento->certificado()->get();
 
-		/*
-		 * Validação da Collection de modelo
-		 *
-		 *
-		 */
 		if($modelo->isEmpty()){
 			$certificado = $evento->certificado()->create([
 				'texto' => $request->content,
 				'background' => '/img/modelos/modelo3.jpg',
 			]);
 			flash('Modelo de certificado criado com sucesso')->success();
-			return redirect()->back()->withInput(['texto' => $certificado->texto]);
+			return redirect()->back();
 
 		}else {
 			$modelo = $modelo->last();
-
 			$certificado = Certificado::find($modelo->id);
 			$certificado->texto = $request->content;
 			$certificado->save();
@@ -74,8 +70,6 @@ class CertificadoController extends Controller
 			flash('Modelo modificado com sucesso')->success();
 			return redirect()->back();
 		}
-
-
 
     }
 
