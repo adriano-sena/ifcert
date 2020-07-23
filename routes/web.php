@@ -48,10 +48,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 //Rotas públicas
 
 
-
-
-
-
 Auth::routes();
 
 //Rotas de teste

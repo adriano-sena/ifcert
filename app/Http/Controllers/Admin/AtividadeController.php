@@ -137,7 +137,6 @@ class AtividadeController extends Controller
         if ($atividade->qtd_vagas > 0){
 
             //Verificar se o usuário já está cadastrado na atividade
-
             $user_id = Auth::id();
             //Realizando a inscrição do usuário na atividade
             User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
@@ -146,4 +145,17 @@ class AtividadeController extends Controller
             return redirect()->back();
         }
     }
+
+	/**
+	 * Exibe todos os usuários que se inecreveram na atividade
+	 */
+    public function listaInscritos(Atividade $atividade){
+
+    	$atividade = Atividade::find($atividade->id);
+
+    	foreach ($atividade->users as $user){
+			echo $user->name . "  " . $user->participou;
+		}
+	}
 }
+
