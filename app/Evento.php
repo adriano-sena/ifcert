@@ -32,4 +32,8 @@ class Evento extends Model
     public function certificado(){
         return $this->morphOne('App\Certificado',  'certificavel');
     }
+
+    public function tags(){
+        return $this->morphMany('App\Tag', 'tagged');
+    }
 }

@@ -42,6 +42,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="{{route('eventos.edit', ['evento' => $evento->id])}}">Editar</a>
                                                     <a class="dropdown-item" href="{{route('atividades.lista', ['evento' => $evento->id]) }}">Atividades</a>
+                                                    <a class="dropdown-item" href="{{route('modelo.certificado.create', ['evento' => $evento->id]) }}">Certificado</a>
                                                     <a class="dropdown-item" href="#delete">Deletar</a>
                                                 </div>
                                             </div>

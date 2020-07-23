@@ -21,6 +21,7 @@ mix
     .scripts('resources/css/home.css' , 'public/home/home.css')
 
     .scripts('node_modules/jquery/dist/jquery.js','public/site/jquery.js')
-    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/site/bootstrap.js');
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/site/bootstrap.js')
+    .scripts('resources/js/tags.js', 'public/site/js/tags.js');
 
     

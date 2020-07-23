@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Certificado extends Model
 {
     protected $fillable = [
-        "titulo",
+        "texto",
         "layout",
-        'imagem',
+        "background",
     ];
 
     /**
@@ -17,6 +17,11 @@ class Certificado extends Model
      */
     public function certificavel(){
         return $this->morphTo();
+    }
+
+
+    public function tags(){
+        return $this->morphsMany('App\Tag', 'tagged');
     }
     
 }
