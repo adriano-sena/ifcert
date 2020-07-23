@@ -151,10 +151,10 @@ class AtividadeController extends Controller
 	 */
     public function listaInscritos(Atividade $atividade){
 
-    	$atividade = Atividade::find($atividade->id);
+    	$atividade = Atividade::find($atividade->id)-orderBy('name')->get();
 
     	foreach ($atividade->users as $user){
-			echo $user->name . "  " . $user->participou;
+			echo $user->name;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <!-- Nav Bar -->
 <nav class="navbar navbar-container navbar-expand-lg navbar-dark ">
-    
+
     <a class="navbar-brand brand-title" href="{{route('home')}}">
         <i class="fas fa-bug"></i> IF Cert
     </a>
@@ -26,7 +26,7 @@
                 @endif
                 @if(Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Registrar</a>
+                        <a class="nav-link" href="{{route('register')}}">Registrar</a>
                     </li>
                 @endif
             @else
