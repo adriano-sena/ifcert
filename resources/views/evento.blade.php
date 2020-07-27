@@ -7,9 +7,9 @@
 @section('conteudo')
 
     <section id="imagem-principal">
-        <img src="..." class="img-fluid" alt="Responsive image">
+{{--        <img src="..." class="img-fluid" alt="Responsive image">--}}
     </section>
-    
+
 
     <section class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -20,21 +20,32 @@
             Local : {{$evento->local}} <br>
             Data:  {{$evento->data}} <br>
             Contato: {{$evento->contato}} <br>
-            Organizador: {{$evento->organizador}} 
+            Organizador: {{$evento->organizador}}
         </p>
         </div>
     </section>
 
-    <section id="cards-atividades">
-    {{-- @foreach ($eventos as $evento)
-    <article class="card borda-cor-especial card-largura mt-5">
-        <img src="src/img/receita-abacate.jpg" class="card-img-top card-imagem-posicao" alt="Imagem da Atividade">
-        <div class="card-body">
-        <h5 class="card-title">{{$evento->titulo}}</h5>
-        <p class="card-text">{{$evento->descricao}}</p>
-          <a href="#" class="btn btn-cor-especial">Inscreva-se</a>
-        </div>
-      </article>
-    </section>
-    @endforeach --}}
+	{{-- Seção cards com eventos --}}
+	<section id="eventos" class="container-fluid">
+
+		<div class=" header card w-50 p-3 text-center card--bgOrange shadow-lg rounded">
+			<h2 class="header__title--bgWhite">Atividades disponíveis</h2>
+		</div>
+
+		<div class="row">
+			@foreach ($atividades as $atividade)
+				<div class="col-lg-4">
+					<div class="card card--white m-4 shadow-lg bg-white rounded" >
+						{{-- <img src="..." class="card-img-top" alt="..."> --}}
+						<div class="card-body">
+							<h5 class="card-title">{{$atividade->titulo}}</h5>
+							<p class="card-text">{{$atividade->descricao}}</p>
+							<hr>
+							<a href="#" class="btn btn-terciary">Inscrever-se</a>
+						</div>
+					</div>
+				</div>
+			@endforeach
+		</div>
+	</section>
 @endsection

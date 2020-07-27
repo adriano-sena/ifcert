@@ -79,9 +79,12 @@ class EventoController extends Controller
     public function show($evento)
     {
         $evento = Evento::find($evento);
+        $atividades = $evento->atividades;
 
-
-        return view('evento', compact('evento'));
+        //Verificar se o evento possui atividades
+			//Se possuir apresentar direcionar para a view do evento com a listagem de atividades
+			//Senão enviar para uma página informando que o evento ainda não possui atividades cadastradas
+        return view('evento', compact('evento', 'atividades'));
     }
 
     /**

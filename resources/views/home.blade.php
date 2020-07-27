@@ -10,16 +10,16 @@
         <div class="container-fluid">
           <!-- Nav Bar -->
           <nav class="navbar navbar-expand-lg navbar-dark ">
-    
+
 		  <a class="navbar-brand brand-title" href="{{route('home')}}">
                 <i class="fas fa-bug"></i> IF Cert
             </a>
-    
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <div class="collapse navbar-collapse" id="navbar-toggler">
               <ul class="navbar-nav ml-auto lista-itens">
 					<li class="nav-item">
@@ -64,21 +64,21 @@
               </ul>
             </div>
           </nav>
-    
+
           <!-- Title -->
-    
+
           <div class="row">
             <div class="col-lg-6">
               <h1 class="titulo-principal">A sua Ferramenta de apoio para gerenciamento de Eventos</h1>
             </div>
-    
+
             <div class="col-lg-6">
               <img class="title-image" src="{{asset('img/estudantes-pequena.jpg')}}" alt="iphone-mockup">
             </div>
           </div>
         </div>
       </section>
-    
+
      {{-- Seção sobre o ifcert uma imagem e 3 colunas  --}}
       <section id="sobre">
         <div class="row">
@@ -87,7 +87,7 @@
                 <h3>Gerenciamento completo</h3>
                 <p>Gerencie a criação de eventos, atividades e emissão de certificados.</p>
             </div>
-            
+
             <div class="col-lg-4 col-md-12">
                 <i class="blue-color fas fa-bullseye fa-4x"></i>
                 <h3>Sistema em fase Beta</h3>
@@ -104,7 +104,7 @@
       </section>
      {{-- Seção cards com eventos --}}
       <section id="eventos" class="container-fluid">
-		  
+
 		  <div class=" header card w-50 p-3 text-center card--bgOrange shadow-lg rounded">
 			  <h2 class="header__title--bgWhite">Eventos</h2>
 		  </div>
@@ -112,7 +112,7 @@
           {{-- <div class="container-interno container-interno--bgWhite"> --}}
 
 			<div class="row">
-			
+
 			@foreach ($eventos as $evento)
 			<div class="col-lg-4">
 				<div class="card card--white m-4 shadow-lg bg-white rounded" >
@@ -121,15 +121,15 @@
 					<h5 class="card-title">{{$evento->titulo}}</h5>
 					<p class="card-text">{{$evento->descricao}}</p>
 					  <hr>
-					  <a href="#" class="btn btn-terciary">Acessar</a>
+					  <a href="{{route("eventos.show", ['evento' => $evento->id])}}" class="btn btn-terciary">Acessar</a>
 					</div>
 				</div>
 			</div>
 			@endforeach
-			
+
 		</div>
       </section>
-	 
+
 	  <footer class="footer">
 		  <h3>Dúvidas?! Entre em Contato via nossas redes sociais.</h3>
 		  <ul class="icones">
