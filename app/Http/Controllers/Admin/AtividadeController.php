@@ -135,7 +135,6 @@ class AtividadeController extends Controller
         //Verificar se o user está logado  -> Realizado no Front com Blade statements
         //Verificar se a atividade tem vagas
         if ($atividade->qtd_vagas > 0){
-
             //Verificar se o usuário já está cadastrado na atividade
             $user_id = Auth::id();
             //Realizando a inscrição do usuário na atividade

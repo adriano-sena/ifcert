@@ -39,27 +39,38 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $input = $request->all();
 
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
-            if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.evento.lista');//redirecionar para dashboard
-            }else{
-                return redirect()->route('eventos.index');//lista de eventos
-            }
-        }else{
-            return redirect()->route('login')
-                ->withErrors('Usuário e/ou senha incorretos');
-        }
+    protected function authenticated(Request $request, $user)
+	{
+		if($user->hasRole('admin')){
+			return redirect()->route('admin.evento.lista');
+		}elseif($user->hasRole('user')){
+			return redirect()->route('admin.eventos.index');
+		}
+	}
 
-    }
+//    public function login(Request $request)
+//    {
+//        $input = $request->all();
+//
+//        $this->validate($request, [
+//            'email' => 'required|email',
+//            'password' => 'required',
+//        ]);
+//
+//        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+//        {
+//            if (auth()->user()->is_admin == 1) {
+//                return redirect()->route('admin.evento.lista');//redirecionar para dashboard
+//            }else{
+//                return redirect()->route('eventos.index');//lista de eventos
+//            }
+//        }else{
+//            return redirect()->route('login')
+//                ->withErrors('Usuário e/ou senha incorretos');
+//        }
+//
+//    }
 
 }

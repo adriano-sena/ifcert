@@ -10,7 +10,7 @@
                     <div class="card-body">
                        <div class="row">
                            <div class="col-md-12 text-right mb-2">
-                            <a href="{{route('eventos.create')}}">
+                            <a href="{{route('admin.eventos.create')}}">
                                    <button class="btn btn-success">
                                     <i class="  fa-plus"></i>
                                     Criar Evento
@@ -40,9 +40,9 @@
                                                     Ações
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="{{route('eventos.edit', ['evento' => $evento->id])}}">Editar</a>
-                                                    <a class="dropdown-item" href="{{route('atividades.lista', ['evento' => $evento->id]) }}">Atividades</a>
-                                                    <a class="dropdown-item" href="{{route('modelo.certificado.create', ['evento' => $evento->id]) }}">Certificado</a>
+                                                    <a class="dropdown-item" href="{{route('admin.eventos.edit', ['evento' => $evento->id])}}">Editar</a>
+                                                    <a class="dropdown-item" href="{{route('admin.atividades.lista', ['evento' => $evento->id]) }}">Atividades</a>
+                                                    <a class="dropdown-item" href="{{route('admin.modelo.certificado.create', ['evento' => $evento->id]) }}">Certificado</a>
                                                     <a class="dropdown-item" href="#delete">Deletar</a>
                                                 </div>
                                             </div>

@@ -28,9 +28,23 @@ class UsersTableSeeder extends Seeder
                'password'=> bcrypt('123456'),
             ],
         ];
-  
-        foreach ($user as $key => $value) {
-            User::create($value);
-        }
-    }
+
+		User::create( [
+			'name'=>'admin',
+			'email'=>'admin@email.com',
+			'is_admin'=>'1',
+			'cpf' => '123456789',
+			'password'=> bcrypt('12345678'),
+		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','admin')->first()->id);
+
+		User::create( [
+			'name'=>'user',
+			'email'=>'user@email.com',
+			'is_admin'=>'1',
+			'cpf' => '123456780',
+			'password'=> bcrypt('12345678'),
+		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);
+
+
+	}
 }
