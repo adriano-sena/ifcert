@@ -121,7 +121,7 @@
 					<h5 class="card-title">{{$evento->titulo}}</h5>
 					<p class="card-text">{{$evento->descricao}}</p>
 					  <hr>
-					  <a href="{{route("eventos.show", ['evento' => $evento->id])}}" class="btn btn-terciary">Acessar</a>
+					  <a href="{{route("admin.eventos.show", ['evento' => $evento->id])}}" class="btn btn-terciary">Acessar</a>
 					</div>
 				</div>
 			</div>

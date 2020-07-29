@@ -46,7 +46,7 @@ class LoginController extends Controller
 		if($user->hasRole('admin')){
 			return redirect()->route('admin.evento.lista');
 		}elseif($user->hasRole('user')){
-			return redirect()->route('admin.eventos.index');
+			return redirect()->route('home');
 		}
 	}
 

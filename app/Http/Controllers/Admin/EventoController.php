@@ -12,7 +12,7 @@ class EventoController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth','role:admin'])->except('index');
+        $this->middleware(['auth','role:admin'])->except('index', 'show');
     }
 
     /**
@@ -63,7 +63,6 @@ class EventoController extends Controller
         if($request->hasFile('imagem')){
             $data['imagem'] = $this->imageUpload($request);
         }
-
 
         $evento = Evento::create($data);
 

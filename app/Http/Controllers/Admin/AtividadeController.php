@@ -66,7 +66,7 @@ class AtividadeController extends Controller
     {
         //dados da requisição
         $data = $request->all();
-        $data += [ "slug" => 'teste' ];
+        $data += [ "slug" => 'teste', 'qtd_vagas' =>$request->vagas];
         $evento = \App\Evento::find($evento->id); //Evento pai que vem aninhado na requisição
         $evento->atividades()->create($data);
 
@@ -130,19 +130,23 @@ class AtividadeController extends Controller
         return redirect()->route('admin.atividades.lista', $evento);
     }
 
-    public function inscricao(Atividade $atividade)
+    public function inscricao(Atividade $atividade, User $user)
     {
-        //Verificar se o user está logado  -> Realizado no Front com Blade statements
+
+
+		if($user->hasRole('user')){
+			 echo "Passei aqui";
+		}
         //Verificar se a atividade tem vagas
-        if ($atividade->qtd_vagas > 0){
-            //Verificar se o usuário já está cadastrado na atividade
-            $user_id = Auth::id();
-            //Realizando a inscrição do usuário na atividade
-            User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
-            Atividade::where('id' , $atividade->id)->decrement('qtd_vagas');
-            flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
-            return redirect()->back();
-        }
+//        if ($atividade->qtd_vagas > 0){
+//            //Verificar se o usuário já está cadastrado na atividade
+//            $user_id = Auth::id();
+//            //Realizando a inscrição do usuário na atividade
+//            User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
+//            Atividade::where('id' , $atividade->id)->decrement('qtd_vagas');
+//            flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
+//            return redirect()->back();
+//        }
     }
 
 	/**

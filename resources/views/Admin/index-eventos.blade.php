@@ -2,9 +2,9 @@
 
 @section('titulo')
 
-	<div class="text-center py-5 px-2">
-		<h1>Veja os eventos do momento no Campus IFBA Eunápolis</h1>
-	</div>
+	  <div class="jumbotron">
+	      <h1>@yield('titulo')</h1>
+	  </div>
 
 @endsection
 
@@ -23,13 +23,13 @@
 					<h5 class="card-title">{{$evento->titulo}}</h5>
 					<p class="card-text">{{$evento->descricao}}</p>
 					  <hr>
-					<a href="{{route('eventos.atividades.index', $evento)}}" class="btn btn-terciary">Acessar</a>
+					<a href="{{route('admin.eventos.atividades.index', $evento)}}" class="btn btn-terciary">Acessar</a>
 					</div>
 				</div>
 			</div>
 			@endforeach
 
-    </div>   
+    </div>
 </main>
 
 @endsection

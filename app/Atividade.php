@@ -14,7 +14,8 @@ class Atividade extends Model
         'descricao',
         'mediador',
         'cargaHoraria',
-        'qtd_vagas',
+        'vagas',
+		'qtd_vagas',
         'local',
         'data'
     ];
@@ -27,7 +28,7 @@ class Atividade extends Model
     public function evento(){
         return $this->belongsTo(Evento::class, 'evento_id');
     }
-    
+
      public function users(){
 
         //parametros ('classe relacionada', 'chave do modelo ', chave relacionada)

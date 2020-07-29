@@ -16,19 +16,19 @@
   <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('home/home.css')}}">
 
-  
+
   <title>IF-CERT</title>
 </head>
 <body>
-  
+
 <header class="nav-container">
   @include('layouts.navbar-blue')
 </header>
 
 <div class="container">
-  <div class="jumbotron">
-      <h1>@yield('titulo')</h1>
-  </div>
+{{--  <div class="jumbotron">--}}
+{{--      <h1>@yield('titulo')</h1>--}}
+{{--  </div>--}}
 
   @include('flash::message')
   @yield('conteudo')

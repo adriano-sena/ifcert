@@ -15,6 +15,7 @@ class AlterAtividadesTable extends Migration
     {
         Schema::table('atividades', function (Blueprint $table) {
             $table->integer('qtd_vagas')->after('cargaHoraria');
+            $table->integer('vagas')->after('qtd_vagas');
         });
     }
 
@@ -27,6 +28,7 @@ class AlterAtividadesTable extends Migration
     {
         Schema::table('atividades', function (Blueprint $table) {
             $table->dropColumn('qtd_vagas');
+            $table->dropColumn('vagas');
         });
     }
 }

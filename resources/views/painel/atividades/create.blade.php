@@ -55,9 +55,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="qtd_vagas" class="control-label mb-1">Quantidade de vagas</label>
-                            <input type="number"  class="form-control @error('qtd_vagas') is-invalid @enderror" id="qtd_vagas" name="qtd_vagas" value="{{old('qtd_vagas')}}" required>
-                                @error('qtd_vagas')
+                                <label for="vagas" class="control-label mb-1">Quantidade de vagas</label>
+                            <input type="number"  class="form-control @error('vagas') is-invalid @enderror" id="vagas" name="vagas" value="{{old('vagas')}}" required>
+                                @error('vagas')
                                     <span class="invalid-feedback">
                                     {{$message}}
                                     </span>
