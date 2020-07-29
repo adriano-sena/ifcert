@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Atividade;
 use App\Evento;
+use App\Helpers\InscricaoHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AtividadesRequest;
 use App\User;
@@ -19,6 +20,8 @@ class AtividadeController extends Controller
     //Injeta um objeto de atividade
     public function __construct(Atividade $atividade)
     {
+    	$this->middleware(['auth'])->except('listaAtividades','index');
+    	$this->middleware(['auth','role:admin'])->only('index');
         $this->atividade = $atividade;
     }
 
@@ -132,21 +135,20 @@ class AtividadeController extends Controller
 
     public function inscricao(Atividade $atividade, User $user)
     {
+    	$inscrito = InscricaoHelper::checaInscricao($atividade, $user);
+		$vagas = InscricaoHelper::haVagas($atividade);
 
 
-		if($user->hasRole('user')){
-			 echo "Passei aqui";
+		if(!$inscrito){
+			if(!$vagas){
+				return redirect()->back()->with('error','Que pena, Não existem mais vagas para esta atividade :(');
+			}
+			$user->atividades()->attach($atividade->id);
+			return redirect()->back()->with('success', 'Inscrição realizada com sucesso, Logo chegará um e-mail com as informações da atividade!');
 		}
-        //Verificar se a atividade tem vagas
-//        if ($atividade->qtd_vagas > 0){
-//            //Verificar se o usuário já está cadastrado na atividade
-//            $user_id = Auth::id();
-//            //Realizando a inscrição do usuário na atividade
-//            User::find($user_id)->atividades()->attach($atividade->id, ['participou' => 0]);
-//            Atividade::where('id' , $atividade->id)->decrement('qtd_vagas');
-//            flash('Inscrição realizada com sucesso, Em breve você receberá o seu email com todas as informações')->success();
-//            return redirect()->back();
-//        }
+
+		return redirect()->back()->with('success','Você já está inscrito nesta atividade, verifique sua caixa de e-mails para mais informações.');
+
     }
 
 	/**

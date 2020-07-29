@@ -30,7 +30,6 @@ class Atividade extends Model
     }
 
      public function users(){
-
         //parametros ('classe relacionada', 'chave do modelo ', chave relacionada)
         return $this->belongsToMany(User::class,'inscricao','atividade', 'user')
          ->withPivot(['participou'])

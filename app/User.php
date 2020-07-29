@@ -44,7 +44,7 @@ class User extends Authenticatable
 
         //parametros ('classe relacionada', 'chave do modelo ', chave relacionada)
         return $this->belongsToMany(Atividade::class,'inscricao','user', 'atividade')
-         ->withPivot(['participou'])
+         ->withPivot('participou')
          ->withTimestamps();
     }
 }

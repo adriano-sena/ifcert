@@ -17,7 +17,7 @@ class CreateInscricaoTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user');
             $table->unsignedBigInteger('atividade');
-            $table->boolean('participou');
+            $table->boolean('participou')->default(0);
             $table->timestamps();
         });
     }

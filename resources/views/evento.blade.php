@@ -54,3 +54,24 @@
 		</div>
 	</section>
 @endsection
+
+@section('script')
+	<script>
+		const toast = Swal.mixin({
+			toast:true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000
+		})
+
+		@if(session()->has('success'))
+		toast.fire({
+			text: "{{session()->get('success')}}",
+			icon: "success"
+		})
+		@php
+			session()->forget('success');
+		@endphp
+		@endif
+	</script>
+@endsection

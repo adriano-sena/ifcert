@@ -14,6 +14,7 @@
 
 
   <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="{{asset('home/home.css')}}">
 
 
@@ -38,5 +39,7 @@
 
 <script src="{{asset('site/jquery.js')}}"></script>
 <script src="{{asset('site/bootstrap.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.all.min.js"></script>
+@yield('script')
 </body>
 </html>
