@@ -72,7 +72,7 @@ class AtividadeController extends Controller
 
         flash('Atividade criada com sucesso')->success();
 
-        return redirect()->route('atividades.lista', $evento);
+        return redirect()->route('admin.atividades.lista', $evento);
     }
 
     /**
@@ -112,7 +112,7 @@ class AtividadeController extends Controller
         $atividade->update($data); //retorna boleano
 
         flash('Atividade Atualizada com sucesso');
-        return redirect()->route('atividades.lista', $evento);
+        return redirect()->route('admin.atividades.lista', $evento);
     }
 
     /**
@@ -127,7 +127,7 @@ class AtividadeController extends Controller
 
         $atividade->delete();
         flash('Atividade excluída com sucesso')->success();
-        return redirect()->route('atividades.lista', $evento);
+        return redirect()->route('admin.atividades.lista', $evento);
     }
 
     public function inscricao(Atividade $atividade)

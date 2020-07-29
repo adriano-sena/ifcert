@@ -9,7 +9,7 @@
                     <div class="noti-wrap mr-4">
                         <nav class="nav">
                             <a href="#" class="nav-link">Sobre</a>
-                            <a href="#" class="nav-link">Eventos</a>
+                            <a href="{{route('admin.evento.lista')}}" class="nav-link">Eventos</a>
                         </nav>
                     </div>
                     {{-- Login e registro --}}

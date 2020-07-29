@@ -10,7 +10,7 @@
                     <div class="card-body">
                        <div class="row">
                            <div class="col-md-12 text-left mb-2">
-                               <a href="{{route('eventos.atividades.create', $evento)}}">
+                               <a href="{{route('admin.eventos.atividades.create', $evento)}}">
                                    <button class="btn btn-success">
                                     <i class="fas fa-plus"></i>
                                     Criar Atividade
@@ -44,19 +44,19 @@
                                                 Ações
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="{{route('eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}"">Editar</a>
+                                                <a class="dropdown-item" href="{{route('admin.eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}"">Editar</a>
                                                 <a class="dropdown-item" href="#atividades">Inscritos</a>
                                                 <a class="dropdown-item" href="#atividades">Certificados</a>
                                                 <div class="dropdown-divider"></div>
-                                                <form  class="dropdown-menu" method="POST" action="{{route('eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
-                                                    @csrf   
+                                                <form  class="dropdown-menu" method="POST" action="{{route('admin.eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
+                                                    @csrf
                                                     @method('DELETE')
                                                    <button class="dropdown-item" type="submit">Deletar</button>
                                                 </form>
                                             </div>
                                         </div>
                                         </td>
-                                    </tr>  
+                                    </tr>
                                     @endforeach
                                    </tbody>
                                </table>

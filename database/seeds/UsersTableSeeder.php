@@ -16,14 +16,12 @@ class UsersTableSeeder extends Seeder
             [
                'name'=>'admin',
                'email'=>'admin@email.com',
-                'is_admin'=>'1',
                 'cpf' => '123456789',
                'password'=> bcrypt('12345678'),
             ],
             [
                'name'=>'user',
                'email'=>'user@email.com',
-                'is_admin'=>'0',
                 'cpf' => '123654987',
                'password'=> bcrypt('123456'),
             ],
@@ -32,7 +30,6 @@ class UsersTableSeeder extends Seeder
 		User::create( [
 			'name'=>'admin',
 			'email'=>'admin@email.com',
-			'is_admin'=>'1',
 			'cpf' => '123456789',
 			'password'=> bcrypt('12345678'),
 		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','admin')->first()->id);
@@ -40,7 +37,6 @@ class UsersTableSeeder extends Seeder
 		User::create( [
 			'name'=>'user',
 			'email'=>'user@email.com',
-			'is_admin'=>'1',
 			'cpf' => '123456780',
 			'password'=> bcrypt('12345678'),
 		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);

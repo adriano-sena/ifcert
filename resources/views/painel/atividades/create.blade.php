@@ -14,7 +14,7 @@
                             <h3 class="text-center title-2">Crie as atividades do Evento</h3>
                         </div>
 
-                        <form method="POST" action="{{route('eventos.atividades.store', session()->get('evento'))}}">
+                        <form method="POST" action="{{route('admin.eventos.atividades.store', session()->get('evento'))}}">
                             @csrf
                             <div class="form-group">
                                 <label for="titulo" class="control-label mb-1">Titulo</label>
@@ -81,7 +81,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            
+
 
                             <div>
                                 <button class="btn btn-lg btn-info btn-block">Criar Atividade</button>
@@ -89,9 +89,9 @@
                         </form>
                     </div>
                 </div>
-            
-            
-            
+
+
+
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
                             <h3 class="text-center title-2">Crie seus eventos</h3>
                         </div>
 
-                        <form method="POST" action="{{route('eventos.store')}}">
+                        <form method="POST" action="{{route('admin.eventos.store')}}">
                             @csrf
                             <div class="form-group">
                                 <label for="titulo" class="control-label mb-1">Titulo</label>

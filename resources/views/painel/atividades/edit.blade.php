@@ -14,7 +14,7 @@
                             <h3 class="text-center title-2">Crie as atividades do Evento</h3>
                         </div>
 
-                        <form method="POST" action="{{route('eventos.atividades.update', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
+                        <form method="POST" action="{{route('admin.eventos.atividades.update', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -88,9 +88,9 @@
                         </form>
                     </div>
                 </div>
-            
-            
-            
+
+
+
             </div>
         </div>
     </div>
