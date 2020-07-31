@@ -156,11 +156,24 @@ class AtividadeController extends Controller
 	 */
     public function listaInscritos(Atividade $atividade){
 
-    	$atividade = Atividade::find($atividade->id);
+    	$atividade = Atividade::with('users')->find($atividade->id);
 
-    	$inscritos = $atividade->users()->get();
+    	//$inscritos = $atividade->users;
 
-    	return view('painel.atividades.inscritos', compact('inscritos'));
+    	return view('painel.atividades.inscritos', compact('atividade'));
+	}
+
+	public function registraParticipantes(Request $request, Atividade $atividade){
+		//$users = User::find($request->participantes);
+			//dd($request->all());
+			$atividade->users()->updateExistingPivot($request->participantes, ['participou' => 1], false);
+		return redirect()->back()->with('success', 'Registro de participantes realizado com sucesso');
+	}
+
+	public function removeRegistroParticipante(Atividade $atividade, $inscrito){
+
+    	$atividade->users()->updateExistingPivot($inscrito, ['participou' => 0] , false);
+    	return redirect()->back()->with('success', 'Participação removida com sucesso');
 	}
 }
 

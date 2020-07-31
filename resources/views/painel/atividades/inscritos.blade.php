@@ -7,17 +7,15 @@
 		<div class="col-lg-10">
 			<div class="user-data m-b-30">
 				<h3 class="title-3 m-b-30">
-					<i class="zmdi zmdi-account-calendar"></i>user data</h3>
+					<i class="zmdi zmdi-account-calendar"></i>Lista de Inscritos</h3>
 				<div class="filters m-b-45">
-					<div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-						<select class="js-select2" name="property">
-							<option selected="selected">Inscritos</option>
-							<option value="">Participantes</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
+				</div>
+				<div class="user-data__footer">
+					<button class="au-btn au-btn-load">Gerar PDF - Lista de inscritos</button>
 				</div>
 				<div class="table-responsive table-data">
+					<form method="post" action="{{route('admin.atividades.inscritos.registra', ['atividade' => $atividade])}}">
+						@csrf
 					<table class="table">
 						<thead>
 						<tr>
@@ -28,7 +26,7 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach($inscritos as $inscrito)
+						@foreach($atividade->users as $inscrito)
 						<tr>
 							<td>
 								<div class="table-data__info">
@@ -52,20 +50,33 @@
 									</span>
 								</div>
 							</td>
-							<td>
-								<label class="au-checkbox">
-									<input type="checkbox">
-									<span class="au-checkmark"></span>
-								</label>
+							<td class="text-align">
+								@if(!$inscrito->pivot->participou)
+									<label class="au-checkbox">
+										<input type="checkbox" name="participantes[]" value="{{$inscrito->id}}"
+											{{$inscrito->pivot->participou ? "checked" : " "}}>
+										<span class="au-checkmark"></span>
+									</label>
+								@endif
+								@if($inscrito->pivot->participou)
+								<a href="{{route('admin.atividades.inscritos.remove', ['inscrito' => $inscrito->id , 'atividade' => $atividade])}}" class="btn btn-danger">
+									Remover
+								</a>
+								@endif
 							</td>
 						</tr>
 						@endforeach
 						</tbody>
 					</table>
+					<div class="user-data__footer">
+						<button class="btn btn-success" type="submit">
+							<i class="far fa-save"></i>
+							Registrar participantes
+						</button>
+					</div>
+					</form>
 				</div>
-				<div class="user-data__footer">
-					<button class="au-btn au-btn-load">Gerar PDF - Lista de inscritos</button>
-				</div>
+
 			</div>
 		</div>
 	</div>

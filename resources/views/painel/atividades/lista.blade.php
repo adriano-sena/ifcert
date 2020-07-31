@@ -6,16 +6,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">Atividades </h3>
+                    <h3 class="card-header">Atividades</h3>
                     <div class="card-body">
                        <div class="row">
                            <div class="col-md-12 text-left mb-2">
                                <a href="{{route('admin.eventos.atividades.create', $evento)}}">
-                                   <button class="btn btn-success">
-                                    <i class="fas fa-plus"></i>
-                                    Criar Atividade
-                                   </button>
-                               </a>
+								   <button class="btn btn-success">
+									   <i class="fas fa-plus"></i>
+									   Criar Atividade
+								   </button>
+							   </a>
                            </div>
 
                            <div class="table-responsive">

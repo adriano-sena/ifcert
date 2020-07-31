@@ -17,7 +17,7 @@
                         <h3 class="text-center title-2">Crie aqui o modelo do certificado a ser utilizado no evento</h3>
                         <div class="row">
                             <div class="col-md-6">
-                            <form class="form-inline mt-4" autocomplete="off" name="formTag"  id="form" data-action="{{route('tags.store')}}">
+                            <form class="form-inline mt-4" autocomplete="off" name="formTag"  id="form" data-action="{{route('admin.tags.store')}}">
                                 @csrf
                                     <div class="form-group">
                                         <label for="tag" class="mr-2">Tag</label>
@@ -37,7 +37,7 @@
 
 						<div class="row mt-5">
 							<div class="col">
-								<form action="{{route('modelo.certificado.store', ['evento' => $evento->id])}}" method="post">
+								<form action="{{route('admin.modelo.certificado.store', ['evento' => $evento->id])}}" method="post">
 									@csrf
 									<label for=""></label>
 									<textarea name="content" id="conteudo" rows="25">
@@ -50,7 +50,7 @@
 									<button type="submit" class="btn btn-primary mt-3">Salvar modelo</button>
 								</form>
 
-								<form action="{{ route('modelo.certificado.show' , ['evento' => $evento->id])}}" method="get">
+								<form action="{{ route('admin.modelo.certificado.show' , ['evento' => $evento->id])}}" method="get">
 									<button type="submit" class="btn btn-success mt-3">Visualizar modelo</button>
 								</form>
 

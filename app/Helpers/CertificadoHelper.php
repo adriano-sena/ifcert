@@ -10,7 +10,7 @@ class CertificadoHelper{
 
 
 
-    public function salvaModelo(String $texto, string $background){
+    public function salvaModelo(String $texto, String $background){
 
     	//Validar Futuramente se o tipo da imagem bate com um uri
         DB::beginTransaction();
@@ -23,6 +23,7 @@ class CertificadoHelper{
         DB::commit();
         return $modelo;
     }
+
 
      /**
      * Gera um arquivo pdf com base em um conteudo html passado
@@ -47,7 +48,6 @@ class CertificadoHelper{
    }
 
 
-
    /**
     * Recebe o texto padrão do certificado e o objeto
     * do usuário e retorna o texto montado para o Certificado
@@ -62,9 +62,9 @@ class CertificadoHelper{
    public static function exibeCertificado(Certificado $certificado) {
 
 	   $pdf = view('certificados.certificado', compact('certificado'))->render();
-	   $certificadoPDF = CertificadoHelper::geraCertificado($pdf);
+	   $certificadoPDF = self::geraCertificado($pdf);
 	   //renderizando e exibendo na tela
-	   CertificadoHelper::renderizaCertificado($certificadoPDF);
+	   self::renderizaCertificado($certificadoPDF);
 
    }
 
