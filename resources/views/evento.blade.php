@@ -73,5 +73,6 @@
 			session()->forget('success');
 		@endphp
 		@endif
+
 	</script>
 @endsection

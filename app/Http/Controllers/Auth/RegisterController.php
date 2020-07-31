@@ -65,11 +65,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-			'cpf' => "12345678954"
+			'cpf' => $data['cpf']
         ]);
-    }
+
+        $user->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);
+
+		return $user;
+	}
 }

@@ -36,7 +36,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
     //Recursos aninhados (Relação Evento/Atividade);
     Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
 
-    Route::post('/atividade/{atividade}/inscricao/{user}', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
+    Route::post('/atividade/{atividade}/inscricao/', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
 
     Route::resource('eventos.atividades', 'AtividadeController');
 

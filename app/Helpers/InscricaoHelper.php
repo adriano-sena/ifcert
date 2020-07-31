@@ -16,11 +16,6 @@ class InscricaoHelper
 	 * Verifica no banco de dados se o usuário já possui inscricão na atividade
 	 */
 	public static function checaInscricao(Atividade $atividade, User $user) {
-		//Checar na tabela pivot de inscrição se o id do usuário e o id da atividade estão inseridos
-
-//		dd($atividade->whereHas('users',function ($query) use ($user){
-//			$query->where('users.id',$user->id);
-//		})->first());
 
 		if($atividade->whereHas('users',function ($query) use ($user){
 			$query->where('users.id',$user->id);
@@ -30,13 +25,20 @@ class InscricaoHelper
 		return false;
 	}
 
+	/**
+	 * @param Atividade $atividade
+	 * @return bool
+	 */
 	public static function haVagas(Atividade $atividade){
-		if($atividade->qtd_vagas == $atividade->users->count()){
+		if($atividade->users->count() > $atividade->qtd_vagas){
 			return false;
 		}
 		return true;
 	}
 
 
+	public static function qtdInscritos(Atividade $atividade) {
+		return $atividade->users->count();
+	}
 
 }

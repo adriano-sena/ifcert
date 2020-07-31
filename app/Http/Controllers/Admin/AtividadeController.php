@@ -133,11 +133,12 @@ class AtividadeController extends Controller
         return redirect()->route('admin.atividades.lista', $evento);
     }
 
-    public function inscricao(Atividade $atividade, User $user)
+    public function inscricao(Atividade $atividade)
     {
+
+    	$user = Auth::user();
     	$inscrito = InscricaoHelper::checaInscricao($atividade, $user);
 		$vagas = InscricaoHelper::haVagas($atividade);
-
 
 		if(!$inscrito){
 			if(!$vagas){
@@ -146,7 +147,6 @@ class AtividadeController extends Controller
 			$user->atividades()->attach($atividade->id);
 			return redirect()->back()->with('success', 'Inscrição realizada com sucesso, Logo chegará um e-mail com as informações da atividade!');
 		}
-
 		return redirect()->back()->with('success','Você já está inscrito nesta atividade, verifique sua caixa de e-mails para mais informações.');
 
     }

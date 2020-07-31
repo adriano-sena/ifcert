@@ -39,6 +39,20 @@
                             </div>
                         </div>
 
+						<div class="form-group row">
+							<label for="cpf" class="col-md-4 col-form-label text-md-right">CPF</label>
+
+							<div class="col-md-6">
+								<input id="cpf" type="text" maxlength="11" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="{{ old('cpf') }}" required >
+
+								@error('cpf')
+								<span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+								@enderror
+							</div>
+						</div>
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
