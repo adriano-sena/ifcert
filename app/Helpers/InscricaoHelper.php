@@ -41,4 +41,9 @@ class InscricaoHelper
 		return $atividade->users->count();
 	}
 
+	public static  function usuariosInscritos(Atividade $atividade) : User{
+
+		return User::has('atividades')->orderBy('name')->get();
+	}
+
 }

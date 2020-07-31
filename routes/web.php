@@ -11,10 +11,6 @@
 |
 */
 
-// ->middleware('checkAdmin')
-
-
-//Rotas públicas
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -38,9 +34,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
     Route::post('/atividade/{atividade}/inscricao/', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
 
+    Route::get('/atividade/lista/inscritos/{atividade}', 'AtividadeController@listaInscritos')->name('atividades.inscritos');
+
     Route::resource('eventos.atividades', 'AtividadeController');
 
-    // Route::resource('atividades', 'AtividadeController');
+
 });
 
 //Rotas públicas
@@ -49,7 +47,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 Auth::routes();
 
 //Rotas de teste
-
 
 
 Route::get('welcome', 'HomeController@welcome')->name('welcome');

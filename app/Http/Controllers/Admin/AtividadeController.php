@@ -105,7 +105,7 @@ class AtividadeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Atividade  $atividade
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Evento $evento, Atividade $atividade, Request $request)
     {
@@ -156,11 +156,11 @@ class AtividadeController extends Controller
 	 */
     public function listaInscritos(Atividade $atividade){
 
-    	$atividade = Atividade::find($atividade->id)-orderBy('name')->get();
+    	$atividade = Atividade::find($atividade->id);
 
-    	foreach ($atividade->users as $user){
-			echo $user->name;
-		}
+    	$inscritos = $atividade->users()->get();
+
+    	return view('painel.atividades.inscritos', compact('inscritos'));
 	}
 }
 
