@@ -11,7 +11,10 @@
 				<div class="filters m-b-45">
 				</div>
 				<div class="user-data__footer">
-					<button class="au-btn au-btn-load">Gerar PDF - Lista de inscritos</button>
+{{--					<button class="au-btn au-btn-load">Gerar PDF - Lista de inscritos</button>--}}
+					<a href="{{route('admin.atividades.lista.pdf', $atividade->id)}}" class="btn btn-primary">
+						Gerar PDF - Lista de Inscritos
+					</a>
 				</div>
 				<div class="table-responsive table-data">
 					<form method="post" action="{{route('admin.atividades.inscritos.registra', ['atividade' => $atividade])}}">

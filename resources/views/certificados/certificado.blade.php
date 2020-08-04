@@ -9,7 +9,7 @@
         html{
             margin: 0;
         }
-
+		
         body{
                 background-position: center center;
                 background-repeat: no-repeat;

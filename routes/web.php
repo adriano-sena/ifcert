@@ -38,6 +38,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
     Route::post('/atividade/lista/inscritos/{atividade}', 'AtividadeController@registraParticipantes')->name('atividades.inscritos.registra');
     Route::get('/atividade/lista/inscritos/{atividade}/remover/{inscrito}', 'AtividadeController@removeRegistroParticipante')->name('atividades.inscritos.remove');
 
+    Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
+
     Route::resource('eventos.atividades', 'AtividadeController');
 
 

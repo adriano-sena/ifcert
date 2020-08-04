@@ -46,4 +46,10 @@ class InscricaoHelper
 		return User::has('atividades')->orderBy('name')->get();
 	}
 
+//	public static function geraListaInscritos(Atividade $atividade){
+//
+//	}
+
+
+
 }

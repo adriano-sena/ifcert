@@ -3,11 +3,18 @@
 namespace App\Helpers;
 
 use App\Certificado;
+use App\User;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\DB;
 
-class CertificadoHelper{
-
+/**
+ * Class PDFHelper
+ * @package App\Helpers
+ *
+ * Classe de suporte que contém regras de negócio para
+ * criação de arquivos PDF e
+ */
+class PDFHelper{
 
 
     public function salvaModelo(String $texto, String $background){
@@ -23,7 +30,6 @@ class CertificadoHelper{
         DB::commit();
         return $modelo;
     }
-
 
      /**
      * Gera um arquivo pdf com base em um conteudo html passado
@@ -43,7 +49,7 @@ class CertificadoHelper{
         return $dompdf;
    }
 
-   public static function renderizaCertificado(Dompdf $rawPdf){
+   public static function renderizaPDF(Dompdf $rawPdf){
        $rawPdf->stream('certificado.pdf', ["Attachment" => false]);
    }
 
@@ -64,9 +70,28 @@ class CertificadoHelper{
 	   $pdf = view('certificados.certificado', compact('certificado'))->render();
 	   $certificadoPDF = self::geraCertificado($pdf);
 	   //renderizando e exibendo na tela
-	   self::renderizaCertificado($certificadoPDF);
-
+	   self::renderizaPDF($certificadoPDF);
    }
 
+	/**
+	 * Gera um arquivo pdf com base em um conteudo html passado
+	 * via parâmetro.
+	 *
+	 */
+	public static function geraListaInscritos($conteudoHtml){
+		//Criando PDF
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml($conteudoHtml);
+		$dompdf->setPaper('a4', 'portrait');
+		//renderizando e dando o output
+		$dompdf->render();
+		return $dompdf;
+	}
+
+	public static function exibeListaInscritos($inscritos, $evento, $atividade){
+		$pagina = view('certificados.lista-inscritos', compact('inscritos', 'evento', 'atividade'))->render();
+		$listaPDF = self::geraListaInscritos($pagina);
+		self::renderizaPDF($listaPDF);
+	}
 }
 

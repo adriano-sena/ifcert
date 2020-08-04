@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Certificado;
 use App\Evento;
-use App\Helpers\CertificadoHelper;
+use App\Helpers\PDFHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class CertificadoController extends Controller
 
 	public function __construct()
 	{
-		$this->certificadoHelper = new CertificadoHelper();
+		$this->certificadoHelper = new PDFHelper();
 	}
 
 
@@ -88,7 +88,7 @@ class CertificadoController extends Controller
         	flash('O modelo ainda não foi criado');
         	return redirect()->back();
 		}else {
-			CertificadoHelper::exibeCertificado($modelo);
+			PDFHelper::exibeCertificado($modelo);
 		}
     }
 

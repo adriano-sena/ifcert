@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Atividade;
 use App\Evento;
 use App\Helpers\InscricaoHelper;
+use App\Helpers\PDFHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AtividadesRequest;
 use App\User;
@@ -157,10 +158,7 @@ class AtividadeController extends Controller
     public function listaInscritos(Atividade $atividade){
 
     	$atividade = Atividade::with('users')->find($atividade->id);
-
-    	//$inscritos = $atividade->users;
-
-    	return view('painel.atividades.inscritos', compact('atividade'));
+    	return view('painel.atividades.inscritos', compact( 'atividade'));
 	}
 
 	public function registraParticipantes(Request $request, Atividade $atividade){
@@ -174,6 +172,11 @@ class AtividadeController extends Controller
 
     	$atividade->users()->updateExistingPivot($inscrito, ['participou' => 0] , false);
     	return redirect()->back()->with('success', 'Participação removida com sucesso');
+	}
+
+	public function listaPDF(Atividade $atividade){
+    	$evento = $atividade->evento;
+		PDFHelper::exibeListaInscritos($atividade->users, $evento, $atividade);
 	}
 }
 
