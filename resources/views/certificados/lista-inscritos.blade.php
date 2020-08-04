@@ -52,6 +52,10 @@
 		tr:nth-child(even) {
 			background-color: #dddddd;
 		}
+
+		.text-center{
+			text-align: center;
+		}
 	</style>
 
 </head>
@@ -87,6 +91,13 @@
 		</table>
 	</main>
 
+	<footer>
+		<table>
+			<tr>
+				<th class="text-center">Documento emitido via &copy; IFcert - Acesse ifcert.com.br</th>
+			</tr>
+		</table>
+	</footer>
 
 </body>
 </html>
