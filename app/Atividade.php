@@ -35,4 +35,11 @@ class Atividade extends Model
          ->withPivot(['participou'])
          ->withTimestamps();
     }
+
+	/**
+	 * A possui vários certificados emitidos
+	 */
+    public function certificadoEmitidos(){
+		return $this->hasMany(CertificadoEmitido::class, "atividade");
+	}
 }

@@ -52,5 +52,26 @@ Auth::routes();
 
 //Rotas de teste
 
+Route::get('/emissao', function (){
+
+	$usuario = \App\User::find(3);
+
+	$chave = md5($usuario->name . \Carbon\Carbon::now()->toDateTimeString());
+
+	//dd(\Illuminate\Support\Carbon::now()->toDateTimeString());
+
+	$chaveReduzida = \Illuminate\Support\Str::substr($chave,0,15);
+
+	$certificadoEmitido = \App\CertificadoEmitido::create(
+		[
+			'user' => 3,
+			'atividade' => 1,
+			'chave' => $chaveReduzida
+		]
+	);
+
+	echo  $certificadoEmitido;
+});
+
 
 Route::get('welcome', 'HomeController@welcome')->name('welcome');

@@ -50,4 +50,11 @@ class User extends Authenticatable
          ->withPivot('participou')
          ->withTimestamps();
     }
+
+	/**
+	 * Possui vários certificados
+	 */
+    public function certificadoEmitidos(){
+    	return $this->hasMany(CertificadoEmitido::class, "user");
+	}
 }
