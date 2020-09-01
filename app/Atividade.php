@@ -40,6 +40,6 @@ class Atividade extends Model
 	 * A possui vários certificados emitidos
 	 */
     public function certificadoEmitidos(){
-		return $this->hasMany(CertificadoEmitido::class, "atividade");
+		return $this->hasMany(CertificadoEmitido::class);
 	}
 }

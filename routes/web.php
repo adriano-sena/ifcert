@@ -54,9 +54,9 @@ Auth::routes();
 
 Route::get('/emissao', function (){
 
-	$usuario = \App\User::find(3);
+	$usuario = \App\User::find(2);
 
-	$chave = md5($usuario->name . \Carbon\Carbon::now()->toDateTimeString());
+	$chave = md5($usuario->name . \Carbon\Carbon::now());
 
 	//dd(\Illuminate\Support\Carbon::now()->toDateTimeString());
 
@@ -64,7 +64,7 @@ Route::get('/emissao', function (){
 
 	$certificadoEmitido = \App\CertificadoEmitido::create(
 		[
-			'user' => 3,
+			'user' => 2,
 			'atividade' => 1,
 			'chave' => $chaveReduzida
 		]

@@ -55,6 +55,6 @@ class User extends Authenticatable
 	 * Possui vários certificados
 	 */
     public function certificadoEmitidos(){
-    	return $this->hasMany(CertificadoEmitido::class, "user");
+    	return $this->hasMany(CertificadoEmitido::class);
 	}
 }
