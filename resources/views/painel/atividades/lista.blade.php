@@ -46,7 +46,7 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="{{route('admin.eventos.atividades.edit', ['evento' => $evento->id, 'atividade' => $atividade->id])}}"">Editar</a>
                                                 <a class="dropdown-item" href="{{route('admin.atividades.inscritos', ['atividade' => $atividade->id])}}">Inscritos</a>
-                                                <a class="dropdown-item" href="#atividades">Certificados</a>
+                                                <a class="dropdown-item" href="{{route('admin.atividades.certificados', ['atividade' => $atividade->id])}}">Certificados</a>
                                                 <div class="dropdown-divider"></div>
                                                 <form  class="dropdown-menu" method="POST" action="{{route('admin.eventos.atividades.destroy', ['evento' => $evento->id, 'atividade' => $atividade->id])}}">
                                                     @csrf

@@ -36,9 +36,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
     Route::get('/atividade/lista/inscritos/{atividade}', 'AtividadeController@listaInscritos')->name('atividades.inscritos');
     Route::post('/atividade/lista/inscritos/{atividade}', 'AtividadeController@registraParticipantes')->name('atividades.inscritos.registra');
-    Route::get('/atividade/lista/inscritos/{atividade}/remover/{inscrito}', 'AtividadeController@removeRegistroParticipante')->name('atividades.inscritos.remove');
+	Route::get('/atividade/lista/inscritos/{atividade}/remover/{inscrito}', 'AtividadeController@removeRegistroParticipante')->name('atividades.inscritos.remove');
 
-    Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
+	//Certificação
+	Route::post('/atividade/lista/certificados/{atividade}/','AtividadeController@emiteCertificados')->name('atividades.certificados.emite');
+
+	Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
 
     Route::resource('eventos.atividades', 'AtividadeController');
 
@@ -55,6 +58,7 @@ Auth::routes();
 Route::get('/emissao', function (){
 
 	$usuario = \App\User::find(2);
+	$atividade = \App\Atividade::find(1);
 
 	$chave = md5($usuario->name . \Carbon\Carbon::now());
 
@@ -62,13 +66,13 @@ Route::get('/emissao', function (){
 
 	$chaveReduzida = \Illuminate\Support\Str::substr($chave,0,15);
 
-	$certificadoEmitido = \App\CertificadoEmitido::create(
-		[
-			'user' => 2,
-			'atividade' => 1,
-			'chave' => $chaveReduzida
-		]
-	);
+	$certificadoEmitido = new \App\CertificadoEmitido();
+	$certificadoEmitido->chave = $chaveReduzida;
+
+	$certificadoEmitido->user()->associate($usuario);
+	$certificadoEmitido->atividade()->associate($atividade);
+	$certificadoEmitido->save();
+
 
 	echo  $certificadoEmitido;
 });
