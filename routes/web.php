@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 	//Certificação
 	Route::post('/atividade/lista/certificados/{atividade}/','AtividadeController@emiteCertificados')->name('atividades.certificados.emite');
-
+	Route::get('/atividade/lista/certificados/{atividade}', 'AtividadeController@listaParticipantes')->name('atividades.certificados');
 	Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
 
     Route::resource('eventos.atividades', 'AtividadeController');

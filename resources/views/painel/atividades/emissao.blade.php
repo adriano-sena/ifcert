@@ -11,14 +11,13 @@
 				<div class="filters m-b-45">
 				</div>
 				<div class="table-responsive table-data">
-					<form method="post" action="{{route('admin.atividades.emite', ['atividade' => $atividade])}}">
+					<form method="post" action="{{route('admin.atividades.certificados.emite', ['atividade' => $atividade])}}">
 						@csrf
 					<table class="table">
 						<thead>
 						<tr>
 							<td>id</td>
 							<td>nome</td>
-							<td>cpf</td>
 							<td>participou?</td>
 						</tr>
 						</thead>

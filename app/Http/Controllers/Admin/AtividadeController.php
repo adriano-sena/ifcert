@@ -161,12 +161,30 @@ class AtividadeController extends Controller
     	return view('painel.atividades.inscritos', compact( 'atividade'));
 	}
 
+	public function listaParticipantes(Atividade $atividade){
+
+		/**
+		 *Modelo de querie
+		$department = Department::findOrFail($id);
+		$past = $department->users()
+		->wherePivot('term_end_date', '<', '2017-10-10')
+		->get(); // execute the query
+		 */
+
+    	$atividade = Atividade::with('users')->find($atividade->id);
+    	$participantes = $atividade->users()->wherePivot('participou', '=', 1)->get();
+    	//dd($participantes[0]->name .PHP_EOL. $participantes[0]->email);
+    	return view('painel.atividades.emissao', compact('atividade'));
+	}
+
+
 	public function registraParticipantes(Request $request, Atividade $atividade){
 		//$users = User::find($request->participantes);
 			//dd($request->all());
 			$atividade->users()->updateExistingPivot($request->participantes, ['participou' => 1], false);
 		return redirect()->back()->with('success', 'Registro de participantes realizado com sucesso');
 	}
+
 
 	public function removeRegistroParticipante(Atividade $atividade, $inscrito){
 
