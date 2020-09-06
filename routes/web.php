@@ -78,9 +78,19 @@ Route::get('/emissao', function (){
 });
 
 Route::get('/fnx', function(){
-	$atividade = \App\Atividade::find(1);
+	$atividade = \App\Atividade::find(2);
 	//echo $atividade->evento->id . PHP_EOL. $atividade->evento->titulo;
-	echo $atividade->evento()->get();
+	//$conteudo, $usuario,$atividade
+	$usuario = \App\User::find(2);
+
+	$evento = $atividade->evento;
+
+	$certificado = $evento->certificado;
+
+
+	$textoTratado = \App\Helpers\PDFHelper::trataConteudo($certificado->texto,$usuario,$atividade);
+	echo $textoTratado;
+
 });
 
 

@@ -59,7 +59,7 @@ class PDFHelper{
     * Recebe o texto padrão do certificado e o objeto
     * do usuário e retorna o texto montado para o Certificado
     */
-   public function trataConteudo($conteudo, $usuario,$atividade) : String{
+   public static function trataConteudo($conteudo, $usuario,$atividade) : String{
 		//Tags hardcoded -> serão dinamicas no próximo release
 	    $tags = ["#nome", "#atividade" , "#data" ,"#horas"];
 	    $dados = [
@@ -79,7 +79,7 @@ class PDFHelper{
 	 */
    public static function exibeCertificado(Certificado $certificado) {
 
-	   $pdf = view('certificados.certificado', compact('certificado'))->render();
+	   $pdf = view('certificados.certificado-emitido', compact('certificado'))->render();
 	   $certificadoPDF = self::geraCertificado($pdf);
 	   //renderizando e exibendo na tela
 	   self::renderizaPDF($certificadoPDF);
