@@ -11,7 +11,7 @@
 				<div class="filters m-b-45">
 				</div>
 				<div class="table-responsive table-data">
-					<form method="post" action="{{route('admin.atividades.certificados.emite', ['atividade' => $atividade])}}">
+					<form method="post" action="{{route('admin.atividades.certificados.emite', ['atividade' => $atividade, 'usuarios' => $participantes])}}">
 						@csrf
 					<table class="table">
 						<thead>
@@ -22,33 +22,33 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach($atividade->users as $inscrito)
+						@foreach($participantes as $participante)
 						<tr>
 							<td>
 								<div class="table-data__info">
 									<span>
-										{{$inscrito->id}}
+										{{$participante->id}}
 									</span>
 								</div>
 							</td>
 							<td>
 								<div class="table-data__info">
-									<h6>{{$inscrito->name}}</h6>
+									<h6>{{$participante->name}}</h6>
 									<span>
-										{{$inscrito->email}}
+										{{$participante->email}}
 									</span>
 								</div>
 							</td>
 							<td class="text-align">
-								@if(!$inscrito->pivot->participou)
+								@if(!$participante->pivot->participou)
 									<label class="au-checkbox">
 										<input type="checkbox" name="participantes[]" value="{{$inscrito->id}}"
-											{{$inscrito->pivot->participou ? "checked" : " "}}>
+											{{$participante->pivot->participou ? "checked" : " "}}>
 										<span class="au-checkmark"></span>
 									</label>
 								@endif
-								@if($inscrito->pivot->participou)
-								<a href="{{route('admin.atividades.inscritos.remove', ['inscrito' => $inscrito->id , 'atividade' => $atividade])}}" class="btn btn-danger">
+								@if($participante->pivot->participou)
+								<a href="{{route('admin.atividades.inscritos.remove', ['inscrito' => $participante->id , 'atividade' => $atividade])}}" class="btn btn-danger">
 									Remover
 								</a>
 								@endif

@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Certificado;
+use App\Evento;
 use App\User;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\DB;
@@ -58,8 +59,19 @@ class PDFHelper{
     * Recebe o texto padrão do certificado e o objeto
     * do usuário e retorna o texto montado para o Certificado
     */
-   public function trataConteudo(String $texto, $dados) : String{
-        //replaceArray da facade STR
+   public function trataConteudo($conteudo, $usuario,$atividade) : String{
+		//Tags hardcoded -> serão dinamicas no próximo release
+	    $tags = ["#nome", "#atividade" , "#data" ,"#horas"];
+	    $dados = [
+	    	$usuario->name,
+			$atividade->titulo,
+			$atividade->data,
+			$atividade->cargaHoraria
+		];
+	   	$textoTratado = str_replace($tags,$dados,$conteudo);
+
+	   	return $textoTratado;
+
    }
 
 	/**
@@ -92,6 +104,25 @@ class PDFHelper{
 		$pagina = view('certificados.lista-inscritos', compact('inscritos', 'evento', 'atividade'))->render();
 		$listaPDF = self::geraListaInscritos($pagina);
 		self::renderizaPDF($listaPDF);
+	}
+
+	/**
+	 * renderiza o certificado gerado para o usuário
+	 */
+
+	public static function renderizaCertificado( Atividade $atividade, User $user){
+		//Criando PDF
+		$dompdf = new Dompdf();
+		$evento = $atividade->evento();
+		$modelo = $evento->certificado();
+
+		//Tratar o texto
+		 $conteudo = self::trataConteudo($modelo->texto,$user, $atividade);
+		//Criar a visualização -> lembrar da chave de autenticação;
+		$pdf = view('certificados.certificado', compact('certificado'))->render();
+
+		//Já era pivetsss
+
 	}
 }
 

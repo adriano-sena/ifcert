@@ -77,5 +77,11 @@ Route::get('/emissao', function (){
 	echo  $certificadoEmitido;
 });
 
+Route::get('/fnx', function(){
+	$atividade = \App\Atividade::find(1);
+	//echo $atividade->evento->id . PHP_EOL. $atividade->evento->titulo;
+	echo $atividade->evento()->get();
+});
+
 
 Route::get('welcome', 'HomeController@welcome')->name('welcome');

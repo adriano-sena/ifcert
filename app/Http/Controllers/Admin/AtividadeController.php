@@ -161,6 +161,13 @@ class AtividadeController extends Controller
     	return view('painel.atividades.inscritos', compact( 'atividade'));
 	}
 
+
+	/**
+	 * @param Atividade $atividade
+	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 *
+	 * Lista usuários que já participaram de determinada atividade
+	 */
 	public function listaParticipantes(Atividade $atividade){
 
 		/**
@@ -174,7 +181,7 @@ class AtividadeController extends Controller
     	$atividade = Atividade::with('users')->find($atividade->id);
     	$participantes = $atividade->users()->wherePivot('participou', '=', 1)->get();
     	//dd($participantes[0]->name .PHP_EOL. $participantes[0]->email);
-    	return view('painel.atividades.emissao', compact('atividade'));
+    	return view('painel.atividades.emissao', compact('atividade', 'participantes'));
 	}
 
 

@@ -28,14 +28,15 @@ class CerttificadoEmitidoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Emite uma lista de certificados e armazena na base de dados
+	 * retorna o usuário para a listagem de certificados com uma flash message
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

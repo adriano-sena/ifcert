@@ -56,7 +56,7 @@ class CertificadoController extends Controller
 		if($modelo->isEmpty()){
 			$certificado = $evento->certificado()->create([
 				'texto' => $request->content,
-				'background' => '/img/modelos/modelo3.jpg',
+				'background' => '/img/modelos/modelosnct.jpeg',
 			]);
 			flash('Modelo de certificado criado com sucesso')->success();
 			return redirect()->back();
