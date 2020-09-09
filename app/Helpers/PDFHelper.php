@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Atividade;
 use App\Certificado;
+use App\CertificadoEmitido;
 use App\Evento;
 use App\User;
 use Dompdf\Dompdf;
@@ -44,14 +46,13 @@ class PDFHelper{
         $dompdf = new Dompdf();
         $dompdf->loadHtml($conteudoHtml);
         $dompdf->setPaper('a4', 'landscape');
-
         //renderizando e dando o output
         $dompdf->render();
         return $dompdf;
    }
 
-   public static function renderizaPDF(Dompdf $rawPdf){
-       $rawPdf->stream('certificado.pdf', ["Attachment" => false]);
+   public static function renderizaPDF(string $fileName, Dompdf $rawPdf){
+       $rawPdf->stream("$fileName.pdf", ["Attachment" => false]);
    }
 
 
@@ -74,14 +75,14 @@ class PDFHelper{
    }
 
 	/**
-	 * Exibe o certificado relacionado ao evento
+	 * Exibe o modelo do certificado relacionado ao evento
 	 */
    public static function exibeCertificado(Certificado $certificado) {
 
-	   $pdf = view('certificados.certificado-emitido', compact('certificado'))->render();
+	   $pdf = view('certificados.certificado', compact('certificado'))->render();
 	   $certificadoPDF = self::geraCertificado($pdf);
 	   //renderizando e exibendo na tela
-	   self::renderizaPDF($certificadoPDF);
+	   self::renderizaPDF("Modelo",$certificadoPDF);
    }
 
 	/**
@@ -109,19 +110,23 @@ class PDFHelper{
 	 * renderiza o certificado gerado para o usuário
 	 */
 
-	public static function renderizaCertificado( Atividade $atividade, User $user){
-		//Criando PDF
-		$dompdf = new Dompdf();
-		$evento = $atividade->evento();
-		$modelo = $evento->certificado();
+	public static function renderizaCertificado(Evento $evento, Atividade $atividade, User $user){
 
+		$modelo = $evento->certificado;
 		//Tratar o texto
-		 $conteudo = self::trataConteudo($modelo->texto,$user, $atividade);
-		//Criar a visualização -> lembrar da chave de autenticação;
-		$pdf = view('certificados.certificado', compact('certificado'))->render();
+		$conteudo = self::trataConteudo($modelo->texto,$user, $atividade);
 
-		//Já era pivetsss
+		$certificado = CertificadoEmitido::where([
+			'user_id'=> $user->id,
+			'atividade_id' =>$atividade->id
+		])->first();
 
+		$chave = $certificado->chave;
+		$arquivoRenderizado = view('certificados.certificado-emitido', compact('modelo', 'conteudo', 'chave'))->render();
+
+		$pdf = self::geraCertificado($arquivoRenderizado);
+		$titulo = $user->name . ".pdf";
+		$pdf->stream($titulo , ["Attachment" => false]);
 	}
 }
 

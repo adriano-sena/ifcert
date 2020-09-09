@@ -19,6 +19,7 @@
 							<td>id</td>
 							<td>nome</td>
 							<td>participou?</td>
+							<td>Baixar Certificado</td>
 						</tr>
 						</thead>
 						<tbody>
@@ -52,6 +53,11 @@
 									Remover
 								</a>
 								@endif
+							</td>
+							<td>
+								<a class="link" href="{{route('admin.atividades.certificado', ['atividade' => $atividade, 'user' => $participante->id])}}">
+									Baixar Certificado
+								</a>
 							</td>
 						</tr>
 						@endforeach

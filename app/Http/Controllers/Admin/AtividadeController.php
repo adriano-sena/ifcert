@@ -13,6 +13,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\File\Exception\PartialFileException;
 
 class AtividadeController extends Controller
 {
@@ -207,6 +208,17 @@ class AtividadeController extends Controller
 	public function emiteCertificados($atividade){
 		CertificadoHelper::emitirListaCertificados($atividade);
 		return redirect()->back()->with("Certificados emitidos com sucesso");
+	}
+
+	public function exibirCertificado($atividade,$participante){
+
+		$atividade = Atividade::find($atividade);
+		$participante = User::find($participante);
+		$evento = $atividade->evento;
+
+
+		PDFHelper::renderizaCertificado($evento, $atividade, $participante);
+
 	}
 }
 

@@ -45,7 +45,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 	Route::get('/atividade/lista/certificados/{atividade}', 'AtividadeController@listaParticipantes')->name('atividades.certificados');
 
-
+	Route::get('/atividade/certificado/{atividade}/{user}', 'AtividadeController@exibirCertificado')->name('atividades.certificado');
 
 	Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
 
@@ -123,5 +123,11 @@ Route::get('/fer', function(){
 	$atividade = \App\Atividade::find(2);
 	$usuario = \App\User::find(4);
 
-	dd($usuario->certificadoEmitidos()->where('atividade_id', $atividade->id)->first());
+
+	$certificado = CertificadoEmitido::where([
+		'user_id'=> $usuario->id,
+		'atividade_id' =>$atividade->id
+	])->first();
+
+	dd($certificado->chave);
 });

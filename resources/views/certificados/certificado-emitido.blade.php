@@ -14,7 +14,7 @@
         body{
                 background-position: center center;
                 background-repeat: no-repeat;
-                background-image: url({{$certificado->background}});
+                background-image: url({{$modelo->background}});
         }
 
 		.chave{
@@ -22,20 +22,16 @@
 			position: absolute;
 			bottom: 15%;
 			right: 10%;
-			font-family: "Times New Roman";
 			font-size: 1em;
 
 		}
     </style>
 </head>
 <body>
-        {!! nl2br($certificado->texto) !!}
+        {!! nl2br($conteudo) !!}
 		<div class="chave">
-			Chave: 123121212121 <br/>
-			ifcert.portoinforma.com.br
+			Chave: {{$chave}} <br/>
+			ifcert.portoinforma.com.br/autenticacao
 		</div>
 </body>
 </html>
-
-
-Certificamos que #nome participou da atividade #atividade na data #data com cargaHorária de #horas
