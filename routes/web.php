@@ -12,6 +12,8 @@
 */
 
 
+use App\CertificadoEmitido;
+
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
@@ -40,7 +42,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 	//Certificação
 	Route::post('/atividade/lista/certificados/{atividade}/','AtividadeController@emiteCertificados')->name('atividades.certificados.emite');
+
 	Route::get('/atividade/lista/certificados/{atividade}', 'AtividadeController@listaParticipantes')->name('atividades.certificados');
+
+
+
 	Route::get('/atividade/lista/{atividade}/pdf', 'AtividadeController@listaPDF')->name('atividades.lista.pdf');
 
     Route::resource('eventos.atividades', 'AtividadeController');
@@ -87,11 +93,35 @@ Route::get('/fnx', function(){
 
 	$certificado = $evento->certificado;
 
-
 	$textoTratado = \App\Helpers\PDFHelper::trataConteudo($certificado->texto,$usuario,$atividade);
 	echo $textoTratado;
 
 });
 
 
+Route::get('/check', function(){
+
+	$atividade = \App\Atividade::find(2);
+	$usuario = \App\User::find(4);
+
+//	 $participante = $atividade->whereHas('users',function ($query) use ($usuario){
+//		$query->where('users.id',$usuario->id);
+//	})->first();
+
+	 $participante = $usuario->whereHas('atividades', function ($query) use ($atividade){
+	 	$query->where('atividades.id', $atividade->id);
+	 });
+
+	 if($partici)
+	 dd($participante->wherePivot('participou', '=', 1));
+});
+
 Route::get('welcome', 'HomeController@welcome')->name('welcome');
+
+Route::get('/fer', function(){
+
+	$atividade = \App\Atividade::find(2);
+	$usuario = \App\User::find(4);
+
+	dd($usuario->certificadoEmitidos()->where('atividade_id', $atividade->id)->first());
+});

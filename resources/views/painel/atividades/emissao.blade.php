@@ -11,7 +11,7 @@
 				<div class="filters m-b-45">
 				</div>
 				<div class="table-responsive table-data">
-					<form method="post" action="{{route('admin.atividades.certificados.emite', ['atividade' => $atividade, 'usuarios' => $participantes])}}">
+					<form method="post" action="{{route('admin.atividades.certificados.emite', ['atividade' => $atividade])}}">
 						@csrf
 					<table class="table">
 						<thead>

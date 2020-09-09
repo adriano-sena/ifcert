@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Atividade;
 use App\Evento;
+use App\Helpers\CertificadoHelper;
 use App\Helpers\InscricaoHelper;
 use App\Helpers\PDFHelper;
 use App\Http\Controllers\Controller;
@@ -180,7 +181,6 @@ class AtividadeController extends Controller
 
     	$atividade = Atividade::with('users')->find($atividade->id);
     	$participantes = $atividade->users()->wherePivot('participou', '=', 1)->get();
-    	//dd($participantes[0]->name .PHP_EOL. $participantes[0]->email);
     	return view('painel.atividades.emissao', compact('atividade', 'participantes'));
 	}
 
@@ -202,6 +202,11 @@ class AtividadeController extends Controller
 	public function listaPDF(Atividade $atividade){
     	$evento = $atividade->evento;
 		PDFHelper::exibeListaInscritos($atividade->users, $evento, $atividade);
+	}
+
+	public function emiteCertificados($atividade){
+		CertificadoHelper::emitirListaCertificados($atividade);
+		return redirect()->back()->with("Certificados emitidos com sucesso");
 	}
 }
 

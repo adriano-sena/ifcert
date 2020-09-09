@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Atividade;
 use App\CertificadoEmitido;
+use App\Helpers\CertificadoHelper;
 use Illuminate\Http\Request;
 
 class CerttificadoEmitidoController extends Controller
@@ -83,4 +85,9 @@ class CerttificadoEmitidoController extends Controller
     {
         //
     }
+
+    public function emitirCertificados($atividade){
+		CertificadoHelper::emitirListaCertificados($atividade);
+		return redirect()->back()->with("Certificados emitidos com sucesso");
+	}
 }

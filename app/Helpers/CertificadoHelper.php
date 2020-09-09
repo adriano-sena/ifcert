@@ -4,6 +4,9 @@
 namespace App\Helpers;
 
 
+use App\Atividade;
+use App\CertificadoEmitido;
+
 class CertificadoHelper
 {
 
@@ -16,9 +19,7 @@ class CertificadoHelper
 	 */
 	public static function emitirCertificado($atividade, $participante){
 
-		$usuario = \App\User::find($participante);
-		$chave = md5($usuario->name . \Carbon\Carbon::now());
-
+		$chave = md5($participante->name . \Carbon\Carbon::now());
 		$chaveReduzida = \Illuminate\Support\Str::substr($chave,0,15);
 
 		$certificadoEmitido = new \App\CertificadoEmitido();
@@ -27,7 +28,7 @@ class CertificadoHelper
 		/**
 		 * o método associate é da relação de belongTO()
 		 */
-		$certificadoEmitido->user()->associate($usuario);
+		$certificadoEmitido->user()->associate($participante);
 		$certificadoEmitido->atividade()->associate($atividade);
 		$certificadoEmitido->save();
 	}
@@ -39,11 +40,15 @@ class CertificadoHelper
 	 * Emite certificados para uma lista de participantes de uma
 	 * atividade
 	 */
-	public static function emitirListaCertificados($atividade, $participantes){
+	public static function emitirListaCertificados($atividade){
+
+		$atividade = Atividade::find($atividade);
+		$participantes = $atividade->users()->wherePivot('participou', '=', 1)->get();
 
 		foreach ($participantes as $participante){
 			if (self::checaParticipacao($atividade, $participante))
-				self::emitirCertificado($atividade,$participante);
+				if (!self::checaCertificacao($atividade, $participante))
+					self::emitirCertificado($atividade,$participante);
 			else{
 				 echo ("erro na emissão do certificado");
 			}
@@ -57,11 +62,24 @@ class CertificadoHelper
 	 * Valida a participação do usuário na atividade
 	 */
 
-	private function checaParticipacao($atividade, $participante){
+	private static function checaParticipacao($atividade, $participante){
 
 		if($atividade->whereHas('users',function ($query) use ($participante){
 			$query->where('users.id',$participante->id);
-		})->wherePivot('participou', '=', 1)->first()){
+			})->wherePivot('participou', '=', 1)){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param $atividade
+	 * @param $participante
+	 *
+	 * Verifica a existência do certificado para um usuário na tabela de certificação
+	 */
+	private static function checaCertificacao($atividade, $participante){
+		if($participante->certificadoEmitidos()->where('atividade_id', $atividade->id)->first()){
 			return true;
 		}
 		return false;

@@ -71,7 +71,6 @@ class PDFHelper{
 	   	$textoTratado = str_replace($tags,$dados,$conteudo);
 
 	   	return $textoTratado;
-
    }
 
 	/**
