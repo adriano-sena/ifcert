@@ -64,7 +64,7 @@ class PDFHelper{
    public static function trataConteudo($conteudo, $usuario,$atividade) : String{
 		//Tags hardcoded -> serão dinamicas no próximo release
 	    $tags = ["#nome", "#atividade" , "#data" ,"#horas"];
-	   	$dataFormatada = date('d/m/Y', strtotime($atividade->data);
+	   	$dataFormatada = date('d/m/Y', strtotime($atividade->data));
 	    $dados = [
 	    	$usuario->name,
 			$atividade->titulo,
