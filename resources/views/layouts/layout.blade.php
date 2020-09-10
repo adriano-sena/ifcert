@@ -12,9 +12,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
 
+  {{--CDN--}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.min.css">
 
-  <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('home/home.css')}}">
 
 
@@ -27,9 +28,7 @@
 </header>
 
 <div class="container">
-{{--  <div class="jumbotron">--}}
-{{--      <h1>@yield('titulo')</h1>--}}
-{{--  </div>--}}
+
 
   @include('flash::message')
   @yield('conteudo')

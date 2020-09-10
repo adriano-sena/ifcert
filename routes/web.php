@@ -56,6 +56,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 //Rotas públicas
 
+Route::get('/autenticacao' , 'AutenticacaoController@autenticaCertificadoShow');
+Route::post('/autenticacao' , 'AutenticacaoController@autenticaCertificado')->name('autentica');
+
 
 Auth::routes();
 
@@ -112,7 +115,6 @@ Route::get('/check', function(){
 	 	$query->where('atividades.id', $atividade->id);
 	 });
 
-	 if($partici)
 	 dd($participante->wherePivot('participou', '=', 1));
 });
 

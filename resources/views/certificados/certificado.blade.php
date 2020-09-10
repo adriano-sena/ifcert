@@ -9,7 +9,7 @@
         html{
             margin: 0;
         }
-		
+
         body{
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -20,9 +20,16 @@
                 background-size: 100%; */
 
         }
+
+		.content{
+			margin: 20px;
+		}
     </style>
 </head>
 <body>
-        {!! nl2br($certificado->texto) !!}
+	<div class="content">
+		{!! nl2br($certificado->texto) !!}
+	</div>
+
 </body>
 </html>

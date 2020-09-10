@@ -125,4 +125,5 @@ class CertificadoController extends Controller
     {
         //
     }
+
 }

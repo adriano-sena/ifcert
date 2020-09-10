@@ -23,12 +23,19 @@
 			bottom: 15%;
 			right: 10%;
 			font-size: 1em;
+			font-family: "Times New Roman";
+		}
 
+		.content{
+			margin: 20px;
 		}
     </style>
 </head>
 <body>
-        {!! nl2br($conteudo) !!}
+		<div class="content">
+			{!! nl2br($conteudo) !!}
+		</div>
+
 		<div class="chave">
 			Chave: {{$chave}} <br/>
 			ifcert.portoinforma.com.br/autenticacao

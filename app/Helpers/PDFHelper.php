@@ -52,7 +52,8 @@ class PDFHelper{
    }
 
    public static function renderizaPDF(string $fileName, Dompdf $rawPdf){
-       $rawPdf->stream("$fileName.pdf", ["Attachment" => false]);
+    	$titulo = $fileName . ".pdf";
+       $rawPdf->stream($titulo, ["Attachment" => false]);
    }
 
 
