@@ -56,7 +56,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 //Rotas públicas
 
-Route::get('/autenticacao' , 'AutenticacaoController@autenticaCertificadoShow');
+Route::get('/autenticacao' , 'AutenticacaoController@autenticaCertificadoShow')->name('autentica.show');
 Route::post('/autenticacao' , 'AutenticacaoController@autenticaCertificado')->name('autentica');
 
 

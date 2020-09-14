@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbar-toggler">
       <ul class="navbar-nav ml-auto lista-itens">
             <li class="nav-item">
-                <a class="nav-link" href="#sobre">Sobre</a>
+                <a class="nav-link" href="{{route('autentica.show')}}">Validação</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#eventos">Eventos</a>
