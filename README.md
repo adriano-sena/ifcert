@@ -31,8 +31,8 @@ A stack principal conta com:
 
 ## Andamento - A ser feito
 
--Criar regra de negócio para permissões de moderadores, administradores e userPadrão.
--Criar painel do usuário(exibição da listagem de certificados emitidos para cada user)-> keep it simple;
+- Criar regra de negócio para permissões de moderadores, administradores e userPadrão.
+- Criar painel do usuário(exibição da listagem de certificados emitidos para cada user)-> keep it simple;
 
 
 
