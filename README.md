@@ -24,12 +24,17 @@ A stack principal conta com:
 - Criação do sistema de autenticação (Admin e User Padrão); (Essencial) (ok)
 - Upload de imagens para eventos e atividades (essencial) ok;
 - Criar página principal (index) (Essencial); (ok)
+- - Criar Painel administrativo (gerenciamento do evento) (ok);
+- Criação da página de certificado; (Essencial) -> em andamento
+- Finalizar implementação da inscrição do usuário na atividade (Confirmar se o usuário já está inscrito) (ok)
 
 
 ## Andamento - A ser feito
 
-- Criar Painel administrativo (gerenciamento do evento) (essencial) -> em andamento;
-- Criação da página de certificado; (Essencial) -> em andamento
-- Finalizar implementação da inscrição do usuário na atividade (Confirmar de o usuário já está inscrito)
+-Criar regra de negócio para permissões de moderadores, administradores e userPadrão.
+-Criar painel do usuário(exibição da listagem de certificados emitidos para cada user)-> keep it simple;
+
+
+
 
 
