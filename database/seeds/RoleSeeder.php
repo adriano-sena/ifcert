@@ -12,7 +12,6 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
-
 		foreach (['user' ,'moderador','admin'] as $role){
 			\Spatie\Permission\Models\Role::create(['name'=>$role]);
 		}

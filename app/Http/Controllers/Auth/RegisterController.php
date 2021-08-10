@@ -72,7 +72,11 @@ class RegisterController extends Controller
 			'cpf' => $data['cpf']
         ]);
 
-        $user->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);
+        try{
+			$user->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);
+		}catch (\Exception $e){
+        	$e->getTrace();
+		}
 
 		return $user;
 	}
