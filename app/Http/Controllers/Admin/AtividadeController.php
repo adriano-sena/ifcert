@@ -24,7 +24,7 @@ class AtividadeController extends Controller
     public function __construct(Atividade $atividade)
     {
     	$this->middleware(['auth'])->except('listaAtividades','index');
-    	$this->middleware(['auth','role:admin'])->only('index');
+    	$this->middleware(['auth','role:super-admin'])->only('index');
         $this->atividade = $atividade;
     }
 

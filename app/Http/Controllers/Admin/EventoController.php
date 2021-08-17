@@ -12,7 +12,7 @@ class EventoController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth','role:admin'])->except('index', 'show');
+        $this->middleware(['auth','role:super-admin'])->except('index', 'show');
     }
 
     /**

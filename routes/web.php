@@ -17,7 +17,7 @@ use App\CertificadoEmitido;
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.', 'middleware' => ['role:super-admin']],function () {
 
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
