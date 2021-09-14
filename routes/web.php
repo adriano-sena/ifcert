@@ -13,15 +13,17 @@
 
 
 use App\CertificadoEmitido;
+use App\Http\Controllers\Admin\EventoController;
 
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.', 'middleware' => ['role:super-admin']],function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function () {
 
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
     Route::resource('eventos', 'EventoController');
+	Route::get('eventos/{evento}','EventoController@show')->middleware('role:user');
 
 	//Modelo de certificado
     Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
@@ -55,6 +57,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.', 'middlewar
 });
 
 //Rotas públicas
+
+Route::group(['middleware' => ['role:user']], function () {
+	Route::get('/evento/{evento}', [EventoController::class , 'exibirEvento']);
+});
+
 
 Route::get('/autenticacao' , 'AutenticacaoController@autenticaCertificadoShow')->name('autentica.show');
 Route::post('/autenticacao' , 'AutenticacaoController@autenticaCertificado')->name('autentica');

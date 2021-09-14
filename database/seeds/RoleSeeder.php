@@ -44,6 +44,7 @@ class RoleSeeder extends Seeder
 		$userRole = Role::create(['name' => 'user']);
 		$userRole->givePermissionTo(['visualizar-evento', 'visualizar-atividade']);
 
+
 		$moderadorRole = Role::create(['name' => 'moderador']);
 		$moderadorRole->givePermissionTo(['editar-evento' , 'editar-atividade',
 			'visualizar-evento', 'visualizar-atividade']);

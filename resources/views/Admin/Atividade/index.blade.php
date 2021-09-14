@@ -18,8 +18,8 @@
 
   <section id="ativivades" class="bg-light pb-5">
 
-    
-      
+
+
       <div class="row">
         @foreach ($atividades as $atividade)
           <div class="col-lg-4">
@@ -32,7 +32,7 @@
               <p class="card-text"><i class="fas fa-calendar-week "></i>  {{$atividade->data}}</p>
 				<hr>
 
-				<form action="{{route('eventos.atividades.inscricao', ['atividade' => $atividade->id])}}" method="POST">
+				<form action="{{route('admin.eventos.atividades.inscricao', ['atividade' => $atividade->id])}}" method="POST">
 					@csrf
 					<button type="submit" class="btn btn-terciary" @guest disabled @endguest>
 						@guest
@@ -47,7 +47,7 @@
             </div>
           </div>
         @endforeach
-    
+
 </main>
 
 @endsection

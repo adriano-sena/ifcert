@@ -32,14 +32,14 @@ class UsersTableSeeder extends Seeder
 			'email'=>'admin@email.com',
 			'cpf' => '123456789',
 			'password'=> bcrypt('12345678'),
-		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','super-admin')->first()->id);
+		])->assignRole('super-admin');
 
 		User::create( [
 			'name'=>'user',
 			'email'=>'user@email.com',
 			'cpf' => '123456780',
 			'password'=> bcrypt('12345678'),
-		])->roles()->attach(\Spatie\Permission\Models\Role::where('name','user')->first()->id);
+		])->assignRole('user');
 
 		User::create( [
 			'name'=>'mod',

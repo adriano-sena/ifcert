@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\User;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Permission\Models\Permission;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +52,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+//		if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+////			$listaPermissoes = \Auth::user()->getRoleNames();
+////				dd($listaPermissoes);
+//		}
         return parent::render($request, $exception);
     }
 }

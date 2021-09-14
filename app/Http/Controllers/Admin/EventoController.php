@@ -6,15 +6,16 @@ use App\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventosRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(['auth','role:super-admin'])->except('index', 'show');
+        $this->middleware(['auth','role:super-admin']);
+        $this->middleware(['role_or_permission:user|visualizar-evento'])->only('index','show','exibirEvento');
     }
-
     /**
      * Exibe a lista dos eventos para o usuário padrão
      *
@@ -77,14 +78,31 @@ class EventoController extends Controller
      */
     public function show($evento)
     {
-        $evento = Evento::find($evento);
-        $atividades = $evento->atividades;
-
-        //Verificar se o evento possui atividades
+    	$user = Auth::user();
+//		$listaPermissoes = $user->getRoleNames();
+//		dd($listaPermissoes);
+    	if ($user->can('visualizar-evento')){
+    		echo($user->getPermissionNames());
+			$evento = Evento::find($evento);
+			$atividades = $evento->atividades;
+			//Verificar se o evento possui atividades
 			//Se possuir apresentar direcionar para a view do evento com a listagem de atividades
 			//Senão enviar para uma página informando que o evento ainda não possui atividades cadastradas
-        return view('evento', compact('evento', 'atividades'));
+			return view('evento', compact('evento', 'atividades'));
+		}
     }
+
+	public function exibirEvento($evento)
+	{
+
+			$evento = Evento::find($evento);
+			$atividades = $evento->atividades;
+			//Verificar se o evento possui atividades
+			//Se possuir apresentar direcionar para a view do evento com a listagem de atividades
+			//Senão enviar para uma página informando que o evento ainda não possui atividades cadastradas
+			return view('evento', compact('evento', 'atividades'));
+
+	}
 
     /**
      * Exibe o formulário para a edição do evento.
