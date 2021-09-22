@@ -17,11 +17,16 @@ use App\CertificadoEmitido;
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.', 'middleware' => ['role:super-admin']],function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.' ],function () {
 
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
     Route::resource('eventos', 'EventoController');
+
+    //Rotas do painel adm
+	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('admin.usuarios.lista');
+	Route::post('/painel/usuarios', 'AdminController@listaUsuarios')->name('admin.usuarios.lista');
+
 
 	//Modelo de certificado
     Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
