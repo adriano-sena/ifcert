@@ -11,7 +11,7 @@
 				<div class="filters m-b-45">
 				</div>
 				<div class="table-responsive table-data">
-					<form method="post" action="{{route('admin.evento.delega-moderador')}}">
+					<form method="post" action="{{route('admin.usuarios.lista.moderadores')}}">
 						@csrf
 					<table class="table">
 						<thead>
@@ -48,7 +48,7 @@
 								</div>
 							</td>
 							<td class="text-align">
-								@if(!$user->hasRole('moderador'));
+								@if(!$user->hasRole('moderador'))
 									<label class="au-checkbox">
 										<input type="checkbox" name="usuarios[]" value="{{$user->id}}"
 											{{$user->hasRole('moderador') ? "checked" : " "}}>
@@ -56,7 +56,7 @@
 									</label>
 								@endif
 								@if($user->hasRole('moderador'))
-								<a href="{{route('admin.painel.moderador.delete', ['usuario' => $user->id])}}" class="btn btn-danger">
+								<a href="{{route('admin.usuarios.moderador.delete', ['moderador' => $user->id])}}" class="btn btn-danger">
 									Remover moderação
 								</a>
 								@endif

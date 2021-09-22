@@ -12,7 +12,7 @@ class AdminController extends Controller
 
 	public function __construct()
 	{
-		$this->middleware(['auth', 'permission:admin']);
+		$this->middleware(['auth', 'role:admin']);
 	}
 
 	/**
@@ -29,16 +29,17 @@ class AdminController extends Controller
 	 * selecionados pelo Administrador do sistema
 	 */
 	public function delegaModerador(Request $request){
-		$users = $request->usuarios;
+		$users = User::find($request->usuarios);
 		foreach ($users as $user){
 			$user->assignRole('moderador');
 		}
 		return redirect()->back()->with('success', 'Registro dos moderadores realizado com sucesso');
 	}
 
-	public function removeModerador(Request $request){
-		$usuario = $request->user;
+	public function removeModerador($moderador){
+		$usuario = User::find($moderador);
 		$usuario->removeRole('moderador');
+		return redirect()->back()->with('success', 'Moderador removido com sucesso');
 	}
 
 }

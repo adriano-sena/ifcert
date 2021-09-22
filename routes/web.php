@@ -24,8 +24,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.' ],function 
     Route::resource('eventos', 'EventoController');
 
     //Rotas do painel adm
-	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('admin.usuarios.lista');
-	Route::post('/painel/usuarios', 'AdminController@listaUsuarios')->name('admin.usuarios.lista');
+	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('usuarios.lista');
+	Route::post('/painel/usuarios/registra', 'AdminController@delegaModerador')->name('usuarios.lista.moderadores');
+	Route::get('/painel/usuarios/remove/moderador/{moderador}', 'AdminController@removeModerador')->name('usuarios.moderador.delete');
 
 
 	//Modelo de certificado
