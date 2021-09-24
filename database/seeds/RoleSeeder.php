@@ -40,7 +40,17 @@ class RoleSeeder extends Seeder
 		}*/
 
 		//Atribuindo as permissões para cada Role
-		$adminRole = Role::create(['name' => 'super-admin']);
+		$adminRole = Role::create(['name' => 'admin']);
+		$adminRole->givePermissionTo([
+			'criar-evento',
+			'visualizar-evento',
+			'deletar-evento',
+			'editar-evento',
+			'criar-atividade',
+			'deletar-atividade',
+			'editar-atividade',
+			'visualizar-atividade'
+		]);
 		$userRole = Role::create(['name' => 'user']);
 		$userRole->givePermissionTo(['visualizar-evento', 'visualizar-atividade']);
 
@@ -48,8 +58,5 @@ class RoleSeeder extends Seeder
 		$moderadorRole = Role::create(['name' => 'moderador']);
 		$moderadorRole->givePermissionTo(['editar-evento' , 'editar-atividade',
 			'visualizar-evento', 'visualizar-atividade']);
-
-
-
     }
 }

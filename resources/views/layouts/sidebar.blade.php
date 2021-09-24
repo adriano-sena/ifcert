@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="form.html">
+                    <a href="{{route('admin.usuarios.lista')}}">
                         <i class="far fa-check-square"></i>Usuários
                     </a>
                 </li>

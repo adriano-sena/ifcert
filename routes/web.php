@@ -18,12 +18,23 @@ use App\Http\Controllers\Admin\EventoController;
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
+<<<<<<< HEAD
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function () {
+=======
+Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'
+=>'admin.' ],function () {
+>>>>>>> feature/permissions
 
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
     Route::resource('eventos', 'EventoController');
 	Route::get('eventos/{evento}','EventoController@show')->middleware('role:user');
+
+    //Rotas do painel adm
+	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('usuarios.lista');
+	Route::post('/painel/usuarios/registra', 'AdminController@delegaModerador')->name('usuarios.lista.moderadores');
+	Route::get('/painel/usuarios/remove/moderador/{moderador}', 'AdminController@removeModerador')->name('usuarios.moderador.delete');
+
 
 	//Modelo de certificado
     Route::get('modelo/create/{evento}', 'CertificadoController@create')->name('modelo.certificado.create');
