@@ -14,7 +14,7 @@
                             <h3 class="text-center title-2">Crie seus eventos</h3>
                         </div>
 
-                        <form method="POST" action="{{route('eventos.update', $evento->id)}}">
+                        <form method="POST" action="{{route('admin.eventos.update', $evento->id)}}">
                             @method('PUT')
                             @csrf
                             <div class="form-group">
