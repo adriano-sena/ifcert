@@ -85,4 +85,11 @@ class CertificadoHelper
 		return false;
 	}
 
+	public static function exibeCertificado($certificado){
+		$atividade = $certificado->atividade;
+		$participante = $certificado->user;
+		$evento = $atividade->evento;
+		PDFHelper::renderizaCertificado($evento, $atividade, $participante);
+	}
+
 }

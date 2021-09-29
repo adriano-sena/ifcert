@@ -81,15 +81,13 @@ class EventoController extends Controller
     public function show($evento)
     {
     	$user = Auth::user();
-//		$listaPermissoes = $user->getRoleNames();
-//		dd($listaPermissoes);
     	if ($user->can('visualizar-evento')){
     		echo($user->getPermissionNames());
 			$evento = Evento::find($evento);
 			$atividades = $evento->atividades;
 			//Verificar se o evento possui atividades
 			//Se possuir apresentar direcionar para a view do evento com a listagem de atividades
-			//Senão enviar para uma página informando que o evento ainda não possui atividades cadastradas
+			//Senão apresentar para uma página informando que o evento ainda não possui atividades cadastradas
 			return view('evento', compact('evento', 'atividades'));
 		}
     }

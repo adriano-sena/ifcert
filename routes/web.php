@@ -63,6 +63,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 });
 
+Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' =>'user.'],function(){
+	Route::get('/painel/lista-certificados/{user}', 'UserController@exibirCertificados' );
+});
+
+
 //Rotas públicas
 
 Route::group(['middleware' => ['role:user']], function () {
