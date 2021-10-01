@@ -63,8 +63,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
 });
 
+//Rotas para o painel do usuário
 Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' =>'user.'],function(){
-	Route::get('/painel/lista-certificados/{user}', 'UserController@exibirCertificados' );
+	Route::get('/painel/lista-certificados/{user}', 'UserController@listarCertificados' )->name('certificados.lista');
+	Route::get('painel/certificado/show/{certificado}','UserController@exibirCertificado')->name('certificado.show');
 });
 
 

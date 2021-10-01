@@ -28,6 +28,11 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#eventos">Eventos</a>
 					</li>
+				  	@hasrole('user')
+				  	<li class="nav-item">
+						<a href="{{route('user.certificados.lista', Auth::user())}}" class="nav-link">Meus certificados</a>
+					</li>
+				  	@endhasrole
 					@guest
 						@if(Route::has('login'))
 							<li class="nav-item">
