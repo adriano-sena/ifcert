@@ -105,7 +105,7 @@ class PDFHelper{
 	public static function exibeListaInscritos($inscritos, $evento, $atividade){
 		$pagina = view('certificados.lista-inscritos', compact('inscritos', 'evento', 'atividade'))->render();
 		$listaPDF = self::geraListaInscritos($pagina);
-		self::renderizaPDF($listaPDF);
+		self::renderizaPDF("lista Inscritos",$listaPDF);
 	}
 
 	/**

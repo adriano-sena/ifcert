@@ -18,17 +18,13 @@ use App\Http\Controllers\Admin\EventoController;
 Route::get('/', 'HomeController@index')->name('home');
 
 //Rotas de Admin Evento
-<<<<<<< HEAD
+
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function () {
-=======
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'
-=>'admin.' ],function () {
->>>>>>> feature/permissions
 
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
     Route::resource('eventos', 'EventoController');
-	Route::get('eventos/{evento}','EventoController@show')->middleware('role:user');
+	Route::get('eventos/{evento}','EventoController@show')->name('eventos.show')->middleware('role:user');
 
     //Rotas do painel adm
 	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('usuarios.lista');
@@ -66,6 +62,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'
 
 
 });
+
+//Rotas para o painel do usuário
+Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' =>'user.'],function(){
+	Route::get('/painel/lista-certificados/{user}', 'UserController@listarCertificados' )->name('certificados.lista');
+	Route::get('painel/certificado/show/{certificado}','UserController@exibirCertificado')->name('certificado.show');
+});
+
 
 //Rotas públicas
 

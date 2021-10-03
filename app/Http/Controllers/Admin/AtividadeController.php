@@ -23,8 +23,8 @@ class AtividadeController extends Controller
     //Injeta um objeto de atividade
     public function __construct(Atividade $atividade)
     {
-    	$this->middleware(['auth', 'role:super-admin'])->except('listaAtividades','index', 'inscricao');
-		$this->middleware(['permission:visualizar-atividade'])->only('index','inscricao');
+    	$this->middleware(['auth', 'role:admin']);
+		$this->middleware(['permission:visualizar-atividade'])->only('index','inscricao','listaAtividades');
 
 		$this->atividade = $atividade;
 	}
