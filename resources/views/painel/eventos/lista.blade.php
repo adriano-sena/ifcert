@@ -10,12 +10,14 @@
                     <div class="card-body">
                        <div class="row">
                            <div class="col-md-12 text-right mb-2">
+							@hasrole('admin')
                             <a href="{{route('admin.eventos.create')}}">
                                    <button class="btn btn-success">
                                     <i class="  fa-plus"></i>
                                     Criar Evento
                                    </button>
                                </a>
+							@endhasrole
                            </div>
                            <div class="table-responsive">
                                <table class="table">
@@ -43,7 +45,9 @@
                                                     <a class="dropdown-item" href="{{route('admin.eventos.edit', ['evento' => $evento->id])}}">Editar</a>
                                                     <a class="dropdown-item" href="{{route('admin.atividades.lista', ['evento' => $evento->id]) }}">Atividades</a>
                                                     <a class="dropdown-item" href="{{route('admin.modelo.certificado.create', ['evento' => $evento->id]) }}">Certificado</a>
-                                                    <a class="dropdown-item" href="#delete">Deletar</a>
+                                                    @hasrole('admin')
+													<a class="dropdown-item" href="#delete">Deletar</a>
+													@endhasrole
                                                 </div>
                                             </div>
                                             </td>

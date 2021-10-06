@@ -30,11 +30,13 @@
                         <i class="fas fa-chart-bar"></i>Eventos
                     </a>
                 </li>
+				@hasrole('admin')
                 <li>
                     <a href="{{route('admin.usuarios.lista')}}">
                         <i class="far fa-check-square"></i>Usuários
                     </a>
                 </li>
+				@endhasrole
             </ul>
         </nav>
     </div>

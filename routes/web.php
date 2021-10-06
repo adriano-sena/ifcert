@@ -24,7 +24,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
     //Rotas de Eventos
     Route::get('/eventos/lista', 'EventoController@listaEventos')->name('evento.lista');
     Route::resource('eventos', 'EventoController');
-	Route::get('eventos/{evento}','EventoController@show')->name('eventos.show')->middleware('role:user');
+	Route::get('eventos/{evento}','EventoController@show')->name('eventos.show');
 
     //Rotas do painel adm
 	Route::get('/painel/usuarios', 'AdminController@listaUsuarios')->name('usuarios.lista');
@@ -42,9 +42,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin', 'as'=>'admin.'],function (
 
     //Recursos aninhados (Relação Evento/Atividade);
     Route::get('/atividades/lista/{evento}' , 'AtividadeController@listaAtividades')->name('atividades.lista');
-
     Route::post('/atividade/{atividade}/inscricao/', 'AtividadeController@inscricao')->name('eventos.atividades.inscricao');
-
     Route::get('/atividade/lista/inscritos/{atividade}', 'AtividadeController@listaInscritos')->name('atividades.inscritos');
     Route::post('/atividade/lista/inscritos/{atividade}', 'AtividadeController@registraParticipantes')->name('atividades.inscritos.registra');
 	Route::get('/atividade/lista/inscritos/{atividade}/remover/{inscrito}', 'AtividadeController@removeRegistroParticipante')->name('atividades.inscritos.remove');
@@ -69,7 +67,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'as' =>'user.'],functio
 	Route::get('painel/certificado/show/{certificado}','UserController@exibirCertificado')->name('certificado.show');
 });
 
+//Route::group(['prefix' => 'mod', 'as' => 'mod.'], function(){
+//	Route::get('painel/eventos', 'EventoController@listaEventos')->name('painel');
+//});
 
+//Route::get('mod/painel/eventos', 'EventoController@listaEventos')->name('painel');
 //Rotas públicas
 
 Route::group(['middleware' => ['role:user']], function () {

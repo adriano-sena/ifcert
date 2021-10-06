@@ -23,9 +23,9 @@ class AtividadeController extends Controller
     //Injeta um objeto de atividade
     public function __construct(Atividade $atividade)
     {
-    	$this->middleware(['auth', 'role:admin']);
-		$this->middleware(['permission:visualizar-atividade'])->only('index','inscricao','listaAtividades');
-
+    	$this->middleware(['auth']);
+		$this->middleware('role_or_permission:admin|moderador')->except('inscricao');
+		$this->middleware(['permission:visualizar-atividade'])->only('inscricao');
 		$this->atividade = $atividade;
 	}
 
@@ -42,13 +42,9 @@ class AtividadeController extends Controller
 
     public function listaAtividades(Request $request, Evento $evento)
     {
-
         //$atividades = Atividade::paginate(10);
-
-        $atividades = DB::table('atividades')->where('evento_id', $evento->id)->simplePaginate(1); //Retorna a collection como iterator
-
+        $atividades = DB::table('atividades')->where('evento_id', $evento->id)->simplePaginate(40); //Retorna a collection como iterator
         $request->session()->put('evento', $evento->id);//armazenando o id do evento na sessão
-
         return view('painel.atividades.lista', compact('atividades', 'evento'));
     }
 

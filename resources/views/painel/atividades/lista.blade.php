@@ -60,6 +60,7 @@
                                     @endforeach
                                    </tbody>
                                </table>
+							   {{$atividades->links()}}
                            </div>
                        </div>
                     </div>

@@ -14,8 +14,15 @@ class EventoController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth','role:admin']);
-        $this->middleware(['permission:visualizar-atividade', 'permission:visualizar-evento']);
+    	$this->middleware('auth');
+    	$this->middleware('role_or_permission:admin|moderador')->except('create','destroy', 'show');
+    	$this->middleware(['permission:visualizar-evento'])->only('show');
+
+        /*$this->middleware(['auth']);
+        $this->middleware('role:admin')->except('show', 'listaEventos');
+        $this->middleware('permission:visualizar-evento')->only('show');
+        $this->middleware(['permission:editar-evento'])->only('edit', 'update');*/
+
 
     }
     /**
@@ -80,16 +87,13 @@ class EventoController extends Controller
      */
     public function show($evento)
     {
-    	$user = Auth::user();
-    	if ($user->can('visualizar-evento')){
-    		echo($user->getPermissionNames());
 			$evento = Evento::find($evento);
 			$atividades = $evento->atividades;
 			//Verificar se o evento possui atividades
 			//Se possuir apresentar direcionar para a view do evento com a listagem de atividades
 			//Senão apresentar para uma página informando que o evento ainda não possui atividades cadastradas
 			return view('evento', compact('evento', 'atividades'));
-		}
+
     }
 
 	public function exibirEvento($evento)
@@ -113,7 +117,6 @@ class EventoController extends Controller
     public function edit($evento)
     {
         $evento = Evento::find($evento);
-
         return view('painel.eventos.edit', compact('evento'));
     }
 

@@ -33,6 +33,11 @@
 						<a href="{{route('user.certificados.lista', Auth::user())}}" class="nav-link">Meus certificados</a>
 					</li>
 				  	@endhasrole
+				  	@hasrole('moderador')
+				  	<li class="nav-item">
+					  	<a href="{{route('admin.evento.lista', Auth::user())}}" class="nav-link">Painel Moderador</a>
+					</li>
+				  	@endhasrole
 					@guest
 						@if(Route::has('login'))
 							<li class="nav-item">
