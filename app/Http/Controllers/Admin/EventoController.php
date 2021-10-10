@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Evento;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\ImagemHelper;
 use App\Http\Requests\EventosRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,17 +66,12 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
-
         //Adição da imagem
-
         if($request->hasFile('imagem')){
-            $data['imagem'] = $this->imageUpload($request);
+            $data['imagem'] = ImagemHelper::imageUpload($request);
         }
-
         $evento = Evento::create($data);
-
         return redirect()->route('admin.evento.lista');
     }
 
@@ -153,16 +149,4 @@ class EventoController extends Controller
         return redirect()->route('admin.evento.lista');
     }
 
-    /**
-     * Retorna o Path da imagem salva no sistema
-     */
-    private function imageUpload(Request $request){
-
-      $imagem = $request->file('imagem');
-
-      $uploadedImage = $imagem->store('imagem' , 'public');
-
-      return $uploadedImage;
-
-    }
 }

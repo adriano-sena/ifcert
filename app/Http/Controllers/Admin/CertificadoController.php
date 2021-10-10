@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Certificado;
 use App\Evento;
+use App\Helpers\ImagemHelper;
 use App\Helpers\PDFHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -54,25 +55,29 @@ class CertificadoController extends Controller
 		$modelo = $evento->certificado()->get();
 
 		if($modelo->isEmpty()){
+
+			$data = $request->all();
+
+			if($request->hasFile('imagem')){
+				$data['imagem'] =  ImagemHelper::imageUpload($request);
+			}
 			$certificado = $evento->certificado()->create([
-				'texto' => $request->content,
-				'background' => '/img/modelos/modelosnct.jpeg',
+				'texto' => $data['content'],
+				'background' => $data['imagem'],
 			]);
+			dd($certificado);
 			flash('Modelo de certificado criado com sucesso')->success();
 			return redirect()->back();
-
 		}else {
 			$modelo = $modelo->last();
 			$certificado = Certificado::find($modelo->id);
 			$certificado->texto = $request->content;
 			$certificado->save();
-
 			flash('Modelo modificado com sucesso')->success();
 			return redirect()->back();
 		}
 
     }
-
     /**
      * Apresenta o certificado relacionado ao evento
      *
