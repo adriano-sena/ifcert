@@ -37,7 +37,7 @@
 
 						<div class="row mt-5">
 							<div class="col">
-								<form action="{{route('admin.modelo.certificado.store', ['evento' => $evento->id])}}" method="post">
+								<form action="{{route('admin.modelo.certificado.store', ['evento' => $evento->id])}}" method="post" enctype="multipart/form-data">
 									@csrf
 									<label for=""></label>
 									<textarea name="content" id="conteudo" rows="25">
@@ -47,6 +47,15 @@
 										@endif
 									</textarea>
 									{{--Acicionar área de upload--}}
+									<div class="input-group mb-3 mt-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="inputGroupFileAddon01">Carregar Imagem</span>
+										</div>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" name="imagem" id="imagem" aria-describedby="inputGroupFileAddon01">
+											<label class="custom-file-label" for="imagem">Escolha a imagem</label>
+										</div>
+									</div>
 									<button type="submit" class="btn btn-primary mt-3">Salvar modelo</button>
 								</form>
 

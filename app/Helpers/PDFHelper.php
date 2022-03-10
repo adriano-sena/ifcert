@@ -8,6 +8,7 @@ use App\CertificadoEmitido;
 use App\Evento;
 use App\User;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -42,8 +43,15 @@ class PDFHelper{
      */
     public static function geraCertificado($conteudoHtml){
 
+    	//Definindo as opções de configuração do gerenciador de PDF
+		$options = new Options();
+		$options->setChroot(__DIR__);
+		$options->setIsHtml5ParserEnabled(true);
+		$options->setIsRemoteEnabled(true);
+		$options->setIsPhpEnabled(true);
+
         //Criando PDF
-        $dompdf = new Dompdf();
+        $dompdf = new Dompdf($options);
         $dompdf->loadHtml($conteudoHtml);
         $dompdf->setPaper('a4', 'landscape');
         //renderizando e dando o output

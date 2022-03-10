@@ -13,7 +13,7 @@
         body{
                 background-position: center center;
                 background-repeat: no-repeat;
-                background-image: url({{$certificado->background}});
+                background-image: url("{{asset('storage/'. $certificado->background)}}");
                 /* Center and scale the image nicely */
                 /* background-position: center;
                 background-repeat: no-repeat;
@@ -30,6 +30,7 @@
 	<div class="content">
 		{!! nl2br($certificado->texto) !!}
 	</div>
+
 
 </body>
 </html>
