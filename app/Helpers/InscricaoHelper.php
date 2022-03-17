@@ -17,9 +17,7 @@ class InscricaoHelper
 	 */
 	public static function checaInscricao(Atividade $atividade, User $user) {
 
-		if($atividade->whereHas('users',function ($query) use ($user){
-			$query->where('users.id',$user->id);
-		})->first()){
+		if($atividade->users->contains($user)){
 			return true;
 		}
 		return false;

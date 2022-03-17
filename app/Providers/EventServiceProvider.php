@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\NovaInscricao;
 use App\Events\NovoUsuario;
 use App\Listeners\EnviarEmailCadastro;
+use App\Listeners\NovaInscricaoEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,7 +24,11 @@ class EventServiceProvider extends ServiceProvider
         ],
 		NovoUsuario::class =>[
 			EnviarEmailCadastro::class
+		],
+		NovaInscricao::class => [
+			NovaInscricaoEmail::class
 		]
+
     ];
 
     /**

@@ -41,7 +41,7 @@
 							<h5 class="card-title">{{$atividade->titulo}}</h5>
 							<p class="card-text">{{$atividade->descricao}}</p>
 							<hr>
-							<form action="{{route('admin.eventos.atividades.inscricao', ["atividade" => $atividade->id, "user" => Auth::user()])}}" method="post">
+							<form action="{{route('admin.eventos.atividades.inscricao', ["atividade" => $atividade->id])}}" method="post">
 								@csrf
 								<button type="submit" class="btn btn-terciary">
 									Inscrever-se

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Atividade;
 use App\Evento;
+use App\Events\NovaInscricao;
 use App\Helpers\CertificadoHelper;
 use App\Helpers\InscricaoHelper;
 use App\Helpers\PDFHelper;
@@ -20,7 +21,7 @@ class AtividadeController extends Controller
 
     private $atividade;
 
-    //Injeta um objeto de atividade
+
     public function __construct(Atividade $atividade)
     {
     	$this->middleware(['auth']);
@@ -145,8 +146,11 @@ class AtividadeController extends Controller
 				return redirect()->back()->with('error','Que pena, Não existem mais vagas para esta atividade :(');
 			}
 			$user->atividades()->attach($atividade->id);
+			$event = new NovaInscricao($user, $atividade);
+			event($event);
 			return redirect()->back()->with('success', 'Inscrição realizada com sucesso, Logo chegará um e-mail com as informações da atividade!');
 		}
+		dd($inscrito);
 		return redirect()->back()->with('success','Você já está inscrito nesta atividade, verifique sua caixa de e-mails para mais informações.');
 
     }
