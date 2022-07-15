@@ -27,12 +27,12 @@ A stack principal conta com:
 - - Criar Painel administrativo (gerenciamento do evento) (ok);
 - Criação da página de certificado; (Essencial) -> em andamento
 - Finalizar implementação da inscrição do usuário na atividade (Confirmar se o usuário já está inscrito) (ok)
-
+- Criar regra de negócio para permissões de moderadores, administradores e userPadrão.
+- Criar painel do usuário(exibição da listagem de certificados emitidos para cada user)
 
 ## Andamento - A ser feito
 
-- Criar regra de negócio para permissões de moderadores, administradores e userPadrão.
-- Criar painel do usuário(exibição da listagem de certificados emitidos para cada user)-> keep it simple;
+
 
 
 
