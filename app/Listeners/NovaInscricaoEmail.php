@@ -34,8 +34,6 @@ class NovaInscricaoEmail
          $email = new EmailInscricao($usuario->name, $atividade->titulo, $atividade->data);
          $email->subject("Ifcert: Cadastro atividade ". $atividade->titulo);
 		 Mail::to($usuario)->send($email);
-		 dd("Passei por aqui e mandei o e-mail");
-
 
     }
 }

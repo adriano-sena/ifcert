@@ -150,7 +150,6 @@ class AtividadeController extends Controller
 			event($event);
 			return redirect()->back()->with('success', 'Inscrição realizada com sucesso, Logo chegará um e-mail com as informações da atividade!');
 		}
-		dd($inscrito);
 		return redirect()->back()->with('success','Você já está inscrito nesta atividade, verifique sua caixa de e-mails para mais informações.');
 
     }
