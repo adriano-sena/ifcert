@@ -1,0 +1,61 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs / Editors
+.vs/
+.idea/
+*.sln.iml
+*.DotSettings.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# Build outputs
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# Distribution / publish
+out/
+publish/
+app.publish/
+artifacts/
+
+# Tests / coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+.coverage
+.coverageinfo
+lcov.info
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+.nuget/NuGet.Config
+.nuget/packages.config
+
+# ASP.NET scaffolding
+/scaffolding-readme.txt
+
+# Publish profiles (user-specific)
+Properties/PublishProfiles/*.pubxml.user
+*.pubxml.user
+
+# Database files
+*.mdf
+*.ldf
+
+# Local appsettings overrides (optional; keep shared ones committed)
+appsettings.Local.json
+appsettings.*.Local.json

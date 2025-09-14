@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ifcert.Domain\Ifcert.Domain.csproj" />
+    <ProjectReference Include="..\Ifcert.Application\Ifcert.Application.csproj" />
+  </ItemGroup>
+
+</Project>

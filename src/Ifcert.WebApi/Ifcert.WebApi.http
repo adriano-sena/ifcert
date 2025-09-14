@@ -1,0 +1,6 @@
+@Ifcert.WebApi_HostAddress = http://localhost:5290
+
+GET {{Ifcert.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
