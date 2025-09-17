@@ -59,3 +59,7 @@ Properties/PublishProfiles/*.pubxml.user
 # Local appsettings overrides (optional; keep shared ones committed)
 appsettings.Local.json
 appsettings.*.Local.json
+
+# Repo guidelines (unversioned)
+AGENTS.md
+agent.md
