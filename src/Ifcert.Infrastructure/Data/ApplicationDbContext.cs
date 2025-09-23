@@ -1,3 +1,5 @@
+using Ifcert.Domain.Entities;
+using Ifcert.Domain.Entities.Commom;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,8 +8,12 @@ namespace Ifcert.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-    }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+    public DbSet<Participante> Participantes { get; set; }
+    public DbSet<Evento> Eventos { get; set; }
+    public DbSet<Atividade> Atividades { get; set; }
+    public DbSet<Inscricao> Inscricoes { get; set; }
+    
 }
 
