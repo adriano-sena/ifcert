@@ -1,4 +1,5 @@
 using System.Text;
+using Ifcert.Infrastructure;
 using Ifcert.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -30,8 +31,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // EF Core + Npgsql
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+  //  options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+  builder.Services.ConfigurePersistence(builder.Configuration);
+
+  Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 // Identity Core + EF stores
 builder.Services

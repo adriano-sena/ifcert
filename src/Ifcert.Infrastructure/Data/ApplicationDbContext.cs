@@ -14,6 +14,10 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole
     public DbSet<Evento> Eventos { get; set; }
     public DbSet<Atividade> Atividades { get; set; }
     public DbSet<Inscricao> Inscricoes { get; set; }
-    
-}
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
+}
