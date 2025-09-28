@@ -35,6 +35,9 @@ builder.Services.AddSwaggerGen(options =>
   //  options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
   builder.Services.ConfigurePersistence(builder.Configuration);
 
+// Controllers (API controllers)
+builder.Services.AddControllers();
+
   Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 // Identity Core + EF stores
@@ -87,6 +90,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Mapear controllers
+app.MapControllers();
 
 // Endpoint exemplo
 app.MapGet("/weatherforecast", () =>
