@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Ifcert.Application.Validators;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +41,14 @@ builder.Services.AddSwaggerGen(options =>
 
 // Controllers (API controllers)
 builder.Services.AddControllers();
+
+// FluentValidation: auto-validação + pt-BR
+builder.Services
+    .AddFluentValidationAutoValidation();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CriarEventoRequestValidator>();
+
+ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
 
   Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
 
