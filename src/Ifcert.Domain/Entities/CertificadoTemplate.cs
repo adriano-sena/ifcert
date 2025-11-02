@@ -4,33 +4,31 @@ namespace Ifcert.Domain.Entities;
 
 public class CertificadoTemplate : EntidadeBase
 {
+    // Opcional: template por evento (pode ser null para template global)
+    public Guid? EventoId { get; private set; }
+
     public string Nome { get; private set; } = default!;
-    public string ConteudoHtml { get; private set; } = default!;
+    public string CorpoHtml { get; private set; } = default!; // suporta placeholders como {{Evento}}, {{Atividade}}, {{Participante}}, {{CargaHoraria}}
+    public string? BackgroundImageUrl { get; private set; }
     public bool Ativo { get; private set; }
 
-    protected CertificadoTemplate() { }
+    private CertificadoTemplate() { }
 
-    public CertificadoTemplate(string nome, string conteudoHtml, bool ativo = true)
+    public CertificadoTemplate(Guid? eventoId, string nome, string corpoHtml, string? backgroundImageUrl, bool ativo = true)
     {
-        if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException("Nome é obrigatório.", nameof(nome));
-        if (string.IsNullOrWhiteSpace(conteudoHtml)) throw new ArgumentException("Conteúdo do template é obrigatório.", nameof(conteudoHtml));
-
-        Nome = nome.Trim();
-        ConteudoHtml = conteudoHtml;
+        EventoId = eventoId;
+        Nome = string.IsNullOrWhiteSpace(nome) ? throw new ArgumentException("Nome é obrigatório.") : nome.Trim();
+        CorpoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
+        BackgroundImageUrl = string.IsNullOrWhiteSpace(backgroundImageUrl) ? null : backgroundImageUrl.Trim();
         Ativo = ativo;
     }
 
-    public void AtualizarConteudo(string conteudoHtml)
+    public void Atualizar(string nome, string corpoHtml, string? backgroundImageUrl, bool ativo)
     {
-        if (string.IsNullOrWhiteSpace(conteudoHtml)) throw new ArgumentException("Conteúdo do template é obrigatório.", nameof(conteudoHtml));
-        ConteudoHtml = conteudoHtml;
-        MarcarModificacao();
-    }
-
-    public void DefinirAtivo(bool ativo)
-    {
+        Nome = string.IsNullOrWhiteSpace(nome) ? throw new ArgumentException("Nome é obrigatório.") : nome.Trim();
+        CorpoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
+        BackgroundImageUrl = string.IsNullOrWhiteSpace(backgroundImageUrl) ? null : backgroundImageUrl.Trim();
         Ativo = ativo;
-        MarcarModificacao();
+        //MarcarModificado();
     }
 }
-
