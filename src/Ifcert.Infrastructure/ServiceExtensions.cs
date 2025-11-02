@@ -27,6 +27,8 @@ public static class ServiceExtensions
         services.AddScoped<IEventosRepository, EventosRepository>();
         services.AddScoped<IAtividadesRepository, AtividadesRepository>();
         services.AddScoped<IParticipantesRepository, ParticipantesRepository>();
+        services.AddScoped<ICertificadosRepository, CertificadosRepository>();
+        services.AddScoped<ICertificadoTemplatesRepository, CertificadoTemplatesRepository>();
 
         // Application Services
         services.AddScoped<IEventosService, EventosService>();

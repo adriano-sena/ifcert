@@ -8,7 +8,7 @@ public class CertificadoTemplate : EntidadeBase
     public Guid? EventoId { get; private set; }
 
     public string Nome { get; private set; } = default!;
-    public string CorpoHtml { get; private set; } = default!; // suporta placeholders como {{Evento}}, {{Atividade}}, {{Participante}}, {{CargaHoraria}}
+    public string ConteudoHtml { get; private set; } = default!; // suporta placeholders como {{Evento}}, {{Atividade}}, {{Participante}}, {{CargaHoraria}}
     public string? BackgroundImageUrl { get; private set; }
     public bool Ativo { get; private set; }
 
@@ -18,7 +18,7 @@ public class CertificadoTemplate : EntidadeBase
     {
         EventoId = eventoId;
         Nome = string.IsNullOrWhiteSpace(nome) ? throw new ArgumentException("Nome é obrigatório.") : nome.Trim();
-        CorpoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
+        ConteudoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
         BackgroundImageUrl = string.IsNullOrWhiteSpace(backgroundImageUrl) ? null : backgroundImageUrl.Trim();
         Ativo = ativo;
     }
@@ -26,7 +26,7 @@ public class CertificadoTemplate : EntidadeBase
     public void Atualizar(string nome, string corpoHtml, string? backgroundImageUrl, bool ativo)
     {
         Nome = string.IsNullOrWhiteSpace(nome) ? throw new ArgumentException("Nome é obrigatório.") : nome.Trim();
-        CorpoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
+        ConteudoHtml = string.IsNullOrWhiteSpace(corpoHtml) ? throw new ArgumentException("Corpo é obrigatório.") : corpoHtml.Trim();
         BackgroundImageUrl = string.IsNullOrWhiteSpace(backgroundImageUrl) ? null : backgroundImageUrl.Trim();
         Ativo = ativo;
         //MarcarModificado();

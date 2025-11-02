@@ -14,6 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole
     public DbSet<Evento> Eventos { get; set; }
     public DbSet<Atividade> Atividades { get; set; }
     public DbSet<Inscricao> Inscricoes { get; set; }
+    public DbSet<Certificado> Certificados { get; set; }
+    public DbSet<CertificadoTemplate> CertificadoTemplates { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
