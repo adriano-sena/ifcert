@@ -11,17 +11,20 @@ public class AtividadesService : IAtividadesService
     private readonly IEventosRepository _eventosRepository;
     private readonly IAtividadesRepository _atividadesRepository;
     private readonly IParticipantesRepository _participantesRepository;
+    private readonly IInscricoesRepository _inscricoesRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public AtividadesService(
         IEventosRepository eventosRepository,
         IAtividadesRepository atividadesRepository,
         IParticipantesRepository participantesRepository,
+        IInscricoesRepository inscricoesRepository,
         IUnitOfWork unitOfWork)
     {
         _eventosRepository = eventosRepository;
         _atividadesRepository = atividadesRepository;
         _participantesRepository = participantesRepository;
+        _inscricoesRepository = inscricoesRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -37,8 +40,7 @@ public class AtividadesService : IAtividadesService
             request.InicioUtc,
             request.FimUtc,
             request.Capacidade);
-
-        // Persistir pelo repositório da Atividade 
+        
         _atividadesRepository.CriarAsync(atividade, cancellationToken);
         await _unitOfWork.SalvarAlteracoesAsync(cancellationToken);
         return atividade.Id;
@@ -54,13 +56,16 @@ public class AtividadesService : IAtividadesService
         if (participante is null)
             throw new InvalidOperationException("Participante não encontrado.");
 
-        var inscricao = atividade.Inscrever(participante);
+        // Validação defensiva: evitar duplicidade (coleção não carregada pode não refletir estado atual)
+        var existentes = await _inscricoesRepository.ListarPorAtividadeAsync(atividadeId, cancellationToken);
+        if (existentes.Any(i => i.ParticipanteId == participanteId))
+            throw new InvalidOperationException("Participante já inscrito nesta atividade.");
 
-        // Garantir persistência das alterações via repositório e UoW
-        _atividadesRepository.Atualizar(atividade);
+        var inscricao = atividade.Inscrever(participante);
+        // Persistir explicitamente a nova inscrição
+        _inscricoesRepository.CriarAsync(inscricao, cancellationToken);
         await _unitOfWork.SalvarAlteracoesAsync(cancellationToken);
 
         return inscricao.Id;
     }
 }
-

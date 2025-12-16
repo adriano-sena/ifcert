@@ -1,4 +1,3 @@
-using Ifcert.Application.Contracts;
 using Ifcert.Application.DTOs;
 using Ifcert.Domain.Entities;
 using Ifcert.Domain.Interfaces;
@@ -10,16 +9,13 @@ public class EventosService : IEventosService
 {
     private readonly IEventosRepository _eventosRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IEventoFactory _eventoFactory;
 
     public EventosService(
         IEventosRepository eventosRepository,
-        IUnitOfWork unitOfWork,
-        IEventoFactory eventoFactory)
+        IUnitOfWork unitOfWork)
     {
         _eventosRepository = eventosRepository;
         _unitOfWork = unitOfWork;
-        _eventoFactory = eventoFactory;
     }
 
     public async Task<EventoDto> CriarAsync(CriarEventoRequest request, CancellationToken cancellationToken = default)
@@ -32,7 +28,7 @@ public class EventosService : IEventosService
         if (existentes.Any(e => string.Equals(e.Titulo, request.Titulo.Trim(), StringComparison.OrdinalIgnoreCase)))
             throw new InvalidOperationException("Já existe um evento com este título.");
 
-        var evento = _eventoFactory.Criar(request.Titulo, request.Descricao, request.InicioUtc, request.FimUtc);
+        var evento = Evento.Criar(request.Titulo, request.Descricao, request.InicioUtc, request.FimUtc);
 
         _eventosRepository.CriarAsync(evento, cancellationToken);
         await _unitOfWork.SalvarAlteracoesAsync(cancellationToken);

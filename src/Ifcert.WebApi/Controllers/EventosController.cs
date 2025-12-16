@@ -26,7 +26,7 @@ public class EventosController : ControllerBase
         try
         {
             var dto = await _eventosService.CriarAsync(request, cancellationToken);
-            return CreatedAtAction(nameof(ObterPorIdAsync), new { id = dto.Id }, dto);
+            return CreatedAtRoute("ObterPorId", new { id = dto.Id }, dto);        
         }
         catch (ArgumentException ex)
         {

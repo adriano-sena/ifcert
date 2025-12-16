@@ -17,12 +17,18 @@ public class Evento : EntidadeBase
     public IReadOnlyCollection<Atividade> Atividades => _atividades.AsReadOnly();
 
     private Evento() { }
-    public Evento(string titulo, string? descricao, IntervaloDatas agenda)
+    private Evento(string titulo, string? descricao, IntervaloDatas agenda)
     {
         if (string.IsNullOrWhiteSpace(titulo)) throw new ArgumentException("Título é obrigatório.");
         Titulo = titulo.Trim();
         Descricao = descricao;
         Agenda = agenda;
+    }
+
+    public static Evento Criar(string titulo, string? descricao, DateTime inicioUtc, DateTime fimUtc)
+    {
+        var intervalo = IntervaloDatas.From(inicioUtc, fimUtc);
+        return new Evento(titulo, descricao, intervalo);
     }
 
     public Atividade AdicionarAtividade(string titulo, string? descricao, DateTime inicioUtc, DateTime fimUtc, int capacidade)

@@ -15,11 +15,12 @@ public class CertificadoTemplateConfiguration : IEntityTypeConfiguration<Certifi
         cfg.Property(x => x.DataCriacao).HasColumnName("data_criacao");
         cfg.Property(x => x.DataAlteracao).HasColumnName("data_modificacao");
 
+        cfg.Property(x => x.EventoId).HasColumnName("evento_id");
         cfg.Property(x => x.Nome).HasColumnName("nome").IsRequired();
         cfg.Property(x => x.ConteudoHtml).HasColumnName("conteudo_html").IsRequired();
+        cfg.Property(x => x.BackgroundImageUrl).HasColumnName("background_image_url");
         cfg.Property(x => x.Ativo).HasColumnName("ativo").IsRequired();
 
         cfg.HasIndex(x => x.Nome);
     }
 }
-

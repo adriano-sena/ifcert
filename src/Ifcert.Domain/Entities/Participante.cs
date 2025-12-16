@@ -18,4 +18,18 @@ public class Participante : EntidadeBase
         Nome = nome ?? throw new ArgumentNullException(nameof(nome));
         Email = email ?? throw new ArgumentNullException(nameof(email));
     }
+
+    public void AlterarNome(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new ArgumentException("Nome não pode ser vazio.", nameof(nome));
+        Nome = nome.Trim();
+        MarcarModificacao();
+    }
+
+    public void AlterarEmail(Email email)
+    {
+        Email = email ?? throw new ArgumentNullException(nameof(email));
+        MarcarModificacao();
+    }
 }
