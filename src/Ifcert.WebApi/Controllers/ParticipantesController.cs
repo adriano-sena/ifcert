@@ -1,11 +1,14 @@
 using Ifcert.Application.Contracts;
 using Ifcert.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ifcert.WebApi.Controllers;
 
 [ApiController]
 [Route("api/participantes")]
+[Tags("Participantes")] 
+[Authorize(Policy = "JwtAuthPolicy")]
 public class ParticipantesController : ControllerBase
 {
     private readonly IParticipantesService _service;
@@ -90,4 +93,3 @@ public class ParticipantesController : ControllerBase
         return Ok(lista);
     }
 }
-

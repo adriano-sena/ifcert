@@ -1,11 +1,14 @@
 using Ifcert.Application.Contracts;
 using Ifcert.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ifcert.WebApi.Controllers;
 
 [ApiController]
 [Route("api")]
+[Tags("Certificados")] 
+[Authorize(Policy = "JwtAuthPolicy")]
 public class CertificadosController : ControllerBase
 {
     private readonly ICertificadosService _service;
@@ -47,4 +50,3 @@ public class CertificadosController : ControllerBase
         return dto is null ? NotFound("Certificado não encontrado.") : Ok(dto);
     }
 }
-

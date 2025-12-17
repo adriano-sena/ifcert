@@ -1,11 +1,14 @@
 using Ifcert.Application.Contracts;
 using Ifcert.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ifcert.WebApi.Controllers;
 
 [ApiController]
 [Route("api")]
+[Tags("Atividades")] 
+[Authorize(Policy = "JwtAuthPolicy")]
 public class AtividadesController : ControllerBase
 {
     private readonly IAtividadesService _atividadesService;
@@ -71,4 +74,3 @@ public class AtividadesController : ControllerBase
         }
     }
 }
-

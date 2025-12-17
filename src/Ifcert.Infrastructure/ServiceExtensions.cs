@@ -5,6 +5,7 @@ using Ifcert.Application.Contracts;
 using Ifcert.Application.Abstractions;
 using Ifcert.Infrastructure.Pdf;
 using Ifcert.Application.Services;
+using Ifcert.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,7 @@ public static class ServiceExtensions
         services.AddScoped<ICertificadosService, CertificadosService>();
         services.AddScoped<ICertificadoTemplatesService, CertificadoTemplatesService>();
         services.AddScoped<IParticipantesService, ParticipantesService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         // PDF
         services.AddSingleton<IPdfGenerator, QuestPdfGenerator>();

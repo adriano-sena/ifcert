@@ -31,6 +31,16 @@ public class Evento : EntidadeBase
         return new Evento(titulo, descricao, intervalo);
     }
 
+    public void AtualizarDadosBasicos(string titulo, string? descricao, DateTime inicioUtc, DateTime fimUtc)
+    {
+        if (string.IsNullOrWhiteSpace(titulo))
+            throw new ArgumentException("Título é obrigatório.", nameof(titulo));
+        var intervalo = IntervaloDatas.From(inicioUtc, fimUtc);
+        Titulo = titulo.Trim();
+        Descricao = descricao;
+        Agenda = intervalo;
+    }
+
     public Atividade AdicionarAtividade(string titulo, string? descricao, DateTime inicioUtc, DateTime fimUtc, int capacidade)
     {
         var intervalo = IntervaloDatas.From(inicioUtc, fimUtc);

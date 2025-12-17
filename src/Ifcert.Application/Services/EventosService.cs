@@ -48,6 +48,32 @@ public class EventosService : IEventosService
         return evento is null ? null : MapToDto(evento);
     }
 
+    public async Task AtualizarAsync(Guid id, CriarEventoRequest request, CancellationToken cancellationToken = default)
+    {
+        var evento = await _eventosRepository.ObterPorIdAsync(id, cancellationToken)
+            ?? throw new KeyNotFoundException("Evento não encontrado.");
+
+        if (string.IsNullOrWhiteSpace(request.Titulo))
+            throw new ArgumentException("Título é obrigatório.", nameof(request.Titulo));
+
+        // Verifica duplicidade de título em outros eventos
+        var existentes = await _eventosRepository.ListarAsync(cancellationToken);
+        if (existentes.Any(e => e.Id != id && string.Equals(e.Titulo, request.Titulo.Trim(), StringComparison.OrdinalIgnoreCase)))
+            throw new InvalidOperationException("Já existe um evento com este título.");
+
+        evento.AtualizarDadosBasicos(request.Titulo, request.Descricao, request.InicioUtc, request.FimUtc);
+        _eventosRepository.Atualizar(evento);
+        await _unitOfWork.SalvarAlteracoesAsync(cancellationToken);
+    }
+
+    public async Task RemoverAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var evento = await _eventosRepository.ObterPorIdAsync(id, cancellationToken)
+            ?? throw new KeyNotFoundException("Evento não encontrado.");
+        _eventosRepository.Deletar(evento);
+        await _unitOfWork.SalvarAlteracoesAsync(cancellationToken);
+    }
+
     private static EventoDto MapToDto(Evento e)
         => new(e.Id, e.Titulo, e.Descricao, e.Agenda.InicioUtc, e.Agenda.FimUtc);
 }

@@ -1,11 +1,14 @@
 using Ifcert.Application.Contracts;
 using Ifcert.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ifcert.WebApi.Controllers;
 
 [ApiController]
 [Route("api/certificados/templates")]
+[Tags("Certificados - Templates")] 
+[Authorize(Policy = "JwtAuthPolicy")]
 public class CertificadoTemplatesController : ControllerBase
 {
     private readonly ICertificadoTemplatesService _service;
@@ -90,4 +93,3 @@ public class CertificadoTemplatesController : ControllerBase
         return Ok(lista);
     }
 }
-

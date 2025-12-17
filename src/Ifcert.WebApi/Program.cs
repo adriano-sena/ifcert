@@ -1,14 +1,16 @@
-using System.Text;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Ifcert.Application.Validators;
 using Ifcert.Infrastructure;
 using Ifcert.Infrastructure.Data;
+using Ifcert.Infrastructure.Options;
+using System.Globalization;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Ifcert.Application.Validators;
-using System.Globalization;
+using Ifcert.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,9 +37,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // EF Core + Npgsql
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-  //  options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-  builder.Services.ConfigurePersistence(builder.Configuration);
+builder.Services.ConfigurePersistence(builder.Configuration);
 
 // Controllers (API controllers)
 builder.Services.AddControllers();
@@ -50,27 +50,39 @@ builder.Services.AddValidatorsFromAssemblyContaining<CriarEventoRequestValidator
 
 ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
 
-  Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
-
 // Identity Core + EF stores
 builder.Services
-    .AddIdentityCore<IdentityUser>(options =>
+    .AddIdentity<IdentityUser, IdentityRole>(options =>
     {
         options.User.RequireUniqueEmail = true;
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequiredLength = 6;
     })
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 // JWT Authentication
-var jwtSection = builder.Configuration.GetSection("Jwt");
-var issuer = jwtSection["Issuer"];
-var audience = jwtSection["Audience"];
-var key = jwtSection["Key"];
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
+                  ?? throw new InvalidOperationException("Configuração Jwt não encontrada.");
+
+if (string.IsNullOrWhiteSpace(jwtSettings.Secret))
+    throw new InvalidOperationException("Jwt:Secret não configurado.");
+
+var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret));
 
 builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
     .AddJwtBearer(options =>
     {
+        options.RequireHttpsMetadata = true;
         options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -78,13 +90,21 @@ builder.Services
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = issuer,
-            ValidAudience = audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key ?? string.Empty))
+            ValidIssuer = jwtSettings.Issuer,
+            ValidAudience = jwtSettings.Audience,
+            IssuerSigningKey = signingKey,
+            ClockSkew = TimeSpan.Zero
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("JwtAuthPolicy", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+    });
+});
 
 var app = builder.Build();
 
@@ -101,6 +121,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles(); 
+app.UseExceptionHandling();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -121,11 +142,12 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
+.RequireAuthorization("JwtAuthPolicy")
 .WithName("GetWeatherForecast")
 .WithOpenApi(op =>
 {
     op.Summary = "Obtém uma previsão do tempo de exemplo";
-    op.Description = "Endpoint de exemplo para testar a API e o Swagger";
+    op.Description = "Endpoint protegido com JWT para teste";
     return op;
 });
 
